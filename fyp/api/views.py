@@ -10,8 +10,8 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 
 from rest_framework.viewsets import ModelViewSet
-from .serializers import EventSerializer
-from .models import Event
+from .serializers import EventSerializer, AttemptSerializer
+from .models import Event, Attempt
 from rest_framework.generics import ListCreateAPIView
 
 from django.contrib.auth import authenticate
@@ -29,3 +29,9 @@ class EventViewSet(ModelViewSet):
 
 	serializer_class = EventSerializer
 	queryset = Event.objects.all()
+
+
+class AttemptViewSet(ModelViewSet):
+
+	serializer_class = AttemptSerializer
+	queryset = Attempt.objects.all()
