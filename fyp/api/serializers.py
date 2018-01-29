@@ -1,10 +1,17 @@
 from rest_framework import serializers
-from .models import Event
+from .models import Event, Attempt
 from django.contrib.auth.models import User
 from datetime import datetime
 from datetime import timedelta
 from django.utils import timezone 
 import pytz
+
+class UserSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = User
+		# fields = "__all__"
+		exclude = ('password',)
+
 
 
 class EventSerializer(serializers.ModelSerializer):

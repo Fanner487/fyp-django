@@ -2,16 +2,11 @@
 from __future__ import unicode_literals
 
 from django.db import models
-
 from django.contrib.postgres.fields import ArrayField
-
 from datetime import datetime 
 from django.utils import timezone
 
-
 # Create your models here.
-
-
 class Event(models.Model):
 	organiser = models.CharField("organiser", max_length=50)
 	event_name = models.CharField("event_name", max_length=50)
@@ -22,6 +17,7 @@ class Event(models.Model):
 	attendees = ArrayField(models.CharField(max_length=50))
 	attending = ArrayField(models.CharField(max_length=50), blank=True, null=True)
 	attendance_required = models.BooleanField(default=False)
+
 
 
 class Attempt(models.Model):
@@ -39,3 +35,5 @@ class Attempt(models.Model):
 	# 		self.time_created = timezone.now()
 
 	# 	super(Attempt, self).save(*args, **kwargs)
+
+
