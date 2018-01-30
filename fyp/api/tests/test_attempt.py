@@ -84,14 +84,14 @@ class AttemptTestCase(TestCase):
 
         event_id = event_response.json().get('id')
 
-        sleep(6)
+        sleep(5)
 
-        response = self.create_test_attempt_now("user2", event_id)
-        print(response.status_code)
-        print(response.json())
+        response1 = self.create_test_attempt_now("user2", event_id)
+        print(response1.status_code)
+        print(response1.json())
 
         sleep(1)
 
-        response = self.create_test_attempt_now("user2", event_id)
-        print(response.status_code)
-        print(response.json())
+        response2 = self.create_test_attempt_now("user2", event_id)
+        print(response1.status_code)
+        print(response1.json())
