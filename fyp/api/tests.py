@@ -53,6 +53,7 @@ class RegisterTestCase(TestCase):
         response = self.client.post("/api/register/", data=data, format='json')
         print(response.json())
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.json().get('message'), 'Created account')
 
     # def test_register_success(self):
     #
