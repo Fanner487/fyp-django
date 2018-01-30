@@ -32,9 +32,11 @@ class AttemptTestCase(TestCase):
         self.create_user("user3" , "test3@gmail.com", "orangemonkeyeagle1")
         self.create_user("user4" , "test4@gmail.com", "orangemonkeyeagle1")
 
-        event_start_time = datetime.datetime.now() + datetime.timedelta(seconds=2)
-        event_sign_in_time = event_start_time
-        event_finish_time = datetime.datetime(
+    def test_attempt_success(self):
+
+        self.event_start_time = datetime.datetime.now() + datetime.timedelta(seconds=2)
+        self.event_sign_in_time = event_start_time
+        self.event_finish_time = datetime.datetime(
         	year=event_start_time.year,
         	month=event_start_time.month,
         	day=event_start_time.day,
@@ -47,9 +49,6 @@ class AttemptTestCase(TestCase):
         print("Sign in: " + str(event_sign_in_time))
         print("Finish: " + str(event_finish_time))
         print("\n\n")
-
-
-    def test_attempt_success(self):
 
         data = {
             'organiser' :"user1",
