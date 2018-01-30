@@ -168,14 +168,6 @@ class EventTestCase(TestCase):
         }
 
         response = self.create_event(data)
-        print(response.json())
-        print(response.status_code)
 
-        # self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-        # self.assertEqual(response.json().get('organiser'), "user1")
-        # self.assertEqual(response.json().get('event_name'), "Test1")
-        # self.assertEqual(response.json().get('location'), "nowhere")
-        # self.assertEqual(response.json().get('start_time'), "2050-01-29T12:00:00Z")
-        # self.assertEqual(response.json().get('finish_time'), "2050-01-29T12:30:00Z")
-        # self.assertEqual(response.json().get('sign_in_time'), "2050-01-29T12:00:00Z")
-        # self.assertEqual(response.json().get('attendees'), ['user2', 'user3', 'user4'])
+        self.assertEqual(response.json().get('organiser'), "This field is required")
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
