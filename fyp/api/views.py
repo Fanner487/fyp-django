@@ -10,7 +10,6 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from datetime import datetime
 import pytz
-
 # Create your views here.
 
 class EventViewSet(ModelViewSet):
