@@ -137,3 +137,18 @@ class AttemptTestCase(TestCase):
         response3 = self.create_test_attempt_now("user2", event_id)
 
         self.assertEquals(response3.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_attempt_event_id_fail(self):
+
+        event_response = self.create_test_event_now()
+        self.assertEquals(event_response.status_code, status.HTTP_201_CREATED)
+
+        event_id = event_response.json().get('id')
+
+        sleep(2)
+
+        response1 = self.create_test_attempt_now("user2", 9999)
+        print(response1.status_code)
+        print(response1.json())
+
+        
