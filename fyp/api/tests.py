@@ -56,6 +56,7 @@ class RegisterTestCase(TestCase):
         self.assertEqual(response.json().get('message'), 'Created account')
 
     def test_register_duplicate_email(self):
+        print("test_register_duplicate_email")
 
         data = {
             'username' :"billybob1",
@@ -68,6 +69,8 @@ class RegisterTestCase(TestCase):
         response = self.client.post("/api/register/", data=data, format='json')
         print(response.json())
 
+        print("second user")
+
         data = {
             'username' :"testuser1",
             'password' : "orangemonkeyeagle1",
@@ -75,8 +78,8 @@ class RegisterTestCase(TestCase):
             'firstname' : 'Billy',
             'surname' : 'Bob',
         }
-        response = self.client.post("/api/register/", data=data, format='json')
-        print(response.json())
+        response_new = self.client.post("/api/register/", data=data, format='json')
+        print(response_new.json())
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     # def test_register_fail(self):
