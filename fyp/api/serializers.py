@@ -2,7 +2,6 @@ from rest_framework import serializers
 from .models import Event, Attempt
 from django.contrib.auth.models import User
 from datetime import datetime
-from datetime import timedelta
 from django.utils import timezone
 import pytz
 
@@ -11,7 +10,6 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         # fields = "__all__"
         exclude = ('password',)
-
 
 
 class EventSerializer(serializers.ModelSerializer):
@@ -72,8 +70,8 @@ class AttemptSerializer(serializers.ModelSerializer):
 
         username = data.get('username').strip()
         event_id = data.get('event_id')
-        time_on_screen = data.get('time_on_screen')
-        date_on_screen = data.get('date_on_screen')
+        # time_on_screen = data.get('time_on_screen')
+        # date_on_screen = data.get('date_on_screen')
 
         # Setting created_time to now
         data['created'] = now
@@ -257,7 +255,6 @@ def add_to_attending(username, event_id):
         event.save()
 
         return True
-
     else:
 
         print("Not Appending user")
