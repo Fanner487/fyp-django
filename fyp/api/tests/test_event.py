@@ -301,4 +301,4 @@ class EventTestCase(TestCase):
         update_response = self.client.patch(url, data=data_update, format='json')
 
         print(update_response.status_code)
-        print(update_response)
+        print(update_response.text)
