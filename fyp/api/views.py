@@ -141,6 +141,12 @@ def register(request):
     if unique:
         print("\n\nEmail is unique\n\n")
 
+        print(username)
+        print(password)
+        print(email)
+        print(first_name)
+        print(surname)
+
         new_user = User.objects.create_user(username, email, password)
 
         new_user.is_active = True
