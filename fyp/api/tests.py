@@ -18,6 +18,6 @@ class ExampleTestCase(TestCase):
 
     def test_login(self):
         data = {'username': 'eamontang1', 'password': 'orangemonkeyeagle1'}
-        response = client.post(/api/login/, data=data, format='json')
+        response = client.post("/api/login/", data=data, format='json')
         print(response)
         self.assertEqual(1, 1)
