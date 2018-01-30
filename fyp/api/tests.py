@@ -112,7 +112,7 @@ class EventTestCase(TestCase):
     def create_user(username, email, password):
         User.objects.create_user(username, email, password)
 
-    def create_event(data):
+    def create_event(self, data):
         return self.client.post("/api/register/", data=data, format='json')
 
     def setUp(self):
