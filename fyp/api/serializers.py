@@ -75,9 +75,8 @@ class AttemptSerializer(serializers.ModelSerializer):
 		time_on_screen = data.get('time_on_screen')
 		date_on_screen = data.get('date_on_screen')
 
-		# Setting created to now
+		# Setting created_time to now
 		data['created'] = now 
-
 
 		created = data.get('created')
 		print("\n\n\n----------NEW ATTEMPT---------\n" )
@@ -96,6 +95,9 @@ class AttemptSerializer(serializers.ModelSerializer):
 		# Check if user exists in attendee list and not already in attending 
 		if not user_is_attendee(username, event_id):
 			raise serializers.ValidationError("User is not in attendees or already in list")
+
+
+		print("Serializer valid. Verifying last scan now")
 
 		# If user is attendee, add to list with verification
 		# Doesn't need to raise Validation error, needs to check for duplicates
@@ -122,6 +124,8 @@ def verify_scan(data):
 	# Verifies current attempt
 	if valid_attempt_in_event(username, event_id, time_on_screen, date_on_screen, current_created):
 
+		print("Current attempt is valid")
+
 		# Gets last attempt
 		last_attempt = Attempt.objects.filter(username=username).filter(event_id=event_id).order_by("-created").first()
 		
@@ -130,6 +134,7 @@ def verify_scan(data):
 			# Verifies second attempt for event
 			if valid_attempt_in_event(last_attempt.username, last_attempt.event_id, last_attempt.time_on_screen, last_attempt.date_on_screen, last_attempt.created):
 
+				print("Previous attempt valid")
 				# Check if time within 10 seconds of last
 				seconds_difference = (current_created - last_attempt.created).total_seconds()
 				delta = 10
@@ -143,6 +148,8 @@ def verify_scan(data):
 					verified = False
 					print("Two attempts not within delta")
 			else:
+
+				print("Previous attempt not valid")
 				verified = False
 		else:
 
@@ -159,6 +166,8 @@ def verify_scan(data):
 
 def valid_attempt_in_event(username, event_id, time_on_screen, date_on_screen, timestamp):
 
+	print("\n Validating attempt")
+
 	event = Event.objects.get(id=event_id)
 
 	# parsing date and time on screen into new datetime variable for comparison
@@ -166,7 +175,7 @@ def valid_attempt_in_event(username, event_id, time_on_screen, date_on_screen, t
 	combined_time = datetime(year=date_on_screen.year, month=date_on_screen.month, day=date_on_screen.day, 
 		hour=time_on_screen.hour, minute=time_on_screen.minute, second=time_on_screen.second).replace(tzinfo=utc)
 
-	print("\nCombined time: " + str(combined_time))
+	print("Combined time: " + str(combined_time))
 	print("Event sign in: " + str(event.sign_in_time))
 	print("Event finish: " + str(event.finish_time))
 
@@ -186,19 +195,15 @@ def valid_attempt_in_event(username, event_id, time_on_screen, date_on_screen, t
 		verified = False
 
 	# Check screen time within timestamp delta
-	print("\n")
-	print(combined_time)
-	print(timestamp)
-
 	time_difference = (timestamp - combined_time).total_seconds()
-	print(time_difference)
+	print("Time difference:b" + time_difference)
 
 	if time_difference < 10:
-		print("screen time withing delta")
+		print("Screen time withing delta")
 	else:
 		verified = False
 
-	return verified
+	return verifiedg
 
 
 # Checks if user exists with only one entry
