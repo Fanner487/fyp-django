@@ -107,6 +107,7 @@ class RegisterTestCase(TestCase):
         response_new = self.client.post("/api/register/", data=data_new, format='json')
         self.assertEqual(response_new.status_code, status.HTTP_401_UNAUTHORIZED)
 
+
 class EventTestCase(TestCase):
 
     def create_user(self, username, email, password):
@@ -114,7 +115,7 @@ class EventTestCase(TestCase):
         user.save()
 
     def create_event(self, data):
-        return self.client.post("/api/register/", data=data, format='json')
+        return self.client.post("/api/events/", data=data, format='json')
 
     def setUp(self):
         client = APIClient()
@@ -132,17 +133,17 @@ class EventTestCase(TestCase):
         # User.objects.create_user("user4" , "test4@gmail.com", "orangemonkeyeagle1")
 
 
-    # def test_event_create_success(self):
-    #
-    #     data = {
-    #         'organiser' :"user1",
-    #         'event_name' : "Test1",
-    #         'location' : "nowhere",
-    #         'start_time' : '2050-01-29T12:00:00',
-    #         'finish_time' : '2018-01-29T12:30:00',
-    #         'attendees' : ['user2', 'user3', 'user4']
-    #     }
-    #
-    #     response = self.create_event(data)
-    #
-    #     self.assertEqual(response.status_code, status.HTTP_200_OK)
+    def test_event_create_success(self):
+
+        data = {
+            'organiser' :"user1",
+            'event_name' : "Test1",
+            'location' : "nowhere",
+            'start_time' : '2050-01-29T12:00:00',
+            'finish_time' : '2018-01-29T12:30:00',
+            'attendees' : ['user2', 'user3', 'user4']
+        }
+
+        response = self.create_event(data)
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
