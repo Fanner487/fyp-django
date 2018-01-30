@@ -59,11 +59,11 @@ class RegisterTestCase(TestCase):
         print("test_register_duplicate_email")
 
         data = {
-            'username' :"billybob1",
+            'username' :"janedoe1",
             'password' : "orangemonkeyeagle1",
-            'email' : "billybob1@gmail.com",
-            'firstname' : 'Billy',
-            'surname' : 'Bob',
+            'email' : "janedoe1@gmail.com",
+            'firstname' : 'Jane',
+            'surname' : 'Doe',
         }
 
         response = self.client.post("/api/register/", data=data, format='json')
@@ -76,9 +76,9 @@ class RegisterTestCase(TestCase):
         data_new = {
             'username' :"testuser1",
             'password' : "orangemonkeyeagle1",
-            'email' : "billybob1@gmail.com",
-            'firstname' : 'Billy',
-            'surname' : 'Bob',
+            'email' : "janedoe1@gmail.com",
+            'firstname' : 'Jane',
+            'surname' : 'Doe',
         }
         response_new = self.client.post("/api/register/", data=data_new, format='json')
         print(response_new.json())
