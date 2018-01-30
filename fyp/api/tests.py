@@ -138,7 +138,8 @@ class EventTestCase(TestCase):
             'event_name' : "Test1",
             'location' : "nowhere",
             'start_time' : '2050-01-29T12:00:00',
-            'finish_time' : '2018-01-29T12:30:00',
+            'finish_time' : '2050-01-29T12:30:00',
+            'sign_in_time' : '2050-01-29T12:00:00',
             'attendees' : ['user2', 'user3', 'user4']
         }
 
