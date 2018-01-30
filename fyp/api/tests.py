@@ -170,5 +170,5 @@ class EventTestCase(TestCase):
         response = self.create_event(data)
 
         print(response.json())
-        self.assertEqual(response.json().get('organiser'), ['This field is required.'')
+        self.assertEqual(response.json().get('organiser'), ['This field is required.'])
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
