@@ -118,10 +118,14 @@ class EventTestCase(TestCase):
     def setUp(self):
         client = APIClient()
 
-        self.create_user("user1" , "test1@gmail.com", "orangemonkeyeagle1")
-        self.create_user("user2" , "test2@gmail.com", "orangemonkeyeagle1")
-        self.create_user("user3" , "test3@gmail.com", "orangemonkeyeagle1")
-        self.create_user("user4" , "test4@gmail.com", "orangemonkeyeagle1")
+        # self.create_user("user1" , "test1@gmail.com", "orangemonkeyeagle1")
+        # self.create_user("user2" , "test2@gmail.com", "orangemonkeyeagle1")
+        # self.create_user("user3" , "test3@gmail.com", "orangemonkeyeagle1")
+        # self.create_user("user4" , "test4@gmail.com", "orangemonkeyeagle1")
+        User.objects.create_user("user1" , "test1@gmail.com", "orangemonkeyeagle1")
+        User.objects.create_user("user2" , "test2@gmail.com", "orangemonkeyeagle1")
+        User.objects.create_user("user3" , "test3@gmail.com", "orangemonkeyeagle1")
+        User.objects.create_user("user4" , "test4@gmail.com", "orangemonkeyeagle1")
 
 
     def test_event_create_success(self):
