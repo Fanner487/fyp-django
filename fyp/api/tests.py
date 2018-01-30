@@ -69,6 +69,8 @@ class RegisterTestCase(TestCase):
         response = self.client.post("/api/register/", data=data, format='json')
         print(response.json())
 
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
         print("second user")
 
         data_new = {

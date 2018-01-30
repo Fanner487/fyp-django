@@ -138,6 +138,7 @@ def register(request):
 
     unique = verify_unique_username_email(username, email)
 
+    print(unique)
     if unique:
         print("\n\nEmail is unique\n\n")
 
@@ -167,7 +168,6 @@ def verify_unique_username_email(username, email):
     if not emails.exists() and not usernames.exists():
         return True
     else:
-
         return False
         # if emails.exists():
         #     return False
