@@ -48,7 +48,7 @@ class AttemptTestCase(TestCase):
 
     def create_test_event_now(self):
 
-        event_start_time = datetime.datetime.now() + datetime.timedelta(seconds=1))
+        event_start_time = datetime.datetime.now() + datetime.timedelta(seconds=1)
         # event_start_time = datetime.datetime.now()
         event_sign_in_time = event_start_time
         event_finish_time = datetime.datetime(
