@@ -144,7 +144,6 @@ class EventTestCase(TestCase):
         }
 
         response = self.create_event(data)
-        print(response.json())
 
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(response.json().get('organiser'), "user1")
@@ -169,7 +168,6 @@ class EventTestCase(TestCase):
 
         response = self.create_event(data)
 
-        print(response.json())
         self.assertEqual(response.json().get('organiser'), ['This field is required.'])
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
@@ -186,7 +184,6 @@ class EventTestCase(TestCase):
 
         response = self.create_event(data)
 
-        print(response.json())
         self.assertEqual(response.json().get('event_name'), ['This field is required.'])
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
@@ -203,7 +200,6 @@ class EventTestCase(TestCase):
 
         response = self.create_event(data)
 
-        print(response.json())
         self.assertEqual(response.json().get('location'), ['This field is required.'])
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
@@ -220,7 +216,6 @@ class EventTestCase(TestCase):
 
         response = self.create_event(data)
 
-        print(response.json())
         self.assertEqual(response.json().get('start_time'), ['This field is required.'])
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
@@ -237,7 +232,6 @@ class EventTestCase(TestCase):
 
         response = self.create_event(data)
 
-        print(response.json())
         self.assertEqual(response.json().get('finish_time'), ['This field is required.'])
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
@@ -254,7 +248,6 @@ class EventTestCase(TestCase):
 
         response = self.create_event(data)
 
-        print(response.json())
         self.assertEqual(response.json().get('sign_in_time'), ['This field is required.'])
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
