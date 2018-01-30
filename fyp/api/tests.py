@@ -129,17 +129,17 @@ class EventTestCase(TestCase):
         # User.objects.create_user("user4" , "test4@gmail.com", "orangemonkeyeagle1")
 
 
-    def test_event_create_success(self):
-
-        data = {
-            'organiser' :"user1",
-            'event_name' : "Test1",
-            'location' : "nowhere",
-            'start_time' : '2050-01-29T12:00:00',
-            'finish_time' : '2018-01-29T12:30:00',
-            'attendees' : ['user2', 'user3', 'user4']
-        }
-
-        response = self.create_event(data)
-
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
+    # def test_event_create_success(self):
+    #
+    #     data = {
+    #         'organiser' :"user1",
+    #         'event_name' : "Test1",
+    #         'location' : "nowhere",
+    #         'start_time' : '2050-01-29T12:00:00',
+    #         'finish_time' : '2018-01-29T12:30:00',
+    #         'attendees' : ['user2', 'user3', 'user4']
+    #     }
+    #
+    #     response = self.create_event(data)
+    #
+    #     self.assertEqual(response.status_code, status.HTTP_200_OK)
