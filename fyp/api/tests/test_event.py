@@ -6,7 +6,7 @@ from rest_framework.test import APIClient
 from rest_framework.test import APIRequestFactory
 from django.contrib.auth.models import User
 from rest_framework import status
-
+import json
 # Create your tests here.s
 class EventTestCase(TestCase):
 
@@ -283,7 +283,7 @@ class EventTestCase(TestCase):
 
         self.assertEquals(response.status_code, status.HTTP_201_CREATED)
 
-        data_update = {
+        data_update = json.dumps({
             'organiser' :"user1",
             'event_name' : "update",
             'location' : "update",
@@ -291,22 +291,14 @@ class EventTestCase(TestCase):
             'finish_time' : '2050-01-29T12:30:00',
             'sign_in_time' : '2050-01-29T12:00:00',
             'attendees' : ['user2', 'user3']
-        }
+        })
 
         # user 4
         print(str(response.json().get('event_name')))
         url = "/api/events/" + str(response.json().get('id'))
         print(url)
         # update_response = self.client.patch(url, data=data_update, format='json', content_type='application/json')
-        update_response = self.client.patch('/api/events/1/', json.dumps({
-            'organiser' :"user1",
-            'event_name' : "update",
-            'location' : "update",
-            'start_time' : '2050-01-29T12:00:00',
-            'finish_time' : '2050-01-29T12:30:00',
-            'sign_in_time' : '2050-01-29T12:00:00',
-            'attendees' : ['user2', 'user3']
-            }), content_type='application/json', format='json')
+        update_response = self.client.patch('/api/events/1/', data_update, content_type='application/json')
 
         print(update_response.status_code)
         print(update_response)
