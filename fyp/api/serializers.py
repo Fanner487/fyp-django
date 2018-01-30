@@ -203,7 +203,7 @@ def valid_attempt_in_event(username, event_id, time_on_screen, date_on_screen, t
 	else:
 		verified = False
 
-	return verifiedg
+	return verified
 
 
 # Checks if user exists with only one entry
