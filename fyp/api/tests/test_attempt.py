@@ -6,7 +6,7 @@ from rest_framework.test import APIClient
 from rest_framework.test import APIRequestFactory
 from django.contrib.auth.models import User
 from rest_framework import status
-from ../.models import Event
+from ...models import Event
 
 import datetime
 from time import sleep
