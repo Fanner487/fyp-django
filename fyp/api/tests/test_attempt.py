@@ -34,12 +34,12 @@ class AttemptTestCase(TestCase):
 
     def test_attempt_success(self):
 
-        self.event_start_time = datetime.datetime.now() + datetime.timedelta(seconds=2)
-        self.event_sign_in_time = self.event_start_time
-        self.event_finish_time = datetime.datetime(
-        	year=self.event_start_time.year,
-        	month=self.event_start_time.month,
-        	day=self.event_start_time.day,
+        event_start_time = datetime.datetime.now() + datetime.timedelta(seconds=2)
+        event_sign_in_time = event_start_time
+        event_finish_time = datetime.datetime(
+        	year=event_start_time.year,
+        	month=event_start_time.month,
+        	day=event_start_time.day,
         	hour=23,
         	minute=59,
         	second=59)
