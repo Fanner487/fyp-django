@@ -136,7 +136,7 @@ def register(request):
     first_name = request.data.get("firstname")
     surname = request.data.get("surname")
 
-    unique, invalid_field = verify_unique_username_email(username, email)
+    unique = verify_unique_username_email(username, email)
 
     if unique:
         print("\n\nEmail is unique\n\n")
@@ -156,7 +156,7 @@ def register(request):
 
         return Response({"message": "Created account"}, status.HTTP_200_OK)
     else:
-        return Response({"message": invalid_field + " already exists"}, status.HTTP_401_UNAUTHORIZED)
+        return Response({"message": "Username or email already exists"}, status.HTTP_401_UNAUTHORIZED)
 
 
 def verify_unique_username_email(username, email):
@@ -165,15 +165,17 @@ def verify_unique_username_email(username, email):
     emails = User.objects.filter(email=email)
 
     if not emails.exists() and not usernames.exists():
-        return True, "null"
+        return True
     else:
-        if emails.exists():
-            return False, "Email"
 
-        elif usernames.exists():
-            return False, "Username"
-        else:
-            return False, "null"
+        return False
+        # if emails.exists():
+        #     return False
+        #
+        # elif usernames.exists():
+        #     return False
+        # else:
+        #     return False, "null"
 
 
 @api_view(["GET"])
