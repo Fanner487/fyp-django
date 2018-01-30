@@ -34,7 +34,7 @@ class AttemptTestCase(TestCase):
         self.create_user("user4" , "test4@gmail.com", "orangemonkeyeagle1")
 
     def create_test_attempt_now(self, username, event_id):
-        time_on_screen = (datetime.datetime.now() - datetime.timedelta(seconds=2)).strftime("%H:%M:%S")
+        time_on_screen = (datetime.datetime.now() - datetime.timedelta(seconds=1)).strftime("%H:%M:%S")
         date_on_screen = datetime.datetime.now().strftime("%Y-%m-%d")
 
         data = {
@@ -86,7 +86,7 @@ class AttemptTestCase(TestCase):
 
         event_id = event_response.json().get('id')
 
-        sleep(3)
+        sleep(2)
 
         response1 = self.create_test_attempt_now("user2", event_id)
         print(response1.status_code)
