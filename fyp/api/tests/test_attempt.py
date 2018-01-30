@@ -32,6 +32,20 @@ class AttemptTestCase(TestCase):
         self.create_user("user3" , "test3@gmail.com", "orangemonkeyeagle1")
         self.create_user("user4" , "test4@gmail.com", "orangemonkeyeagle1")
 
+    def create_test_attempt_now(self, username, event_id):
+        time_on_screen = (datetime.datetime.now() - datetime.timedelta(seconds=3)).strftime("%H:%M:%S")
+        date_on_screen = datetime.datetime.now().strftime("%Y-%m-%d")
+
+        data = {
+            'username' : username,
+            'event_id' : event_id,
+            'time_on_screen' : time_on_screen,
+            'date_on_screen' : date_on_screen,
+        }
+
+        return self.create_attempt(data)
+
+
     def create_test_event_now(self):
 
         event_start_time = datetime.datetime.now() + datetime.timedelta(seconds=2)
@@ -69,4 +83,8 @@ class AttemptTestCase(TestCase):
         self.assertEquals(event_response.status_code, status.HTTP_201_CREATED)
 
         event_id = event_response.json().get('id')
-        print(event_id)
+
+        sleep(6)
+
+        response = create_test_event_now()
+        print(response.json())
