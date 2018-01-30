@@ -20,4 +20,4 @@ class ExampleTestCase(TestCase):
         data = {'username': 'eamontang1', 'password': 'orangemonkeyeagle1'}
         response = self.client.post("/api/login/", data=data, format='json')
         print(response.status_code)
-        self.assertEqual(1, 1)
+        self.assertEqual(response.status_code, 20)
