@@ -172,3 +172,105 @@ class EventTestCase(TestCase):
         print(response.json())
         self.assertEqual(response.json().get('organiser'), ['This field is required.'])
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_event_create_event_name_fail(self):
+
+        data = {
+            'organiser' :"user1",
+            'location' : "nowhere",
+            'start_time' : '2050-01-29T12:00:00',
+            'finish_time' : '2050-01-29T12:30:00',
+            'sign_in_time' : '2050-01-29T12:00:00',
+            'attendees' : ['user2', 'user3', 'user4']
+        }
+
+        response = self.create_event(data)
+
+        print(response.json())
+        self.assertEqual(response.json().get('event_name'), ['This field is required.'])
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_event_create_location_fail(self):
+
+        data = {
+            'organiser' :"user1",
+            'event_name' : "Test1",
+            'start_time' : '2050-01-29T12:00:00',
+            'finish_time' : '2050-01-29T12:30:00',
+            'sign_in_time' : '2050-01-29T12:00:00',
+            'attendees' : ['user2', 'user3', 'user4']
+        }
+
+        response = self.create_event(data)
+
+        print(response.json())
+        self.assertEqual(response.json().get('location'), ['This field is required.'])
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_event_create_start_time_fail(self):
+
+        data = {
+            'organiser' :"user1",
+            'event_name' : "Test1",
+            'location' : "nowhere",
+            'finish_time' : '2050-01-29T12:30:00',
+            'sign_in_time' : '2050-01-29T12:00:00',
+            'attendees' : ['user2', 'user3', 'user4']
+        }
+
+        response = self.create_event(data)
+
+        print(response.json())
+        self.assertEqual(response.json().get('start_time'), ['This field is required.'])
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_event_create_finish_time_fail(self):
+
+        data = {
+            'organiser' :"user1",
+            'event_name' : "Test1",
+            'location' : "nowhere",
+            'start_time' : '2050-01-29T12:00:00',
+            'sign_in_time' : '2050-01-29T12:00:00',
+            'attendees' : ['user2', 'user3', 'user4']
+        }
+
+        response = self.create_event(data)
+
+        print(response.json())
+        self.assertEqual(response.json().get('finish_time'), ['This field is required.'])
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_event_create_sign_in_time_fail(self):
+
+        data = {
+            'organiser' :"user1",
+            'event_name' : "Test1",
+            'location' : "nowhere",
+            'start_time' : '2050-01-29T12:00:00',
+            'finish_time' : '2050-01-29T12:30:00',
+            'attendees' : ['user2', 'user3', 'user4']
+        }
+
+        response = self.create_event(data)
+
+        print(response.json())
+        self.assertEqual(response.json().get('sign_in_time'), ['This field is required.'])
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_event_create_attendees_fail(self):
+
+        data = {
+            'organiser' :"user1",
+            'event_name' : "Test1",
+            'location' : "nowhere",
+            'start_time' : '2050-01-29T12:00:00',
+            'finish_time' : '2050-01-29T12:30:00',
+            'sign_in_time' : '2050-01-29T12:00:00',
+        }
+
+        response = self.create_event(data)
+
+        print(response.json())
+        self.assertEqual(response.json().get('attendees'), ['This field is required.'])
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
