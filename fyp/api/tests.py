@@ -109,8 +109,9 @@ class RegisterTestCase(TestCase):
 
 class EventTestCase(TestCase):
 
-    def create_user(username, email, password):
-        User.objects.create_user(username, email, password)
+    def create_user(self, username, email, password):
+        user = User.objects.create_user(username, email, password)
+        user.save()
 
     def create_event(self, data):
         return self.client.post("/api/register/", data=data, format='json')
@@ -118,14 +119,14 @@ class EventTestCase(TestCase):
     def setUp(self):
         client = APIClient()
 
-        # self.create_user("user1" , "test1@gmail.com", "orangemonkeyeagle1")
-        # self.create_user("user2" , "test2@gmail.com", "orangemonkeyeagle1")
-        # self.create_user("user3" , "test3@gmail.com", "orangemonkeyeagle1")
-        # self.create_user("user4" , "test4@gmail.com", "orangemonkeyeagle1")
-        User.objects.create_user("user1" , "test1@gmail.com", "orangemonkeyeagle1")
-        User.objects.create_user("user2" , "test2@gmail.com", "orangemonkeyeagle1")
-        User.objects.create_user("user3" , "test3@gmail.com", "orangemonkeyeagle1")
-        User.objects.create_user("user4" , "test4@gmail.com", "orangemonkeyeagle1")
+        self.create_user("user1" , "test1@gmail.com", "orangemonkeyeagle1")
+        self.create_user("user2" , "test2@gmail.com", "orangemonkeyeagle1")
+        self.create_user("user3" , "test3@gmail.com", "orangemonkeyeagle1")
+        self.create_user("user4" , "test4@gmail.com", "orangemonkeyeagle1")
+        # User.objects.create_user("user1" , "test1@gmail.com", "orangemonkeyeagle1")
+        # User.objects.create_user("user2" , "test2@gmail.com", "orangemonkeyeagle1")
+        # User.objects.create_user("user3" , "test3@gmail.com", "orangemonkeyeagle1")
+        # User.objects.create_user("user4" , "test4@gmail.com", "orangemonkeyeagle1")
 
 
     def test_event_create_success(self):
