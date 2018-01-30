@@ -288,7 +288,7 @@ class EventTestCase(TestCase):
     def test_event_create_organiser_start_gt_finish_fail(self):
 
         data = {
-            'organiser' :"user1234",
+            'organiser' :"user1",
             'event_name' : "Test1",
             'location' : "nowhere",
             'start_time' : '2050-01-29T12:31:00',
@@ -305,7 +305,7 @@ class EventTestCase(TestCase):
     def test_event_create_future_fail(self):
 
         data = {
-            'organiser' :"user1234",
+            'organiser' :"user1",
             'event_name' : "Test1",
             'location' : "nowhere",
             'start_time' : '2001-01-29T12:31:00',
@@ -322,7 +322,7 @@ class EventTestCase(TestCase):
     def test_event_create_sign_in_time_fail(self):
 
         data = {
-            'organiser' :"user1234",
+            'organiser' :"user1",
             'event_name' : "Test1",
             'location' : "nowhere",
             'start_time' : '2050-01-29T12:00:00',
