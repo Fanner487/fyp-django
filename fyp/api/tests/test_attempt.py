@@ -63,8 +63,8 @@ class AttemptTestCase(TestCase):
         return self.create_event(data)
 
 
-    def test_attempt_success(self, "blah"):
+    def test_attempt_success(self):
 
-        event_response = self.create_test_event_now()
+        event_response = self.create_test_event_now("blah")
 
         self.assertEquals(event_response.status_code, status.HTTP_200_OK)
