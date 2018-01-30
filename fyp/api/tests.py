@@ -264,6 +264,74 @@ class EventTestCase(TestCase):
 
         response = self.create_event(data)
 
-        print(response.json())
         self.assertEqual(response.json().get('non_field_errors'), ['Attendees cannot be null'])
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+
+    def test_event_create_organiser_exists_fail(self):
+
+        data = {
+            'organiser' :"user1234",
+            'event_name' : "Test1",
+            'location' : "nowhere",
+            'start_time' : '2050-01-29T12:00:00',
+            'finish_time' : '2050-01-29T12:30:00',
+            'sign_in_time' : '2050-01-29T12:00:00',
+            'attendees' : ['user2', 'user3', 'user4']
+        }
+
+        response = self.create_event(data)
+
+        self.assertEqual(response.json().get('non_field_errors'), ['User does not exist'])
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_event_create_organiser_start_gt_finish_fail(self):
+
+        data = {
+            'organiser' :"user1234",
+            'event_name' : "Test1",
+            'location' : "nowhere",
+            'start_time' : '2050-01-29T12:31:00',
+            'finish_time' : '2050-01-29T12:30:00',
+            'sign_in_time' : '2050-01-29T12:31:00',
+            'attendees' : ['user2', 'user3', 'user4']
+        }
+
+        response = self.create_event(data)
+
+        self.assertEqual(response.json().get('non_field_errors'), ['Invalid time entry'])
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_event_create_future_fail(self):
+
+        data = {
+            'organiser' :"user1234",
+            'event_name' : "Test1",
+            'location' : "nowhere",
+            'start_time' : '2001-01-29T12:31:00',
+            'finish_time' : '2001-01-29T12:59:00',
+            'sign_in_time' : '2001-01-29T12:31:00',
+            'attendees' : ['user2', 'user3', 'user4']
+        }
+
+        response = self.create_event(data)
+
+        self.assertEqual(response.json().get('non_field_errors'), ['Time must be in future'])
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_event_create_sign_in_time_fail(self):
+
+        data = {
+            'organiser' :"user1234",
+            'event_name' : "Test1",
+            'location' : "nowhere",
+            'start_time' : '2050-01-29T12:00:00',
+            'finish_time' : '2050-01-29T12:30:00',
+            'sign_in_time' : '2050-01-29T12:00:00',
+            'attendees' : ['user2', 'user3', 'user4']
+        }
+
+        response = self.create_event(data)
+
+        self.assertEqual(response.json().get('non_field_errors'), ['Time must be in future'])
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
