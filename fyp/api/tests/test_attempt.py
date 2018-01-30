@@ -138,6 +138,7 @@ class AttemptTestCase(TestCase):
 
         self.assertEquals(response3.status_code, status.HTTP_400_BAD_REQUEST)
 
+
     def test_attempt_event_id_fail(self):
 
         event_response = self.create_test_event_now()
@@ -151,3 +152,18 @@ class AttemptTestCase(TestCase):
 
         self.assertEquals(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(response.json().get('non_field_errors'), ['Event does not exist'])
+
+
+    def test_attempt_invalid_user_fail(self):
+
+        event_response = self.create_test_event_now()
+        self.assertEquals(event_response.status_code, status.HTTP_201_CREATED)
+
+        event_id = event_response.json().get('id')
+
+        sleep(2)
+
+        response = self.create_test_attempt_now("userNOT", event_id)
+
+        self.assertEquals(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertEqual(response.json().get('non_field_errors'), ['User does not exist'])
