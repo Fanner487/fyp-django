@@ -22,7 +22,7 @@ class AttemptTestCase(TestCase):
         return self.client.post("/api/events/", data=data, format='json')
 
     def create_attempt(self, data):
-        return self.client.post("/api/attempts", data=data. forma='json')
+        return self.client.post("/api/attempts/", data=data, format='json')
 
     def setUp(self):
         client = APIClient()
@@ -63,4 +63,4 @@ class AttemptTestCase(TestCase):
 
         response = create_event(data)
 
-        print(response.statud_code)
+        print(response.status_code)
