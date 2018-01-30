@@ -32,7 +32,7 @@ class AttemptTestCase(TestCase):
         self.create_user("user3" , "test3@gmail.com", "orangemonkeyeagle1")
         self.create_user("user4" , "test4@gmail.com", "orangemonkeyeagle1")
 
-    def create_test_event_now(self):
+    def create_test_event_now(self, something):
 
         event_start_time = datetime.datetime.now() + datetime.timedelta(seconds=2)
         event_sign_in_time = event_start_time
@@ -63,7 +63,7 @@ class AttemptTestCase(TestCase):
         return self.create_event(data)
 
 
-    def test_attempt_success(self):
+    def test_attempt_success(self, "blah"):
 
         event_response = self.create_test_event_now()
 
