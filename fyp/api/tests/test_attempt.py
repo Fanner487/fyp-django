@@ -79,124 +79,124 @@ class AttemptTestCase(TestCase):
         return self.create_event(data)
 
 
-    def test_attempt_success(self):
-
-        event_response = self.create_test_event_now()
-        self.assertEquals(event_response.status_code, status.HTTP_201_CREATED)
-
-        event_id = event_response.json().get('id')
-
-        sleep(2)
-
-        response1 = self.create_test_attempt_now("user2", event_id)
-        print(response1.status_code)
-        print(response1.json())
-
-        sleep(1)
-
-        response2 = self.create_test_attempt_now("user2", event_id)
-        print(response1.status_code)
-        print(response1.json())
-
-        self.assertEquals(response1.status_code, status.HTTP_201_CREATED)
-        self.assertEquals(response2.status_code, status.HTTP_201_CREATED)
-
-        event = Event.objects.get(id=event_id)
-        self.assertTrue("user2" in event.attending)
-
-        response3 = self.create_test_attempt_now("user2", event_id)
-
-        self.assertEquals(response3.status_code, status.HTTP_400_BAD_REQUEST)
-
-
-    def test_attempt_after_verification(self):
-
-        event_response = self.create_test_event_now()
-        self.assertEquals(event_response.status_code, status.HTTP_201_CREATED)
-
-        event_id = event_response.json().get('id')
-
-        sleep(2)
-
-        response1 = self.create_test_attempt_now("user2", event_id)
-        print(response1.status_code)
-        print(response1.json())
-
-        sleep(1)
-
-        response2 = self.create_test_attempt_now("user2", event_id)
-        print(response1.status_code)
-        print(response1.json())
-
-        self.assertEquals(response1.status_code, status.HTTP_201_CREATED)
-        self.assertEquals(response2.status_code, status.HTTP_201_CREATED)
-
-        event = Event.objects.get(id=event_id)
-        self.assertTrue("user2" in event.attending)
-
-        response3 = self.create_test_attempt_now("user2", event_id)
-
-        self.assertEquals(response3.status_code, status.HTTP_400_BAD_REQUEST)
-
-
-    def test_attempt_event_id_fail(self):
-
-        event_response = self.create_test_event_now()
-        self.assertEquals(event_response.status_code, status.HTTP_201_CREATED)
-
-        event_id = event_response.json().get('id')
-
-        sleep(2)
-
-        response = self.create_test_attempt_now("user2", 9999)
-
-        self.assertEquals(response.status_code, status.HTTP_400_BAD_REQUEST)
-        self.assertEqual(response.json().get('non_field_errors'), ['Event does not exist'])
-
-
-    def test_attempt_invalid_user_fail(self):
-
-        event_response = self.create_test_event_now()
-        self.assertEquals(event_response.status_code, status.HTTP_201_CREATED)
-
-        event_id = event_response.json().get('id')
-
-        sleep(2)
-
-        response = self.create_test_attempt_now("userNOT", event_id)
-
-        print(response.json())
-        self.assertEquals(response.status_code, status.HTTP_400_BAD_REQUEST)
-        self.assertEqual(response.json().get('non_field_errors'), ['User does not exist'])
-
-    def test_attempt_out_of_time_delta_screen(self):
-
-        event_response = self.create_test_event_now()
-        self.assertEquals(event_response.status_code, status.HTTP_201_CREATED)
-
-        event_id = event_response.json().get('id')
-
-        sleep(2)
-
-        response1 = self.create_test_attempt_now("user2", event_id)
-        print(response1.status_code)
-        print(response1.json())
-
-        sleep(1)
-
-        response2 = self.create_test_attempt_now("user2", event_id)
-        print(response1.status_code)
-        print(response1.json())
-
-        self.assertEquals(response1.status_code, status.HTTP_201_CREATED)
-        self.assertEquals(response2.status_code, status.HTTP_201_CREATED)
-
-        event = Event.objects.get(id=event_id)
-        self.assertTrue("user2" in event.attending)
-
-        response3 = self.create_test_attempt_now("user2", event_id)
-
-        self.assertEquals(response3.status_code, status.HTTP_400_BAD_REQUEST)
+    # def test_attempt_success(self):
+    #
+    #     event_response = self.create_test_event_now()
+    #     self.assertEquals(event_response.status_code, status.HTTP_201_CREATED)
+    #
+    #     event_id = event_response.json().get('id')
+    #
+    #     sleep(2)
+    #
+    #     response1 = self.create_test_attempt_now("user2", event_id)
+    #     print(response1.status_code)
+    #     print(response1.json())
+    #
+    #     sleep(1)
+    #
+    #     response2 = self.create_test_attempt_now("user2", event_id)
+    #     print(response1.status_code)
+    #     print(response1.json())
+    #
+    #     self.assertEquals(response1.status_code, status.HTTP_201_CREATED)
+    #     self.assertEquals(response2.status_code, status.HTTP_201_CREATED)
+    #
+    #     event = Event.objects.get(id=event_id)
+    #     self.assertTrue("user2" in event.attending)
+    #
+    #     response3 = self.create_test_attempt_now("user2", event_id)
+    #
+    #     self.assertEquals(response3.status_code, status.HTTP_400_BAD_REQUEST)
+    #
+    #
+    # def test_attempt_after_verification(self):
+    #
+    #     event_response = self.create_test_event_now()
+    #     self.assertEquals(event_response.status_code, status.HTTP_201_CREATED)
+    #
+    #     event_id = event_response.json().get('id')
+    #
+    #     sleep(2)
+    #
+    #     response1 = self.create_test_attempt_now("user2", event_id)
+    #     print(response1.status_code)
+    #     print(response1.json())
+    #
+    #     sleep(1)
+    #
+    #     response2 = self.create_test_attempt_now("user2", event_id)
+    #     print(response1.status_code)
+    #     print(response1.json())
+    #
+    #     self.assertEquals(response1.status_code, status.HTTP_201_CREATED)
+    #     self.assertEquals(response2.status_code, status.HTTP_201_CREATED)
+    #
+    #     event = Event.objects.get(id=event_id)
+    #     self.assertTrue("user2" in event.attending)
+    #
+    #     response3 = self.create_test_attempt_now("user2", event_id)
+    #
+    #     self.assertEquals(response3.status_code, status.HTTP_400_BAD_REQUEST)
+    #
+    #
+    # def test_attempt_event_id_fail(self):
+    #
+    #     event_response = self.create_test_event_now()
+    #     self.assertEquals(event_response.status_code, status.HTTP_201_CREATED)
+    #
+    #     event_id = event_response.json().get('id')
+    #
+    #     sleep(2)
+    #
+    #     response = self.create_test_attempt_now("user2", 9999)
+    #
+    #     self.assertEquals(response.status_code, status.HTTP_400_BAD_REQUEST)
+    #     self.assertEqual(response.json().get('non_field_errors'), ['Event does not exist'])
+    #
+    #
+    # def test_attempt_invalid_user_fail(self):
+    #
+    #     event_response = self.create_test_event_now()
+    #     self.assertEquals(event_response.status_code, status.HTTP_201_CREATED)
+    #
+    #     event_id = event_response.json().get('id')
+    #
+    #     sleep(2)
+    #
+    #     response = self.create_test_attempt_now("userNOT", event_id)
+    #
+    #     print(response.json())
+    #     self.assertEquals(response.status_code, status.HTTP_400_BAD_REQUEST)
+    #     self.assertEqual(response.json().get('non_field_errors'), ['User does not exist'])
+    #
+    # def test_attempt_out_of_time_delta_screen(self):
+    #
+    #     event_response = self.create_test_event_now()
+    #     self.assertEquals(event_response.status_code, status.HTTP_201_CREATED)
+    #
+    #     event_id = event_response.json().get('id')
+    #
+    #     sleep(2)
+    #
+    #     response1 = self.create_test_attempt_now("user2", event_id)
+    #     print(response1.status_code)
+    #     print(response1.json())
+    #
+    #     sleep(1)
+    #
+    #     response2 = self.create_test_attempt_now("user2", event_id)
+    #     print(response1.status_code)
+    #     print(response1.json())
+    #
+    #     self.assertEquals(response1.status_code, status.HTTP_201_CREATED)
+    #     self.assertEquals(response2.status_code, status.HTTP_201_CREATED)
+    #
+    #     event = Event.objects.get(id=event_id)
+    #     self.assertTrue("user2" in event.attending)
+    #
+    #     response3 = self.create_test_attempt_now("user2", event_id)
+    #
+    #     self.assertEquals(response3.status_code, status.HTTP_400_BAD_REQUEST)
 
 
     def test_attempt_after_verification(self):
@@ -220,3 +220,7 @@ class AttemptTestCase(TestCase):
 
         self.assertEquals(response1.status_code, status.HTTP_201_CREATED)
         self.assertEquals(response2.status_code, status.HTTP_201_CREATED)
+
+        event = Event.objects.get(id=event_id)
+        self.assertTrue("user2" not in event.attending)
+    
