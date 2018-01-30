@@ -148,9 +148,9 @@ def register(request):
         new_user.last_name = surname
         new_user.save()
 
-        return Response({"message": "Created account"})
+        return Response({"message": "Created account"}, status.HTTP_200_OK)
     else:
-        return Response({"message": invalid_field + " already exists"})
+        return Response({"message": invalid_field + " already exists"}, status.HTTP_401_UNAUTHORIZED)
 
 
 def verify_unique_username_email(username, email):
