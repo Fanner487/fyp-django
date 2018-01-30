@@ -353,3 +353,21 @@ class EventTestCase(TestCase):
 
         self.assertEqual(response.json().get('non_field_errors'), ['user does not exist'])
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_event_create_attending_fail(self):
+
+        data = {
+            'organiser' :"user1",
+            'event_name' : "Test1",
+            'location' : "nowhere",
+            'start_time' : '2050-01-29T12:00:00',
+            'finish_time' : '2050-01-29T12:30:00',
+            'sign_in_time' : '2050-01-29T12:00:00',
+            'attendees' : ['user2', 'user3', 'user'],
+            'attending' : ['user2']
+        }
+
+        response = self.create_event(data)
+
+        self.assertEqual(response.json().get('non_field_errors'), ['Attending must be empty'])
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
