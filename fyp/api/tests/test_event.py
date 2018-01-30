@@ -283,7 +283,7 @@ class EventTestCase(TestCase):
 
         self.assertEquals(response.status_code, status.HTTP_201_CREATED)
 
-        data = {
+        data_update = {
             'organiser' :"user1",
             'event_name' : "update",
             'location' : "update",
@@ -294,8 +294,8 @@ class EventTestCase(TestCase):
         }
 
         # user 4
-        url = "/api/events/" + str(response.get('id')) + "/"
-        update_response = self.client.patch(url, data=data, format='json')
+        url = "/api/events/" + str(response.get('id'))
+        update_response = self.client.patch(url, data=data_update, format='json')
 
         print(update_response.status_code)
         # print(update_response.json())
