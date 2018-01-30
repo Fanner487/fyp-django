@@ -31,8 +31,6 @@ class EventSerializer(serializers.ModelSerializer):
 		print("End time: " + str(finish_time))
 		print("Attending: " + str(data.get('attending')))
 
-		print("Testing atom")
-
 		# Checks if user exists
 		if not user_exists(username.strip()):
 			raise serializers.ValidationError("User does not exist")
