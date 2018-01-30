@@ -46,7 +46,7 @@ class RegisterTestCase(TestCase):
             'username' :"billybob1",
             'password' : "orangemonkeyeagle1",
             'email' : "billybob1@gmail.com",
-            'first_name' : 'Billy',
+            'firstname' : 'Billy',
             'surname' : 'Bob',
         }
 
