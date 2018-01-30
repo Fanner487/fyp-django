@@ -125,8 +125,6 @@ class EventTestCase(TestCase):
         self.create_user("user3" , "test3@gmail.com", "orangemonkeyeagle1")
         self.create_user("user4" , "test4@gmail.com", "orangemonkeyeagle1")
 
-        user = User.objects.get(username="user1")
-        print(user.email)
         # User.objects.create_user("user1" , "test1@gmail.com", "orangemonkeyeagle1")
         # User.objects.create_user("user2" , "test2@gmail.com", "orangemonkeyeagle1")
         # User.objects.create_user("user3" , "test3@gmail.com", "orangemonkeyeagle1")
@@ -145,5 +143,6 @@ class EventTestCase(TestCase):
         }
 
         response = self.create_event(data)
+        print(response.json())
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
