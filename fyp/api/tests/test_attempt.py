@@ -102,10 +102,4 @@ class AttemptTestCase(TestCase):
         self.assertEquals(response2.status_code, status.HTTP_201_CREATED)
 
         event = Event.objects.get(id=event_id)
-
-        exists_in_attending = False
-
-        if "user2" in event.attending:
-            exists_in_attending = True
-
-        self.assertTrue(exists_in_attending)
+        self.assertTrue("user2" in event.attending)
