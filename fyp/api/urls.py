@@ -11,8 +11,6 @@ router.register("events", EventViewSet)
 router.register("attempts", AttemptViewSet)
 router.register("users", UserViewSet)
 
-
-
 urlpatterns = [
     url(r'^login', login, name="login"),
     url(r'^register', register, name="register"),
