@@ -71,14 +71,14 @@ class RegisterTestCase(TestCase):
 
         print("second user")
 
-        data = {
+        data_new = {
             'username' :"testuser1",
             'password' : "orangemonkeyeagle1",
             'email' : "billybob1@gmail.com",
             'firstname' : 'Billy',
             'surname' : 'Bob',
         }
-        response_new = self.client.post("/api/register/", data=data, format='json')
+        response_new = self.client.post("/api/register/", data=data_new, format='json')
         print(response_new.json())
         self.assertEqual(response_new.status_code, status.HTTP_401_UNAUTHORIZED)
 
