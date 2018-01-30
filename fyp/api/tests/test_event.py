@@ -294,6 +294,7 @@ class EventTestCase(TestCase):
         }
 
         # user 4
+        print(response.get('id'))
         url = "/api/events/" + str(response.get('id'))
         update_response = self.client.patch(url, data=data_update, format='json')
 
