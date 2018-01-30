@@ -22,3 +22,9 @@ class ExampleTestCase(TestCase):
         response = self.client.post("/api/login/", data=data, format='json')
         print(response.status_code)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    def test_login_fail(self):
+        data = {'username': 'eamontang1', 'password': 'notmypassword'}
+        response = self.client.post("/api/login/", data=data, format='json')
+        print(response.status_code)
+        self.assertNotEqual(response.status_code, status.HTTP_200_OK)
