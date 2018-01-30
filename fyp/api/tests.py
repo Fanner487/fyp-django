@@ -333,5 +333,23 @@ class EventTestCase(TestCase):
 
         response = self.create_event(data)
 
-        self.assertEqual(response.json().get('non_field_errors'), ['Time must be in future'])
+        self.assertEqual(response.json().get('non_field_errors'), ['Sign in time must be in before or equal start time'])
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+
+    def test_event_create_attendee_fail(self):
+
+        data = {
+            'organiser' :"user1",
+            'event_name' : "Test1",
+            'location' : "nowhere",
+            'start_time' : '2050-01-29T12:00:00',
+            'finish_time' : '2050-01-29T12:30:00',
+            'sign_in_time' : '2050-01-29T12:00:01',
+            'attendees' : ['user2', 'user3', 'user']
+        }
+
+        response = self.create_event(data)
+
+        self.assertEqual(response.json().get('non_field_errors'), ['user does not exist'])
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)

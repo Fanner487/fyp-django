@@ -33,6 +33,9 @@ class EventSerializer(serializers.ModelSerializer):
         if not user_exists(username.strip()):
             raise serializers.ValidationError("User does not exist")
 
+        if not attendees:
+            raise serializers.ValidationError("Attendees cannot be null")
+
         # Throw if start time after finish_time
         if start_time >= finish_time:
             raise serializers.ValidationError("Invalid time entry")
@@ -49,15 +52,11 @@ class EventSerializer(serializers.ModelSerializer):
             if not user_exists(attendee.strip()):
                 raise serializers.ValidationError(attendee + " does not exist")
 
-        if not attendees:
-            raise serializers.ValidationError("Attendees cannot be null")
-
         # Attending must be empty
         if data.get('attending'):
             raise serializers.ValidationError("Attending must be empty")
 
         return data
-
 
     class Meta:
         model = Event
