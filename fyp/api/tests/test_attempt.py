@@ -105,7 +105,7 @@ class AttemptTestCase(TestCase):
 
         exists_in_attending = False
 
-        if username in attending:
+        if "user2" in attending:
             exists_in_attending = True
 
         self.AssertTrue(exists_in_attending, True)
