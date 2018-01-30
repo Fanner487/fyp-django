@@ -147,8 +147,7 @@ class AttemptTestCase(TestCase):
 
         sleep(2)
 
-        response1 = self.create_test_attempt_now("user2", 9999)
-        print(response1.status_code)
-        print(response1.json())
+        response = self.create_test_attempt_now("user2", 9999)
 
-        
+        self.assertEquals(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertEqual(response.json().get('non_field_errors'), ['Event does not exist'])
