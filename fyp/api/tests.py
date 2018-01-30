@@ -43,11 +43,11 @@ class RegisterTestCase(TestCase):
     def test_register_success(self):
 
         data = {
-            'username' = "billybob1",
-            'password' = "orangemonkeyeagle1",
-            'email' = "billybob1@gmail.com",
-            'first_name' = 'Billy',
-            'surname' = 'Bob',
+            'username' :"billybob1",
+            'password' : "orangemonkeyeagle1",
+            'email' : "billybob1@gmail.com",
+            'first_name' : 'Billy',
+            'surname' : 'Bob',
         }
 
         response = self.client.post("/api/register/", data=data, format='json')
