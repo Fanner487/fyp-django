@@ -108,4 +108,4 @@ class AttemptTestCase(TestCase):
         if "user2" in event.attending:
             exists_in_attending = True
 
-        self.AssertTrue(exists_in_attending, True)
+        self.AssertTrue(exists_in_attending)
