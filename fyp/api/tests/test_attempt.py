@@ -96,3 +96,15 @@ class AttemptTestCase(TestCase):
         response2 = self.create_test_attempt_now("user2", event_id)
         print(response1.status_code)
         print(response1.json())
+
+        self.assertEquals(response1.status_code, status.HTTP_201_CREATED)
+        self.assertEquals(response2.status_code, status.HTTP_201_CREATED)
+
+        event = Event.objects.get(id=event_id)
+
+        exists_in_attending = False
+
+        if username in attending:
+            exists_in_attending = True
+
+        self.AssertTrue(exists_in_attending, True)
