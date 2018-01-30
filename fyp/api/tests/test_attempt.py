@@ -42,7 +42,7 @@ class AttemptTestCase(TestCase):
         	minute=59,
         	second=59)
 
-        print("Now: " + str(datetime.datetime.now())
+        print("Now: " + str(datetime.datetime.now()))
         print("Start: " + str(event_start_time))
         print("Sign in: " + str(event_sign_in_time))
         print("Finish: " + str(event_finish_time))
