@@ -281,7 +281,7 @@ class EventTestCase(TestCase):
 
         response = self.create_event(data)
 
-        self.assertEquals(response.status_code, status.HTTP_201_OK)
+        self.assertEquals(response.status_code, status.HTTP_201_CREATED)
 
         data = {
             'organiser' :"user1",
