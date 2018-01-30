@@ -17,14 +17,20 @@ class ExampleTestCase(TestCase):
         User.objects.create_user(username, email, password)
         client = APIClient()
 
-    def test_login(self):
+    def test_login_success(self):
+
         data = {'username': 'eamontang1', 'password': 'orangemonkeyeagle1'}
         response = self.client.post("/api/login/", data=data, format='json')
-        print(response.status_code)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-    def test_login_fail(self):
+    def test_login_password_fail(self):
+
         data = {'username': 'eamontang1', 'password': 'notmypassword'}
         response = self.client.post("/api/login/", data=data, format='json')
-        print(response.status_code)
-        self.assertNotEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+
+    def test_login_username_fail(self):
+
+        data = {'username': 'eamontangnotreal1', 'password': 'orangemonkeyeagle1'}
+        response = self.client.post("/api/login/", data=data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
