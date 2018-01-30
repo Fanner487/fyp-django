@@ -136,17 +136,8 @@ def register(request):
     first_name = request.data.get("firstname")
     surname = request.data.get("surname")
 
-    unique = verify_unique_username_email(username, email)
-
-    print(unique)
-    if unique:
-        print("\n\nEmail is unique\n\n")
-
-        print(username)
-        print(password)
-        print(email)
-        print(first_name)
-        print(surname)
+    if verify_unique_username_email(username, email):
+        print("\nEmail is unique\n")
 
         new_user = User.objects.create_user(username, email, password)
 

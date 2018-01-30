@@ -54,9 +54,38 @@ class RegisterTestCase(TestCase):
     #     print(response.json())
     #     self.assertEqual(response.status_code, status.HTTP_200_OK)
     #     self.assertEqual(response.json().get('message'), 'Created account')
+    #
+    # def test_register_duplicate_email(self):
+    #     print("test_register_duplicate_email")
+    #
+    #     data = {
+    #         'username' :"janedoe1",
+    #         'password' : "orangemonkeyeagle1",
+    #         'email' : "janedoe1@gmail.com",
+    #         'firstname' : 'Jane',
+    #         'surname' : 'Doe',
+    #     }
+    #
+    #     response = self.client.post("/api/register/", data=data, format='json')
+    #     print(response.json())
+    #
+    #     self.assertEqual(response.status_code, status.HTTP_200_OK)
+    #
+    #     print("second user")
+    #
+    #     data_new = {
+    #         'username' :"testuser1",
+    #         'password' : "orangemonkeyeagle1",
+    #         'email' : "janedoe1@gmail.com",
+    #         'firstname' : 'Jane',
+    #         'surname' : 'Doe',
+    #     }
+    #     response_new = self.client.post("/api/register/", data=data_new, format='json')
+    #     print(response_new.json())
+    #     self.assertEqual(response_new.status_code, status.HTTP_401_UNAUTHORIZED)
 
-    def test_register_duplicate_email(self):
-        print("test_register_duplicate_email")
+
+    def test_register_duplicate_userame(self):
 
         data = {
             'username' :"janedoe1",
@@ -74,9 +103,9 @@ class RegisterTestCase(TestCase):
         print("second user")
 
         data_new = {
-            'username' :"testuser1",
+            'username' :"janedoe1",
             'password' : "orangemonkeyeagle1",
-            'email' : "janedoe1@gmail.com",
+            'email' : "testemail@gmail.com",
             'firstname' : 'Jane',
             'surname' : 'Doe',
         }
