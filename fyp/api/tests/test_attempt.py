@@ -54,9 +54,9 @@ class AttemptTestCase(TestCase):
             'organiser' :"user1",
             'event_name' : "test1",
             'location' : "nowhere",
-            'start_time' : self.event_start_time,
-            'finish_time' : self.event_finish_time,
-            'sign_in_time' : self.event_sign_in_time,
+            'start_time' : event_start_time,
+            'finish_time' : event_finish_time,
+            'sign_in_time' : event_sign_in_time,
             'attendees' : ['user2', 'user3', 'user4']
         }
 
