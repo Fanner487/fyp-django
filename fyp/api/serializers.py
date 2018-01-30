@@ -3,7 +3,7 @@ from .models import Event, Attempt
 from django.contrib.auth.models import User
 from datetime import datetime
 from datetime import timedelta
-from django.utils import timezone 
+from django.utils import timezone
 import pytz
 
 class UserSerializer(serializers.ModelSerializer):
@@ -31,6 +31,8 @@ class EventSerializer(serializers.ModelSerializer):
 		print("End time: " + str(finish_time))
 		print("Attending: " + str(data.get('attending')))
 
+		print("Testing atom")
+
 		# Checks if user exists
 		if not user_exists(username.strip()):
 			raise serializers.ValidationError("User does not exist")
@@ -42,19 +44,19 @@ class EventSerializer(serializers.ModelSerializer):
 		if start_time < time_now or finish_time < time_now:
 			raise serializers.ValidationError("Time must be in future")
 
-		if sign_in_time > start_time: 
+		if sign_in_time > start_time:
 			raise serializers.ValidationError("Sign in time must be in before or equal start time")
 
 		# Checks every username in attendee list
 		for attendee in attendees:
-			
+
 			if not user_exists(attendee.strip()):
 				raise serializers.ValidationError(attendee + " does not exist")
 
 		# Attending must be empty
 		if data.get('attending'):
 			raise serializers.ValidationError("Attending must be empty")
-		
+
 		return data
 
 
@@ -76,7 +78,7 @@ class AttemptSerializer(serializers.ModelSerializer):
 		date_on_screen = data.get('date_on_screen')
 
 		# Setting created_time to now
-		data['created'] = now 
+		data['created'] = now
 
 		created = data.get('created')
 		print("\n\n\n----------NEW ATTEMPT---------\n" )
@@ -91,8 +93,8 @@ class AttemptSerializer(serializers.ModelSerializer):
 		if not event_exists(event_id):
 			raise serializers.ValidationError("Event does not exist")
 
-	
-		# Check if user exists in attendee list and not already in attending 
+
+		# Check if user exists in attendee list and not already in attending
 		if not user_is_attendee(username, event_id):
 			raise serializers.ValidationError("User is not in attendees or already in list")
 
@@ -128,7 +130,7 @@ def verify_scan(data):
 
 		# Gets last attempt
 		last_attempt = Attempt.objects.filter(username=username).filter(event_id=event_id).order_by("-created").first()
-		
+
 		if last_attempt:
 
 			# Verifies second attempt for event
@@ -172,7 +174,7 @@ def valid_attempt_in_event(username, event_id, time_on_screen, date_on_screen, t
 
 	# parsing date and time on screen into new datetime variable for comparison
 	utc = pytz.UTC
-	combined_time = datetime(year=date_on_screen.year, month=date_on_screen.month, day=date_on_screen.day, 
+	combined_time = datetime(year=date_on_screen.year, month=date_on_screen.month, day=date_on_screen.day,
 		hour=time_on_screen.hour, minute=time_on_screen.minute, second=time_on_screen.second).replace(tzinfo=utc)
 
 	print("Combined time: " + str(combined_time))
@@ -219,7 +221,7 @@ def user_exists(username):
 def event_exists(event_id):
 
 	event_count = Event.objects.filter(id=event_id).count()
-	
+
 	event = Event.objects.filter(id=event_id)
 
 	if event_count == 1:
