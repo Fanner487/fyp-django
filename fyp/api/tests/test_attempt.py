@@ -60,6 +60,6 @@ class AttemptTestCase(TestCase):
             'attendees' : ['user2', 'user3', 'user4']
         }
 
-        response = create_event(data)
+        response = self.create_event(data)
 
         print(response.status_code)
