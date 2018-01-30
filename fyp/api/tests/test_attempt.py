@@ -86,6 +86,6 @@ class AttemptTestCase(TestCase):
 
         sleep(6)
 
-        response = self.create_test_attempt_now("aaronenaghan1", event_id)
+        response = self.create_test_attempt_now("user2", event_id)
         print(response.status_code)
         print(response.json())
