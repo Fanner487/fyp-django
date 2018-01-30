@@ -103,3 +103,7 @@ class AttemptTestCase(TestCase):
 
         event = Event.objects.get(id=event_id)
         self.assertTrue("user2" in event.attending)
+
+        response3 = self.create_test_attempt_now("user2", event_id)
+
+        self.assertEquals(response3.status_code, status.HTTP_201_CREATED)
