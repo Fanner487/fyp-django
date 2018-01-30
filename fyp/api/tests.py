@@ -265,5 +265,5 @@ class EventTestCase(TestCase):
         response = self.create_event(data)
 
         print(response.json())
-        self.assertEqual(response.json().get('attendees'), [])
+        self.assertEqual(response.json().get('non_field_errors'), ['Attendees cannot be null'])
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
