@@ -50,7 +50,7 @@ class AttemptTestCase(TestCase):
 
         event_start_time = datetime.datetime.now() + datetime.timedelta(seconds=1)
         # event_start_time = datetime.datetime.now()
-        event_sign_in_time = event_start_time
+        event_sign_in_time = datetime.datetime.now()
         event_finish_time = datetime.datetime(
         	year=event_start_time.year,
         	month=event_start_time.month,
