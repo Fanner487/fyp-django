@@ -298,7 +298,7 @@ class EventTestCase(TestCase):
         url = "/api/events/" + str(response.json().get('id')) + "/"
         print(url)
         # update_response = self.client.patch(url, data=data_update, format='json', content_type='application/json')
-        update_response = self.client.patch(url, data=data_update)
+        update_response = self.client.patch(url, data=data_update, format='json')
 
         print(update_response.status_code)
         print(update_response)
