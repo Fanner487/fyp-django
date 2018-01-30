@@ -298,7 +298,7 @@ class EventTestCase(TestCase):
         url = "/api/events/" + str(response.json().get('id'))
         print(url)
         # update_response = self.client.patch(url, data=data_update, format='json', content_type='application/json')
-        update_response = self.client.patch('/api/events/1/', json.dumps{
+        update_response = self.client.patch('/api/events/1/', json.dumps({
             'organiser' :"user1",
             'event_name' : "update",
             'location' : "update",
@@ -306,7 +306,7 @@ class EventTestCase(TestCase):
             'finish_time' : '2050-01-29T12:30:00',
             'sign_in_time' : '2050-01-29T12:00:00',
             'attendees' : ['user2', 'user3']
-            }, content_type='application/json', format='json')
+            }), content_type='application/json', format='json')
 
         print(update_response.status_code)
         print(update_response)
