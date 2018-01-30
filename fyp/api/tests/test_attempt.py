@@ -86,5 +86,5 @@ class AttemptTestCase(TestCase):
 
         sleep(6)
 
-        response = self.create_test_event_now()
+        response = self.create_test_attempt_now()
         print(response.json())
