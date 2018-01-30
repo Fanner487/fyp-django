@@ -48,7 +48,8 @@ class AttemptTestCase(TestCase):
 
     def create_test_event_now(self):
 
-        event_start_time = datetime.datetime.now() + datetime.timedelta(seconds=2)
+        # event_start_time = datetime.datetime.now() + datetime.timedelta(seconds=2)
+        event_start_time = datetime.datetime.now()
         event_sign_in_time = event_start_time
         event_finish_time = datetime.datetime(
         	year=event_start_time.year,
@@ -84,7 +85,7 @@ class AttemptTestCase(TestCase):
 
         event_id = event_response.json().get('id')
 
-        sleep(4)
+        sleep(1)
 
         response1 = self.create_test_attempt_now("user2", event_id)
         print(response1.status_code)
