@@ -155,7 +155,7 @@ class AttemptTestCase(TestCase):
 
 
     def test_attempt_invalid_user_fail(self):
-        print("\n\nayooooo")
+        
         event_response = self.create_test_event_now()
         self.assertEquals(event_response.status_code, status.HTTP_201_CREATED)
 
