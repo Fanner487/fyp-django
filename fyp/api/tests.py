@@ -118,10 +118,10 @@ class EventTestCase(TestCase):
     def setUp(self):
         client = APIClient()
 
-        create_user("user1" , "test1@gmail.com", "orangemonkeyeagle1")
-        create_user("user2" , "test2@gmail.com", "orangemonkeyeagle1")
-        create_user("user3" , "test3@gmail.com", "orangemonkeyeagle1")
-        create_user("user4" , "test4@gmail.com", "orangemonkeyeagle1")
+        self.create_user("user1" , "test1@gmail.com", "orangemonkeyeagle1")
+        self.create_user("user2" , "test2@gmail.com", "orangemonkeyeagle1")
+        self.create_user("user3" , "test3@gmail.com", "orangemonkeyeagle1")
+        self.create_user("user4" , "test4@gmail.com", "orangemonkeyeagle1")
 
 
     def test_event_create_success(self):
@@ -135,6 +135,6 @@ class EventTestCase(TestCase):
             'attendees' : ['user2', 'user3', 'user4']
         }
 
-        response = create_event(data)
+        response = self.create_event(data)
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
