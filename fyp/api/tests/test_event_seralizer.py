@@ -16,4 +16,4 @@ class UserIsAttendeeTestCase(TestCase):
 
         result = serializers.event_exists(1)
 
-        assertFalse(result)
+        self.assertFalse(result)
