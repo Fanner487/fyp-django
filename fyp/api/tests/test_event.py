@@ -8,6 +8,8 @@ from django.contrib.auth.models import User
 from rest_framework import status
 import json
 # Create your tests here.s
+
+
 class EventTestCase(TestCase):
 
     def create_user(self, username, email, password):
@@ -20,11 +22,10 @@ class EventTestCase(TestCase):
     def setUp(self):
         client = APIClient()
 
-        self.create_user("user1" , "test1@gmail.com", "orangemonkeyeagle1")
-        self.create_user("user2" , "test2@gmail.com", "orangemonkeyeagle1")
-        self.create_user("user3" , "test3@gmail.com", "orangemonkeyeagle1")
-        self.create_user("user4" , "test4@gmail.com", "orangemonkeyeagle1")
-
+        self.create_user("user1", "test1@gmail.com", "orangemonkeyeagle1")
+        self.create_user("user2", "test2@gmail.com", "orangemonkeyeagle1")
+        self.create_user("user3", "test3@gmail.com", "orangemonkeyeagle1")
+        self.create_user("user4", "test4@gmail.com", "orangemonkeyeagle1")
 
     def test_event_create_success(self):
 
@@ -48,7 +49,6 @@ class EventTestCase(TestCase):
         self.assertEqual(response.json().get('finish_time'), "2050-01-29T12:30:00Z")
         self.assertEqual(response.json().get('sign_in_time'), "2050-01-29T12:00:00Z")
         self.assertEqual(response.json().get('attendees'), ['user2', 'user3', 'user4'])
-
 
     def test_event_create_organiser_fail(self):
 

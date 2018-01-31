@@ -5,6 +5,7 @@ from datetime import datetime
 from django.utils import timezone
 import pytz
 
+
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
@@ -16,7 +17,7 @@ class EventSerializer(serializers.ModelSerializer):
 
     def validate(self, data):
 
-        utc = pytz.UTC # using timezomes for time checking
+        utc = pytz.UTC  # using timezones for time checking
 
         username= data.get('organiser').strip()
         start_time = data.get('start_time').replace(tzinfo=utc)
@@ -91,11 +92,9 @@ class AttemptSerializer(serializers.ModelSerializer):
         if not event_exists(event_id):
             raise serializers.ValidationError("Event does not exist")
 
-
         # Check if user exists in attendee list and not already in attending
         if not user_is_attendee(username, event_id):
             raise serializers.ValidationError("User is not in attendees or already in list")
-
 
         print("Serializer valid. Verifying last scan now")
 
@@ -173,7 +172,8 @@ def valid_attempt_in_event(username, event_id, time_on_screen, date_on_screen, t
     # parsing date and time on screen into new datetime variable for comparison
     utc = pytz.UTC
     combined_time = datetime(year=date_on_screen.year, month=date_on_screen.month, day=date_on_screen.day,
-        hour=time_on_screen.hour, minute=time_on_screen.minute, second=time_on_screen.second).replace(tzinfo=utc)
+                             hour=time_on_screen.hour, minute=time_on_screen.minute, second=time_on_screen.second)\
+        .replace(tzinfo=utc)
 
     print("Combined time: " + str(combined_time))
     print("Event sign in: " + str(event.sign_in_time))

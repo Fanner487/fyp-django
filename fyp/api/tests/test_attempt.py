@@ -38,14 +38,13 @@ class AttemptTestCase(TestCase):
         date_on_screen = datetime.datetime.now().strftime("%Y-%m-%d")
 
         data = {
-            'username' : username,
-            'event_id' : event_id,
-            'time_on_screen' : time_on_screen,
-            'date_on_screen' : date_on_screen,
+            'username': username,
+            'event_id': event_id,
+            'time_on_screen': time_on_screen,
+            'date_on_screen': date_on_screen,
         }
 
         return self.create_attempt(data)
-
 
     def create_test_event_now(self):
 
@@ -53,12 +52,12 @@ class AttemptTestCase(TestCase):
         # event_start_time = datetime.datetime.now()
         event_sign_in_time = datetime.datetime.now()
         event_finish_time = datetime.datetime(
-        	year=event_start_time.year,
-        	month=event_start_time.month,
-        	day=event_start_time.day,
-        	hour=23,
-        	minute=59,
-        	second=59)
+            year=event_start_time.year,
+            month=event_start_time.month,
+            day=event_start_time.day,
+            hour=23,
+            minute=59,
+            second=59)
 
         print("Now: " + str(datetime.datetime.now()))
         print("Start: " + str(event_start_time))
@@ -67,13 +66,13 @@ class AttemptTestCase(TestCase):
         print("\n\n")
 
         data = {
-            'organiser' :"user1",
-            'event_name' : "test1",
-            'location' : "nowhere",
-            'start_time' : event_start_time,
-            'finish_time' : event_finish_time,
-            'sign_in_time' : event_sign_in_time,
-            'attendees' : ['user2', 'user3', 'user4']
+            'organiser':"user1",
+            'event_name': "test1",
+            'location': "nowhere",
+            'start_time': event_start_time,
+            'finish_time': event_finish_time,
+            'sign_in_time': event_sign_in_time,
+            'attendees': ['user2', 'user3', 'user4']
         }
 
         return self.create_event(data)
