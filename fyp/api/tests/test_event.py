@@ -318,4 +318,7 @@ class EventTestCase(TestCase):
 
         delete_response = self.client.delete("/api/events/" + str(response.json().get('id')) + "/", content_type='application/json')
 
-        print(delete_response.status_code)
+        get_response = self.client.delete("/api/events/" + str(response.json().get('id')) + "/", content_type='application/json')
+
+        self.assertEquals(delete_response.status_code, status.HTTP_204_NO_CONTENT)
+        self.assertEquals(get_response.status_code, status.HTTP_404_NOT_FOUND)
