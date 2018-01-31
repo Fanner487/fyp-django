@@ -28,6 +28,9 @@ def create_users():
            User.objects.create_user("user4", "test@gmail.com", "mypassword")
 
 
+class EventSerializerTestCase(TestCase):
+
+
 class EventExistsTestCase(TestCase):
 
     def test_event_exists_success(self):
@@ -56,35 +59,26 @@ class EventExistsTestCase(TestCase):
 
 class AttendeeIsUserTestCase(TestCase):
 
+    def setUp(self):
+
+        self.user1 = User.objects.create_user("user1", "test@gmail.com", "mypassword")
+        self.user2 = User.objects.create_user("user2", "test@gmail.com", "mypassword")
+        self.user3 = User.objects.create_user("user3", "test@gmail.com", "mypassword")
+        self.user4 = User.objects.create_user("user4", "test@gmail.com", "mypassword")
+
+        self.event = create_event()
+
     def test_user_exists_success(self):
 
-        (user1, user2, user3, user4) = create_users()
-        event = create_event()
-
-        print(event.id)
-        print(user2.username)
-        print(event.attendees)
-        result = serializers.attendee_is_user(user2.username, event.id)
+        result = serializers.attendee_is_user(self.user2.username, self.event.id)
         self.assertTrue(result)
 
     def test_user_exists_fail_wrong_user(self):
-        (user1, user2, user3, user4) = create_users()
-        event = create_event()
 
-        print(event.id)
-        print(user2.username)
-        print(event.attendees)
-        result = serializers.attendee_is_user("notAUser", event.id)
-
+        result = serializers.attendee_is_user("notAUser", self.event.id)
         self.assertFalse(result)
 
     def test_user_exists_fail_wrong_event(self):
-        (user1, user2, user3, user4) = create_users()
-        event = create_event()
 
-        print(event.id)
-        print(user2.username)
-        print(event.attendees)
-        result = serializers.attendee_is_user(user2.username, 99999)
-
+        result = serializers.attendee_is_user(self.user2.username, 99999)
         self.assertFalse(result)
