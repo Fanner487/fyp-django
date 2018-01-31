@@ -65,6 +65,6 @@ class UserIsAttendeeTestCase(TestCase):
 
         print(event_id)
 
-        result = serializers.event_exists(event_id)
+        result = serializers.event_exists(str(event_id))
 
         self.assertTrue(result)
