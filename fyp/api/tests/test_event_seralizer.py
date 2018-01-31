@@ -50,10 +50,46 @@ class EventSerializerTestCase(TestCase):
         serializer = serializers.EventSerializer(data=self.serializer_data)
         self.assertTrue(serializer.is_valid())
 
-    def test_serializer_invalid_organiser(self):
+    def test_serializer_null_organiser(self):
 
         new_serializer_data = self.serializer_data
         new_serializer_data['organiser'] = None
+        serializer = serializers.EventSerializer(data=new_serializer_data)
+        self.assertFalse(serializer.is_valid())
+
+    def test_serializer_null_event_name(self):
+        new_serializer_data = self.serializer_data
+        new_serializer_data['event_name'] = None
+        serializer = serializers.EventSerializer(data=new_serializer_data)
+        self.assertFalse(serializer.is_valid())
+
+    def test_serializer_null_location(self):
+        new_serializer_data = self.serializer_data
+        new_serializer_data['location'] = None
+        serializer = serializers.EventSerializer(data=new_serializer_data)
+        self.assertFalse(serializer.is_valid())
+
+    def test_serializer_null_start_time(self):
+        new_serializer_data = self.serializer_data
+        new_serializer_data['start_time'] = None
+        serializer = serializers.EventSerializer(data=new_serializer_data)
+        self.assertFalse(serializer.is_valid())
+
+    def test_serializer_null_finish_time(self):
+        new_serializer_data = self.serializer_data
+        new_serializer_data['finish_time'] = None
+        serializer = serializers.EventSerializer(data=new_serializer_data)
+        self.assertFalse(serializer.is_valid())
+
+    def test_serializer_null_sign_in_time(self):
+        new_serializer_data = self.serializer_data
+        new_serializer_data['sign_in_time'] = None
+        serializer = serializers.EventSerializer(data=new_serializer_data)
+        self.assertFalse(serializer.is_valid())
+
+    def test_serializer_null_attendees(self):
+        new_serializer_data = self.serializer_data
+        new_serializer_data['attendees'] = None
         serializer = serializers.EventSerializer(data=new_serializer_data)
         self.assertFalse(serializer.is_valid())
 
