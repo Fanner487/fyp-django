@@ -16,8 +16,8 @@
       <file leaf-file-name="serializers.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/fyp/api/serializers.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
-              <caret line="244" column="0" lean-forward="true" selection-start-line="244" selection-start-column="0" selection-end-line="244" selection-end-column="0" />
+            <state relative-caret-position="365">
+              <caret line="242" column="34" lean-forward="false" selection-start-line="242" selection-start-column="34" selection-end-line="242" selection-end-column="34" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
               </folding>
@@ -62,8 +62,8 @@
       <file leaf-file-name="test_event_seralizer.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/fyp/api/tests/test_event_seralizer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" column="25" lean-forward="false" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="25" />
+            <state relative-caret-position="498">
+              <caret line="87" column="67" lean-forward="false" selection-start-line="87" selection-start-column="67" selection-end-line="87" selection-end-column="67" />
               <folding>
                 <element signature="e#24#63#0" expanded="true" />
               </folding>
@@ -304,8 +304,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/fyp/api/serializers.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="244" column="0" lean-forward="true" selection-start-line="244" selection-start-column="0" selection-end-line="244" selection-end-column="0" />
+        <state relative-caret-position="365">
+          <caret line="242" column="34" lean-forward="false" selection-start-line="242" selection-start-column="34" selection-end-line="242" selection-end-column="34" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
           </folding>
@@ -314,8 +314,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/fyp/api/tests/test_event_seralizer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="25" lean-forward="false" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="25" />
+        <state relative-caret-position="498">
+          <caret line="87" column="67" lean-forward="false" selection-start-line="87" selection-start-column="67" selection-end-line="87" selection-end-column="67" />
           <folding>
             <element signature="e#24#63#0" expanded="true" />
           </folding>

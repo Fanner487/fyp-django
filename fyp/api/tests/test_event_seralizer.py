@@ -77,3 +77,14 @@ class AttendeeIsUserTestCase(TestCase):
         result = serializers.attendee_is_user("notAUser", event.id)
 
         self.assertFalse(result)
+
+    def test_user_exists_fail_wrong_event(self):
+        (user1, user2, user3, user4) = create_users()
+        event = create_event()
+
+        print(event.id)
+        print(user2.username)
+        print(event.attendees)
+        result = serializers.attendee_is_user(user2.username, 99999)
+
+        self.assertFalse(result)
