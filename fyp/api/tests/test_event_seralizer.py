@@ -61,10 +61,10 @@ class UserIsAttendeeTestCase(TestCase):
 
     def test_event_exists_success(self):
 
-        event_id = self.create_event()
+        event = self.create_event()
 
-        print(str(event_id))
+        print("Event ID: " + str(event.id))
 
-        result = serializers.event_exists(event_id)
+        result = serializers.event_exists(event.id)
 
         self.assertTrue(result)
