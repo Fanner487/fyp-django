@@ -302,11 +302,10 @@ class EventTestCase(TestCase):
 
     def test_event_delete(self):
 
-        event_response = create_test_event_now()
+        event_response = self.create_test_event_now()
 
         self.assertEquals(response.status_code, status.HTTP_201_CREATED)
 
         delete_response = self.client.delete("/api/events/" + str(response.json().get('id')) + "/", content_type='application/json')
 
         print(delete_response.status_code)
-        
