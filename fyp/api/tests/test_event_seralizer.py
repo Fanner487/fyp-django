@@ -105,7 +105,7 @@ class AttendeeIsUserTestCase(TestCase):
         print(event.id)
         print(user2.username)
         print(event.attendees)
-        result = serializers.user_is_attendee(user2.username, event.id)
+        result = serializers.attendee_is_user(user2.username, event.id)
 
         self.assertTrue(result)
 
@@ -119,6 +119,6 @@ class AttendeeIsUserTestCase(TestCase):
         print(event.id)
         print(user2.username)
         print(event.attendees)
-        result = serializers.user_is_attendee("notAUser", event.id)
+        result = serializers.attendee_is_user("notAUser", event.id)
 
         self.assertFalse(result)

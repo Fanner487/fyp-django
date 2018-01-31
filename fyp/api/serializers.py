@@ -93,7 +93,7 @@ class AttemptSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("Event does not exist")
 
         # Check if user exists in attendee list and not already in attending
-        if not user_is_attendee(username, event_id):
+        if not attendee_is_user(username, event_id):
             raise serializers.ValidationError("User is not in attendees or already in list")
 
         print("Serializer valid. Verifying last scan now")
@@ -226,7 +226,7 @@ def event_exists(event_id):
         return False
 
 
-def user_is_attendee(username, event_id):
+def attendee_is_user(username, event_id):
 
     if user_exists(username) and event_exists(event_id):
 
@@ -246,11 +246,12 @@ def user_is_attendee(username, event_id):
     else:
         return False
 
+
 def add_to_attending(username, event_id):
 
     event = Event.objects.get(id=event_id)
 
-    if not username in event.attending:
+    if username not in event.attending:
 
         print("Appending user")
         event.attending.append(username.strip().lower())
