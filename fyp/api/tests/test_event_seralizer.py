@@ -28,8 +28,49 @@ def create_users():
            User.objects.create_user("user4", "test@gmail.com", "mypassword")
 
 
-# class EventSerializerTestCase(TestCase):
+class EventSerializerTestCase(TestCase):
 
+    def setUp(self):
+
+        (self.user1, self.user2, self.user3, self.user4) = create_users()
+
+        self.serializer_data = {
+            'organiser': self.user1.username,
+            'event_name': 'test',
+            'location': 'test',
+            'start_time': '2050-01-29T12:00:00',
+            'finish_time': '2050-01-29T12:30:00',
+            'sign_in_time': '2050-01-29T12:00:00',
+            'attendees': [self.user2.username, self.user4.username, self.user4.username],
+            # '': '',
+        }
+
+    def test_serializer_valid(self):
+
+        serializer = serializers.EventSerializer(data=self.serializer_data)
+
+        assertTrue(serializer.is_valid())
+
+        # success
+        # None
+        # organiser doesnt exist
+        # event_name null
+        # location null
+        # starttime > finish
+        # signintime > start
+        # attendees null, users not existing
+        # attending populated
+
+
+        # organiser = models.CharField("organiser", max_length=50)
+        # event_name = models.CharField("event_name", max_length=50)
+        # location = models.CharField("location", max_length=50)
+        # start_time = models.DateTimeField()
+        # finish_time = models.DateTimeField()
+        # sign_in_time = models.DateTimeField()
+        # attendees = ArrayField(models.CharField(max_length=50))
+        # attending = ArrayField(models.CharField(max_length=50), blank=True, null=True)
+        # attendance_required = models.BooleanField(default=False)
 
 class EventExistsTestCase(TestCase):
 
@@ -61,11 +102,7 @@ class AttendeeIsUserTestCase(TestCase):
 
     def setUp(self):
 
-        self.user1 = User.objects.create_user("user1", "test@gmail.com", "mypassword")
-        self.user2 = User.objects.create_user("user2", "test@gmail.com", "mypassword")
-        self.user3 = User.objects.create_user("user3", "test@gmail.com", "mypassword")
-        self.user4 = User.objects.create_user("user4", "test@gmail.com", "mypassword")
-
+        (self.user1, self.user2, self.user3, self.user4) = create_users()
         self.event = create_event()
 
     def test_user_exists_success(self):
