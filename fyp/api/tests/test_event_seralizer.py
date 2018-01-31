@@ -71,15 +71,19 @@ class EventSerializerTestCase(TestCase):
         new_serializer_data = self.serializer_data
         new_serializer_data['location'] = None
         serializer = serializers.EventSerializer(data=new_serializer_data)
-        print(serializer.errors)
+
         self.assertFalse(serializer.is_valid())
+
+        print(serializer.errors)
 
     def test_serializer_null_start_time(self):
         new_serializer_data = self.serializer_data
         new_serializer_data['start_time'] = None
         serializer = serializers.EventSerializer(data=new_serializer_data)
-        print(serializer.errors)
+
         self.assertFalse(serializer.is_valid())
+
+        print(serializer.errors)
 
     def test_serializer_null_finish_time(self):
         new_serializer_data = self.serializer_data
