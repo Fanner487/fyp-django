@@ -92,7 +92,7 @@ class AttendeeIsUserTestCase(TestCase):
             start_time='2050-01-29T12:00:00',
             finish_time='2050-01-29T12:30:00',
             sign_in_time='2050-01-29T12:00:00',
-            attendees=['user1', 'user3', 'user4']
+            attendees=['user2', 'user3', 'user4']
         )
 
     def test_user_exists_success(self):
