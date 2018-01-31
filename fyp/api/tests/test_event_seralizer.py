@@ -103,8 +103,11 @@ class EventSerializerTestCase(TestCase):
         print(serializer.errors)
 
     def test_serializer_null_attendees(self):
+
+        print("\n\n")
         new_serializer_data = self.serializer_data
         new_serializer_data['attendees'] = None
+        new_serializer_data['sign_in_time'] = None
         serializer = serializers.EventSerializer(data=new_serializer_data)
 
         self.assertFalse(serializer.is_valid())
