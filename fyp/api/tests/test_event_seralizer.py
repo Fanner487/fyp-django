@@ -48,8 +48,14 @@ class EventSerializerTestCase(TestCase):
     def test_serializer_valid(self):
 
         serializer = serializers.EventSerializer(data=self.serializer_data)
-
         self.assertTrue(serializer.is_valid())
+
+    def test_serializer_invalid_organiser(self):
+
+        new_serializer_data = self.serializer_data
+        new_serializer_data['organiser'] = None
+        serializer = serializers.EventSerializer(data=new_serializer_data)
+        self.assertFalse(serializer.is_valid())
 
         # success
         # None
