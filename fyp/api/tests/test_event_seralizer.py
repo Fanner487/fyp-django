@@ -49,7 +49,7 @@ class EventSerializerTestCase(TestCase):
 
         serializer = serializers.EventSerializer(data=self.serializer_data)
 
-        assertTrue(serializer.is_valid())
+        self.assertTrue(serializer.is_valid())
 
         # success
         # None
