@@ -108,3 +108,17 @@ class AttendeeIsUserTestCase(TestCase):
         result = serializers.user_is_attendee(user2.username, event.id)
 
         self.assertTrue(result)
+
+    def test_user_exists_fail_wrong_user(self):
+        user1 = User.objects.create_user("user1", "test@gmail.com", "mypassword")
+        user2 = User.objects.create_user("user2", "test@gmail.com", "mypassword")
+        user3 = User.objects.create_user("user3", "test@gmail.com", "mypassword")
+        user4 = User.objects.create_user("user4", "test@gmail.com", "mypassword")
+        event = self.create_event()
+
+        print(event.id)
+        print(user2.username)
+        print(event.attendees)
+        result = serializers.user_is_attendee("notAUser", event.id)
+
+        self.assertFalse(result)
