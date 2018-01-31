@@ -7,7 +7,7 @@ from rest_framework.test import APIRequestFactory
 from django.contrib.auth.models import User
 from rest_framework import status
 from api.models import Event
-import ...api.serializers
+from api import serializers
 
 
 class UserIsAttendeeTestCase(TestCase):
