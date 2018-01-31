@@ -117,11 +117,19 @@ class EventSerializerTestCase(TestCase):
         self.assertFalse(serializer.is_valid())
         self.assertEquals(serializer.errors.keys(), set(['attendees', 'sign_in_time']))
 
+    def test_serializer_null_all(self):
+
+        serializer = serializers.EventSerializer(data=None)
+
+        self.assertFalse(serializer.is_valid())
+        self.assertEquals(serializer.errors.keys(), set(['organiser', 'event_name', 'location',
+                                                         'start_time', 'finish_time',
+                                                         'attendees', 'sign_in_time']))
+
         # success
         # None
         # organiser doesnt exist
-        # event_name null
-        # location null
+
         # starttime > finish
         # signintime > start
         # attendees null, users not existing

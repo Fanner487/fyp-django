@@ -62,8 +62,8 @@
       <file leaf-file-name="test_event_seralizer.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/fyp/api/tests/test_event_seralizer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="141">
-              <caret line="105" column="0" lean-forward="true" selection-start-line="105" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
+            <state relative-caret-position="447">
+              <caret line="125" column="85" lean-forward="false" selection-start-line="125" selection-start-column="85" selection-end-line="125" selection-end-column="85" />
               <folding>
                 <element signature="e#24#63#0" expanded="true" />
               </folding>
@@ -314,8 +314,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/fyp/api/tests/test_event_seralizer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="105" column="0" lean-forward="true" selection-start-line="105" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
+        <state relative-caret-position="447">
+          <caret line="125" column="85" lean-forward="false" selection-start-line="125" selection-start-column="85" selection-end-line="125" selection-end-column="85" />
           <folding>
             <element signature="e#24#63#0" expanded="true" />
           </folding>
