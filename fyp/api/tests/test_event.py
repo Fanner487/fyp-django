@@ -294,11 +294,7 @@ class EventTestCase(TestCase):
         })
 
         # user 4
-        print(str(response.json().get('event_name')))
-        url = "/api/events/" + str(response.json().get('id'))
-        print(url)
-        # update_response = self.client.patch(url, data=data_update, format='json', content_type='application/json')
-        update_response = self.client.patch('/api/events/1/', data_update, content_type='application/json')
+        update_response = self.client.patch("/api/events/" + str(response.json().get('id')), data_update, content_type='application/json')
 
-        print(update_response.status_code)
-        print(update_response)
+        self.assertEquals(response.status_code, status.HTTP_200_OK)
+        self.assertEquals(response.json())
