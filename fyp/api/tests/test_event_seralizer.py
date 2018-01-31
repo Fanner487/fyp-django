@@ -41,7 +41,7 @@ class EventExistsTestCase(TestCase):
         self.assertEquals(event.start_time, '2050-01-29T12:00:00')
         self.assertEquals(event.finish_time, '2050-01-29T12:30:00')
         self.assertEquals(event.sign_in_time, '2050-01-29T12:00:00')
-        self.assertEquals(event.attendees, ['user1', 'user3', 'user4'])
+        self.assertEquals(event.attendees, ['user2', 'user3', 'user4'])
 
         result = serializers.event_exists(event.id)
 
@@ -65,7 +65,6 @@ class AttendeeIsUserTestCase(TestCase):
         print(user2.username)
         print(event.attendees)
         result = serializers.attendee_is_user(user2.username, event.id)
-
         self.assertTrue(result)
 
     def test_user_exists_fail_wrong_user(self):
