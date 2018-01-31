@@ -75,3 +75,9 @@ class UserIsAttendeeTestCase(TestCase):
         result = serializers.event_exists(event.id)
 
         self.assertTrue(result)
+
+    def test_event_exists_wrong_id(self):
+        
+        result = serializers.event_exists(9999)
+
+        self.assertFalse(result)
