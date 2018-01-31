@@ -230,7 +230,7 @@ def user_is_attendee(username, event_id):
 
     if user_exists(username) and event_exists(event_id):
 
-        # Checks if user in attendee and not alreadt in attending
+        # Checks if user in attendee and not already in attending
         event = Event.objects.filter(id=event_id) \
             .filter(attendees__icontains=username.strip().lower()) \
             .exclude(attending__icontains=username.strip().lower())

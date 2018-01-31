@@ -3,7 +3,6 @@ from __future__ import unicode_literals
 
 from django.test import TestCase
 from rest_framework.test import APIClient
-from rest_framework.test import APIRequestFactory
 from django.contrib.auth.models import User
 from rest_framework import status
 from api.models import Event
@@ -28,10 +27,10 @@ class AttemptTestCase(TestCase):
     def setUp(self):
         client = APIClient()
 
-        self.create_user("user1" , "test1@gmail.com", "orangemonkeyeagle1")
-        self.create_user("user2" , "test2@gmail.com", "orangemonkeyeagle1")
-        self.create_user("user3" , "test3@gmail.com", "orangemonkeyeagle1")
-        self.create_user("user4" , "test4@gmail.com", "orangemonkeyeagle1")
+        self.create_user("user1", "test1@gmail.com", "orangemonkeyeagle1")
+        self.create_user("user2", "test2@gmail.com", "orangemonkeyeagle1")
+        self.create_user("user3", "test3@gmail.com", "orangemonkeyeagle1")
+        self.create_user("user4", "test4@gmail.com", "orangemonkeyeagle1")
 
     # def create_test_attempt_now(self, username, event_id):
     #     time_on_screen = (datetime.datetime.now() - datetime.timedelta(seconds=1)).strftime("%H:%M:%S")

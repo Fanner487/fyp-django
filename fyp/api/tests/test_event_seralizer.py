@@ -3,15 +3,13 @@ from __future__ import unicode_literals
 
 from django.test import TestCase
 from rest_framework.test import APIClient
-from rest_framework.test import APIRequestFactory
-from django.contrib.auth.models import User
-from rest_framework import status
 from api.models import Event
+from django.contrib.auth.models import User
 from api import serializers
 import datetime
 
 
-class UserIsAttendeeTestCase(TestCase):
+class EventExistsTestCase(TestCase):
 
     def setUp(self):
         client = APIClient()
@@ -77,7 +75,33 @@ class UserIsAttendeeTestCase(TestCase):
         self.assertTrue(result)
 
     def test_event_exists_wrong_id(self):
-        
+
         result = serializers.event_exists(9999)
 
         self.assertFalse(result)
+
+
+class AttendeeIsUserTestCase(TestCase):
+
+    def create_event(self):
+
+        return Event.objects.create(
+            organiser="user1",
+            event_name="test",
+            location="test",
+            start_time='2050-01-29T12:00:00',
+            finish_time='2050-01-29T12:30:00',
+            sign_in_time='2050-01-29T12:00:00',
+            attendees=['user1', 'user3', 'user4']
+        )
+
+    def test_user_exists_success(self):
+        user1 = User.objects.create_user("user1", "test@gmail.com", "mypassword")
+        user2 = User.objects.create_user("user2", "test@gmail.com", "mypassword")
+        user3 = User.objects.create_user("user3", "test@gmail.com", "mypassword")
+        user4 = User.objects.create_user("user4", "test@gmail.com", "mypassword")
+        event = self.create_event()
+
+        result = serializers.user_is_attendee(user2.username, event.id)
+
+        self.assertTrue(result)

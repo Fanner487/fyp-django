@@ -30,13 +30,13 @@ class EventTestCase(TestCase):
     def test_event_create_success(self):
 
         data = {
-            'organiser' :"user1",
-            'event_name' : "Test1",
-            'location' : "nowhere",
-            'start_time' : '2050-01-29T12:00:00',
-            'finish_time' : '2050-01-29T12:30:00',
-            'sign_in_time' : '2050-01-29T12:00:00',
-            'attendees' : ['user2', 'user3', 'user4']
+            'organiser': "user1",
+            'event_name': "Test1",
+            'location': "nowhere",
+            'start_time': '2050-01-29T12:00:00',
+            'finish_time': '2050-01-29T12:30:00',
+            'sign_in_time': '2050-01-29T12:00:00',
+            'attendees': ['user2', 'user3', 'user4']
         }
 
         response = self.create_event(data)
@@ -162,7 +162,6 @@ class EventTestCase(TestCase):
         self.assertEqual(response.json().get('non_field_errors'), ['Attendees cannot be null'])
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
-
     def test_event_create_organiser_exists_fail(self):
 
         data = {
@@ -217,20 +216,20 @@ class EventTestCase(TestCase):
     def test_event_create_sign_in_time_fail(self):
 
         data = {
-            'organiser' :"user1",
-            'event_name' : "Test1",
-            'location' : "nowhere",
-            'start_time' : '2050-01-29T12:00:00',
-            'finish_time' : '2050-01-29T12:30:00',
-            'sign_in_time' : '2050-01-29T12:00:01',
-            'attendees' : ['user2', 'user3', 'user4']
+            'organiser': "user1",
+            'event_name': "Test1",
+            'location': "nowhere",
+            'start_time': '2050-01-29T12:00:00',
+            'finish_time': '2050-01-29T12:30:00',
+            'sign_in_time': '2050-01-29T12:00:01',
+            'attendees': ['user2', 'user3', 'user4']
         }
 
         response = self.create_event(data)
 
-        self.assertEqual(response.json().get('non_field_errors'), ['Sign in time must be in before or equal start time'])
+        self.assertEqual(response.json().get('non_field_errors'),
+                         ['Sign in time must be in before or equal start time'])
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-
 
     def test_event_create_attendee_fail(self):
 
@@ -267,7 +266,6 @@ class EventTestCase(TestCase):
         self.assertEqual(response.json().get('non_field_errors'), ['Attending must be empty'])
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
-
     def test_event_update(self):
         data = {
             'organiser' :"user1",
@@ -294,7 +292,8 @@ class EventTestCase(TestCase):
         })
 
         # user 4
-        update_response = self.client.patch("/api/events/" + str(response.json().get('id')) + "/", data_update, content_type='application/json')
+        update_response = self.client.patch("/api/events/" + str(response.json().get('id')) + "/", data_update,
+                                            content_type='application/json')
         self.assertEquals(update_response.status_code, status.HTTP_200_OK)
         self.assertEquals(update_response.json().get('event_name'), "update")
         self.assertEquals(update_response.json().get('location'), "update")
@@ -316,9 +315,11 @@ class EventTestCase(TestCase):
 
         self.assertEquals(response.status_code, status.HTTP_201_CREATED)
 
-        delete_response = self.client.delete("/api/events/" + str(response.json().get('id')) + "/", content_type='application/json')
+        delete_response = self.client.delete("/api/events/" + str(response.json().get('id')) + "/",
+                                             content_type='application/json')
 
-        get_response = self.client.delete("/api/events/" + str(response.json().get('id')) + "/", content_type='application/json')
+        get_response = self.client.delete("/api/events/" + str(response.json().get('id')) + "/",
+                                          content_type='application/json')
         
         self.assertEquals(delete_response.status_code, status.HTTP_204_NO_CONTENT)
         self.assertEquals(get_response.status_code, status.HTTP_404_NOT_FOUND)
