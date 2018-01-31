@@ -56,7 +56,7 @@ class EventSerializerTestCase(TestCase):
         new_serializer_data['organiser'] = None
         serializer = serializers.EventSerializer(data=new_serializer_data)
         self.assertFalse(serializer.is_valid())
-        self.assertEquals(serializer.errors.keys(), 'organiser')
+        self.assertEquals(set(serializer.errors.keys()), ['organiser'])
 
         # self.assertEquals(serializer.errors.keys(), set(['organiser']))
 
