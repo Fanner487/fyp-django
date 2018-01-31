@@ -102,6 +102,7 @@ class AttendeeIsUserTestCase(TestCase):
         user4 = User.objects.create_user("user4", "test@gmail.com", "mypassword")
         event = self.create_event()
 
+        print(event)
         result = serializers.user_is_attendee(user2.username, event.id)
 
         self.assertTrue(result)
