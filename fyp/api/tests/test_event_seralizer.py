@@ -110,7 +110,7 @@ class EventSerializerTestCase(TestCase):
         serializer = serializers.EventSerializer(data=new_serializer_data)
 
         self.assertFalse(serializer.is_valid())
-        self.assertEquals(serializer.errors.keys(), ['attendees'])
+        self.assertEquals(serializer.errors.keys(), set(['attendees']))
         # print(serializer.errors)
 
         # success
