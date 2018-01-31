@@ -295,6 +295,5 @@ class EventTestCase(TestCase):
 
         # user 4
         update_response = self.client.patch("/api/events/" + str(response.json().get('id')), data_update, content_type='application/json')
-        print(response.status_code)
-        # self.assertEquals(response.status_code, status.HTTP_200_OK)
-        self.assertEquals(response.json())
+        self.assertEquals(response.status_code, status.HTTP_201_CREATED)
+        self.assertEquals(response.json().get('location'), "update")
