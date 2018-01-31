@@ -57,12 +57,15 @@ class EventSerializerTestCase(TestCase):
         serializer = serializers.EventSerializer(data=new_serializer_data)
         self.assertFalse(serializer.is_valid())
 
+        print(serializer.errors)
+
     def test_serializer_null_event_name(self):
         new_serializer_data = self.serializer_data
         new_serializer_data['event_name'] = None
         serializer = serializers.EventSerializer(data=new_serializer_data)
-        print(serializer.errors)
+
         self.assertFalse(serializer.is_valid())
+        print(serializer.errors)
 
     def test_serializer_null_location(self):
         new_serializer_data = self.serializer_data
@@ -82,23 +85,26 @@ class EventSerializerTestCase(TestCase):
         new_serializer_data = self.serializer_data
         new_serializer_data['finish_time'] = None
         serializer = serializers.EventSerializer(data=new_serializer_data)
-        print(serializer.errors)
+
         self.assertFalse(serializer.is_valid())
+
+        print(serializer.errors)
 
     def test_serializer_null_sign_in_time(self):
         new_serializer_data = self.serializer_data
         new_serializer_data['sign_in_time'] = None
         serializer = serializers.EventSerializer(data=new_serializer_data)
-        print(serializer.errors)
+
         self.assertFalse(serializer.is_valid())
+        print(serializer.errors)
 
     def test_serializer_null_attendees(self):
         new_serializer_data = self.serializer_data
         new_serializer_data['attendees'] = None
         serializer = serializers.EventSerializer(data=new_serializer_data)
-        print(serializer.errors)
-        self.assertFalse(serializer.is_valid())
 
+        self.assertFalse(serializer.is_valid())
+        print(serializer.errors)
 
         # success
         # None
