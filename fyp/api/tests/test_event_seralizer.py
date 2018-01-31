@@ -64,7 +64,20 @@ class UserIsAttendeeTestCase(TestCase):
         event = self.create_event()
 
         print("Event ID: " + str(event.id))
+        print(event.event_name)
+        print(event.location)
+        print(event.start_time)
+        print(event.finish_time)
+        print(event.sign_in_time)
+        print(event.attendees)
 
         result = serializers.event_exists(event.id)
 
         self.assertTrue(result)
+        self.assertEquals(event.organiser, "user1")
+        self.assertEquals(event.event_name, "test")
+        self.assertEquals(event.location, "test")
+        self.assertEquals(event.start_time, '2050-01-29T12:00:00')
+        self.assertEquals(event.finish_time, '2050-01-29T12:30:00')
+        self.assertEquals(event.sign_in_time, '2050-01-29T12:00:00')
+        self.assertEquals(event.attendees, 'user1', 'user3', 'user4')
