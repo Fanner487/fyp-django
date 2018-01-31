@@ -63,8 +63,8 @@ class UserIsAttendeeTestCase(TestCase):
 
         event_id = self.create_event()
 
-        print(event_id)
+        print(str(event_id))
 
-        result = serializers.event_exists(str(event_id))
+        result = serializers.event_exists(event_id)
 
         self.assertTrue(result)
