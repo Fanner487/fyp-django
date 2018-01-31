@@ -125,7 +125,7 @@ class EventSerializerTestCase(TestCase):
         print("\n\n")
         print(serializer.errors)
         self.assertEquals(serializer.errors.keys(), set(['non_field_errors']))
-        self.assertEquals(serializer.errors, {'non_field_errors': 'No data provided'})
+        self.assertEquals(serializer.errors, {'non_field_errors': set('No data provided')})
 
         # success
         # None
