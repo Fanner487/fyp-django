@@ -74,6 +74,7 @@ class UserIsAttendeeTestCase(TestCase):
         result = serializers.event_exists(event.id)
 
         self.assertTrue(result)
+        self.assertEquals(event.id, result)
         self.assertEquals(event.organiser, "user1")
         self.assertEquals(event.event_name, "test")
         self.assertEquals(event.location, "test")
