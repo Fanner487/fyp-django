@@ -28,7 +28,7 @@ def create_users():
            User.objects.create_user("user4", "test@gmail.com", "mypassword")
 
 
-class EventSerializerTestCase(TestCase):
+# class EventSerializerTestCase(TestCase):
 
 
 class EventExistsTestCase(TestCase):
