@@ -22,9 +22,9 @@ def create_event():
 
 
 def create_users():
-    return User.objects.create_user("user1", "test@gmail.com", "mypassword"),\
-           User.objects.create_user("user2", "test@gmail.com", "mypassword"),\
-           User.objects.create_user("user3", "test@gmail.com", "mypassword"),\
+    return User.objects.create_user("user1", "test@gmail.com", "mypassword"), \
+           User.objects.create_user("user2", "test@gmail.com", "mypassword"), \
+           User.objects.create_user("user3", "test@gmail.com", "mypassword"), \
            User.objects.create_user("user4", "test@gmail.com", "mypassword")
 
 
@@ -32,7 +32,6 @@ def create_users():
 
 
 class AttemptSerializerTestCase(TestCase):
-
     # Does not test the verify scan. Tests for that are down below
 
     # username = models.CharField("username", max_length=50)
@@ -44,7 +43,6 @@ class AttemptSerializerTestCase(TestCase):
     # Check if user set created
 
     def setUp(self):
-
         (self.user1, self.user2, self.user3, self.user4) = create_users()
 
         self.event_serializer_data = {
@@ -67,35 +65,39 @@ class AttemptSerializerTestCase(TestCase):
         }
 
     def test_serializer_valid(self):
-
         serializer = serializers.AttemptSerializer(data=self.attempt_serializer_data)
         self.assertTrue(serializer.is_valid())
-    #
-    # def test_serializer_null_organiser(self):
-    #
-    #     new_serializer_data = self.serializer_data
-    #     new_serializer_data['organiser'] = None
-    #     serializer = serializers.AttemptSerializer(data=new_serializer_data)
-    #     self.assertFalse(serializer.is_valid())
-    #     self.assertEquals(serializer.errors.keys(), set(['organiser']))
-    #
-    # def test_serializer_null_event_name(self):
-    #
-    #     new_serializer_data = self.serializer_data
-    #     new_serializer_data['event_name'] = None
-    #     serializer = serializers.AttemptSerializer(data=new_serializer_data)
-    #
-    #     self.assertFalse(serializer.is_valid())
-    #     self.assertEquals(serializer.errors.keys(), set(['event_name']))
-    #
-    # def test_serializer_null_location(self):
-    #     new_serializer_data = self.serializer_data
-    #     new_serializer_data['location'] = None
-    #     serializer = serializers.AttemptSerializer(data=new_serializer_data)
-    #
-    #     self.assertFalse(serializer.is_valid())
-    #     self.assertEquals(serializer.errors.keys(), set(['location']))
-    #
+
+    def test_serializer_null_username(self):
+        new_serializer_data = self.attempt_serializer_data
+        new_serializer_data['username'] = None
+        serializer = serializers.AttemptSerializer(data=new_serializer_data)
+        self.assertFalse(serializer.is_valid())
+        self.assertEquals(serializer.errors.keys(), set(['username']))
+
+    def test_serializer_null_event_id(self):
+
+        new_serializer_data = self.attempt_serializer_data
+        new_serializer_data['event_id'] = None
+        serializer = serializers.AttemptSerializer(data=new_serializer_data)
+        self.assertFalse(serializer.is_valid())
+        self.assertEquals(serializer.errors.keys(), set(['event_id']))
+
+    def test_serializer_null_time_on_screen(self):
+
+        new_serializer_data = self.attempt_serializer_data
+        new_serializer_data['time_on_screen'] = None
+        serializer = serializers.AttemptSerializer(data=new_serializer_data)
+        self.assertFalse(serializer.is_valid())
+        self.assertEquals(serializer.errors.keys(), set(['time_on_screen']))
+
+    def test_serializer_null_date_on_screen(self):
+        new_serializer_data = self.attempt_serializer_data
+        new_serializer_data['date_on_screen'] = None
+        serializer = serializers.AttemptSerializer(data=new_serializer_data)
+        self.assertFalse(serializer.is_valid())
+        self.assertEquals(serializer.errors.keys(), set(['date_on_screen']))
+
     # def test_serializer_null_start_time(self):
     #     new_serializer_data = self.serializer_data
     #     new_serializer_data['start_time'] = None

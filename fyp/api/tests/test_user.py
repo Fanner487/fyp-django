@@ -17,37 +17,32 @@ class LoginTestCase(TestCase):
         client = APIClient()
 
     def test_login_success(self):
-
         data = {'username': 'eamontang1', 'password': 'orangemonkeyeagle1'}
         response = self.client.post("/api/login/", data=data, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_login_password_fail(self):
-
         data = {'username': 'eamontang1', 'password': 'notmypassword'}
         response = self.client.post("/api/login/", data=data, format='json')
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     def test_login_username_fail(self):
-
         data = {'username': 'eamontangnotreal1', 'password': 'orangemonkeyeagle1'}
         response = self.client.post("/api/login/", data=data, format='json')
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
 
 class RegisterTestCase(TestCase):
-
     def setUp(self):
         client = APIClient()
 
     def test_register_success(self):
-
         data = {
-            'username' :"billybob1",
-            'password' : "orangemonkeyeagle1",
-            'email' : "billybob1@gmail.com",
-            'firstname' : 'Billy',
-            'surname' : 'Bob',
+            'username': "billybob1",
+            'password': "orangemonkeyeagle1",
+            'email': "billybob1@gmail.com",
+            'firstname': 'Billy',
+            'surname': 'Bob',
         }
 
         response = self.client.post("/api/register/", data=data, format='json')
@@ -58,11 +53,11 @@ class RegisterTestCase(TestCase):
         print("test_register_duplicate_email")
 
         data = {
-            'username' :"janedoe1",
-            'password' : "orangemonkeyeagle1",
-            'email' : "janedoe1@gmail.com",
-            'firstname' : 'Jane',
-            'surname' : 'Doe',
+            'username': "janedoe1",
+            'password': "orangemonkeyeagle1",
+            'email': "janedoe1@gmail.com",
+            'firstname': 'Jane',
+            'surname': 'Doe',
         }
 
         response = self.client.post("/api/register/", data=data, format='json')
@@ -71,24 +66,22 @@ class RegisterTestCase(TestCase):
         print("second user")
 
         data_new = {
-            'username' :"testuser1",
-            'password' : "orangemonkeyeagle1",
-            'email' : "janedoe1@gmail.com",
-            'firstname' : 'Jane',
-            'surname' : 'Doe',
+            'username': "testuser1",
+            'password': "orangemonkeyeagle1",
+            'email': "janedoe1@gmail.com",
+            'firstname': 'Jane',
+            'surname': 'Doe',
         }
         response_new = self.client.post("/api/register/", data=data_new, format='json')
         self.assertEqual(response_new.status_code, status.HTTP_401_UNAUTHORIZED)
 
-
     def test_register_duplicate_username(self):
-
         data = {
-            'username' :"janedoe1",
-            'password' : "orangemonkeyeagle1",
-            'email' : "janedoe1@gmail.com",
-            'firstname' : 'Jane',
-            'surname' : 'Doe',
+            'username': "janedoe1",
+            'password': "orangemonkeyeagle1",
+            'email': "janedoe1@gmail.com",
+            'firstname': 'Jane',
+            'surname': 'Doe',
         }
 
         response = self.client.post("/api/register/", data=data, format='json')
@@ -97,11 +90,11 @@ class RegisterTestCase(TestCase):
         print("second user")
 
         data_new = {
-            'username' :"janedoe1",
-            'password' : "orangemonkeyeagle1",
-            'email' : "testemail@gmail.com",
-            'firstname' : 'Jane',
-            'surname' : 'Doe',
+            'username': "janedoe1",
+            'password': "orangemonkeyeagle1",
+            'email': "testemail@gmail.com",
+            'firstname': 'Jane',
+            'surname': 'Doe',
         }
         response_new = self.client.post("/api/register/", data=data_new, format='json')
         self.assertEqual(response_new.status_code, status.HTTP_401_UNAUTHORIZED)

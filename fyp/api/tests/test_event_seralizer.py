@@ -44,168 +44,168 @@ class EventSerializerTestCase(TestCase):
             'attendees': [self.user2.username, self.user4.username, self.user4.username],
             # '': '',
         }
-
-    def test_serializer_valid(self):
-
-        serializer = serializers.EventSerializer(data=self.serializer_data)
-        self.assertTrue(serializer.is_valid())
-
-    def test_serializer_null_organiser(self):
-
-        new_serializer_data = self.serializer_data
-        new_serializer_data['organiser'] = None
-        serializer = serializers.EventSerializer(data=new_serializer_data)
-        self.assertFalse(serializer.is_valid())
-        self.assertEquals(serializer.errors.keys(), set(['organiser']))
-
-    def test_serializer_null_event_name(self):
-        new_serializer_data = self.serializer_data
-        new_serializer_data['event_name'] = None
-        serializer = serializers.EventSerializer(data=new_serializer_data)
-
-        self.assertFalse(serializer.is_valid())
-        self.assertEquals(serializer.errors.keys(), set(['event_name']))
-
-    def test_serializer_null_location(self):
-        new_serializer_data = self.serializer_data
-        new_serializer_data['location'] = None
-        serializer = serializers.EventSerializer(data=new_serializer_data)
-
-        self.assertFalse(serializer.is_valid())
-        self.assertEquals(serializer.errors.keys(), set(['location']))
-
-    def test_serializer_null_start_time(self):
-        new_serializer_data = self.serializer_data
-        new_serializer_data['start_time'] = None
-        serializer = serializers.EventSerializer(data=new_serializer_data)
-
-        self.assertFalse(serializer.is_valid())
-        self.assertEquals(serializer.errors.keys(), set(['start_time']))
-
-    def test_serializer_null_finish_time(self):
-        new_serializer_data = self.serializer_data
-        new_serializer_data['finish_time'] = None
-        serializer = serializers.EventSerializer(data=new_serializer_data)
-
-        self.assertFalse(serializer.is_valid())
-        self.assertEquals(serializer.errors.keys(), set(['finish_time']))
-
-    def test_serializer_null_sign_in_time(self):
-        new_serializer_data = self.serializer_data
-        new_serializer_data['sign_in_time'] = None
-        serializer = serializers.EventSerializer(data=new_serializer_data)
-
-        self.assertFalse(serializer.is_valid())
-        self.assertEquals(serializer.errors.keys(), set(['sign_in_time']))
-
-    def test_serializer_null_attendees(self):
-
-        new_serializer_data = self.serializer_data
-        new_serializer_data['attendees'] = None
-        serializer = serializers.EventSerializer(data=new_serializer_data)
-
-        self.assertFalse(serializer.is_valid())
-        self.assertEquals(serializer.errors.keys(), set(['attendees']))
-
-    def test_serializer_null_multiple(self):
-
-        new_serializer_data = self.serializer_data
-        new_serializer_data['attendees'] = None
-        new_serializer_data['sign_in_time'] = None
-        serializer = serializers.EventSerializer(data=new_serializer_data)
-
-        self.assertFalse(serializer.is_valid())
-        self.assertEquals(serializer.errors.keys(), set(['attendees', 'sign_in_time']))
-
-    def test_serializer_null_all(self):
-
-        serializer = serializers.EventSerializer(data=None)
-
-        self.assertFalse(serializer.is_valid())
-        self.assertEquals(serializer.errors.keys(), set(['non_field_errors']))
-
-    def test_serializer_incorrect_organiser(self):
-
-        new_serializer_data = self.serializer_data
-        new_serializer_data['organiser'] = 'NotAUser'
-        serializer = serializers.EventSerializer(data=new_serializer_data)
-        self.assertFalse(serializer.is_valid())
-        self.assertEquals(serializer.errors.keys(), set(['non_field_errors']))
-
-    def test_serializer_start_time_gt_finish(self):
-
-        new_serializer_data = self.serializer_data
-        new_serializer_data['start_time'] = '2050-01-29T13:30:00'
-        serializer = serializers.EventSerializer(data=new_serializer_data)
-        self.assertFalse(serializer.is_valid())
-        self.assertEquals(serializer.errors.keys(), set(['non_field_errors']))
-
-    def test_serializer_sign_in_time_gt_start_time(self):
-        new_serializer_data = self.serializer_data
-        new_serializer_data['sign_in_time'] = '2050-01-29T13:30:00'
-        serializer = serializers.EventSerializer(data=new_serializer_data)
-        self.assertFalse(serializer.is_valid())
-        self.assertEquals(serializer.errors.keys(), set(['non_field_errors']))
-
-    def test_serializer_attendee_not_user(self):
-        new_serializer_data = self.serializer_data
-        new_serializer_data['attendees'] = [self.user2.username, self.user4.username, self.user4.username, "NotAUser"]
-        serializer = serializers.EventSerializer(data=new_serializer_data)
-        self.assertFalse(serializer.is_valid())
-        self.assertEquals(serializer.errors.keys(), set(['non_field_errors']))
-
-    def test_serializer_attending_populated(self):
-        new_serializer_data = self.serializer_data
-        new_serializer_data['attending'] = [self.user2.username, self.user4.username, self.user4.username]
-        serializer = serializers.EventSerializer(data=new_serializer_data)
-        self.assertFalse(serializer.is_valid())
-        self.assertEquals(serializer.errors.keys(), set(['non_field_errors']))
-
-
-class EventExistsTestCase(TestCase):
-
-    def test_event_exists_success(self):
-
-        event = create_event()
-
-        print("Event ID: " + str(event.id))
-        self.assertEquals(event.organiser, "user1")
-        self.assertEquals(event.event_name, "test")
-        self.assertEquals(event.location, "test")
-        self.assertEquals(event.start_time, '2050-01-29T12:00:00')
-        self.assertEquals(event.finish_time, '2050-01-29T12:30:00')
-        self.assertEquals(event.sign_in_time, '2050-01-29T12:00:00')
-        self.assertEquals(event.attendees, ['user2', 'user3', 'user4'])
-
-        result = serializers.event_exists(event.id)
-
-        self.assertTrue(result)
-
-    def test_event_exists_wrong_id(self):
-
-        result = serializers.event_exists(9999)
-
-        self.assertFalse(result)
-
-
-class AttendeeIsUserTestCase(TestCase):
-
-    def setUp(self):
-
-        (self.user1, self.user2, self.user3, self.user4) = create_users()
-        self.event = create_event()
-
-    def test_user_exists_success(self):
-
-        result = serializers.attendee_is_user(self.user2.username, self.event.id)
-        self.assertTrue(result)
-
-    def test_user_exists_fail_wrong_user(self):
-
-        result = serializers.attendee_is_user("notAUser", self.event.id)
-        self.assertFalse(result)
-
-    def test_user_exists_fail_wrong_event(self):
-
-        result = serializers.attendee_is_user(self.user2.username, 99999)
-        self.assertFalse(result)
+#
+#     def test_serializer_valid(self):
+#
+#         serializer = serializers.EventSerializer(data=self.serializer_data)
+#         self.assertTrue(serializer.is_valid())
+#
+#     def test_serializer_null_organiser(self):
+#
+#         new_serializer_data = self.serializer_data
+#         new_serializer_data['organiser'] = None
+#         serializer = serializers.EventSerializer(data=new_serializer_data)
+#         self.assertFalse(serializer.is_valid())
+#         self.assertEquals(serializer.errors.keys(), set(['organiser']))
+#
+#     def test_serializer_null_event_name(self):
+#         new_serializer_data = self.serializer_data
+#         new_serializer_data['event_name'] = None
+#         serializer = serializers.EventSerializer(data=new_serializer_data)
+#
+#         self.assertFalse(serializer.is_valid())
+#         self.assertEquals(serializer.errors.keys(), set(['event_name']))
+#
+#     def test_serializer_null_location(self):
+#         new_serializer_data = self.serializer_data
+#         new_serializer_data['location'] = None
+#         serializer = serializers.EventSerializer(data=new_serializer_data)
+#
+#         self.assertFalse(serializer.is_valid())
+#         self.assertEquals(serializer.errors.keys(), set(['location']))
+#
+#     def test_serializer_null_start_time(self):
+#         new_serializer_data = self.serializer_data
+#         new_serializer_data['start_time'] = None
+#         serializer = serializers.EventSerializer(data=new_serializer_data)
+#
+#         self.assertFalse(serializer.is_valid())
+#         self.assertEquals(serializer.errors.keys(), set(['start_time']))
+#
+#     def test_serializer_null_finish_time(self):
+#         new_serializer_data = self.serializer_data
+#         new_serializer_data['finish_time'] = None
+#         serializer = serializers.EventSerializer(data=new_serializer_data)
+#
+#         self.assertFalse(serializer.is_valid())
+#         self.assertEquals(serializer.errors.keys(), set(['finish_time']))
+#
+#     def test_serializer_null_sign_in_time(self):
+#         new_serializer_data = self.serializer_data
+#         new_serializer_data['sign_in_time'] = None
+#         serializer = serializers.EventSerializer(data=new_serializer_data)
+#
+#         self.assertFalse(serializer.is_valid())
+#         self.assertEquals(serializer.errors.keys(), set(['sign_in_time']))
+#
+#     def test_serializer_null_attendees(self):
+#
+#         new_serializer_data = self.serializer_data
+#         new_serializer_data['attendees'] = None
+#         serializer = serializers.EventSerializer(data=new_serializer_data)
+#
+#         self.assertFalse(serializer.is_valid())
+#         self.assertEquals(serializer.errors.keys(), set(['attendees']))
+#
+#     def test_serializer_null_multiple(self):
+#
+#         new_serializer_data = self.serializer_data
+#         new_serializer_data['attendees'] = None
+#         new_serializer_data['sign_in_time'] = None
+#         serializer = serializers.EventSerializer(data=new_serializer_data)
+#
+#         self.assertFalse(serializer.is_valid())
+#         self.assertEquals(serializer.errors.keys(), set(['attendees', 'sign_in_time']))
+#
+#     def test_serializer_null_all(self):
+#
+#         serializer = serializers.EventSerializer(data=None)
+#
+#         self.assertFalse(serializer.is_valid())
+#         self.assertEquals(serializer.errors.keys(), set(['non_field_errors']))
+#
+#     def test_serializer_incorrect_organiser(self):
+#
+#         new_serializer_data = self.serializer_data
+#         new_serializer_data['organiser'] = 'NotAUser'
+#         serializer = serializers.EventSerializer(data=new_serializer_data)
+#         self.assertFalse(serializer.is_valid())
+#         self.assertEquals(serializer.errors.keys(), set(['non_field_errors']))
+#
+#     def test_serializer_start_time_gt_finish(self):
+#
+#         new_serializer_data = self.serializer_data
+#         new_serializer_data['start_time'] = '2050-01-29T13:30:00'
+#         serializer = serializers.EventSerializer(data=new_serializer_data)
+#         self.assertFalse(serializer.is_valid())
+#         self.assertEquals(serializer.errors.keys(), set(['non_field_errors']))
+#
+#     def test_serializer_sign_in_time_gt_start_time(self):
+#         new_serializer_data = self.serializer_data
+#         new_serializer_data['sign_in_time'] = '2050-01-29T13:30:00'
+#         serializer = serializers.EventSerializer(data=new_serializer_data)
+#         self.assertFalse(serializer.is_valid())
+#         self.assertEquals(serializer.errors.keys(), set(['non_field_errors']))
+#
+#     def test_serializer_attendee_not_user(self):
+#         new_serializer_data = self.serializer_data
+#         new_serializer_data['attendees'] = [self.user2.username, self.user4.username, self.user4.username, "NotAUser"]
+#         serializer = serializers.EventSerializer(data=new_serializer_data)
+#         self.assertFalse(serializer.is_valid())
+#         self.assertEquals(serializer.errors.keys(), set(['non_field_errors']))
+#
+#     def test_serializer_attending_populated(self):
+#         new_serializer_data = self.serializer_data
+#         new_serializer_data['attending'] = [self.user2.username, self.user4.username, self.user4.username]
+#         serializer = serializers.EventSerializer(data=new_serializer_data)
+#         self.assertFalse(serializer.is_valid())
+#         self.assertEquals(serializer.errors.keys(), set(['non_field_errors']))
+#
+#
+# class EventExistsTestCase(TestCase):
+#
+#     def test_event_exists_success(self):
+#
+#         event = create_event()
+#
+#         print("Event ID: " + str(event.id))
+#         self.assertEquals(event.organiser, "user1")
+#         self.assertEquals(event.event_name, "test")
+#         self.assertEquals(event.location, "test")
+#         self.assertEquals(event.start_time, '2050-01-29T12:00:00')
+#         self.assertEquals(event.finish_time, '2050-01-29T12:30:00')
+#         self.assertEquals(event.sign_in_time, '2050-01-29T12:00:00')
+#         self.assertEquals(event.attendees, ['user2', 'user3', 'user4'])
+#
+#         result = serializers.event_exists(event.id)
+#
+#         self.assertTrue(result)
+#
+#     def test_event_exists_wrong_id(self):
+#
+#         result = serializers.event_exists(9999)
+#
+#         self.assertFalse(result)
+#
+#
+# class AttendeeIsUserTestCase(TestCase):
+#
+#     def setUp(self):
+#
+#         (self.user1, self.user2, self.user3, self.user4) = create_users()
+#         self.event = create_event()
+#
+#     def test_user_exists_success(self):
+#
+#         result = serializers.attendee_is_user(self.user2.username, self.event.id)
+#         self.assertTrue(result)
+#
+#     def test_user_exists_fail_wrong_user(self):
+#
+#         result = serializers.attendee_is_user("notAUser", self.event.id)
+#         self.assertFalse(result)
+#
+#     def test_user_exists_fail_wrong_event(self):
+#
+#         result = serializers.attendee_is_user(self.user2.username, 99999)
+#         self.assertFalse(result)
