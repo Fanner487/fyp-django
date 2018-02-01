@@ -115,10 +115,13 @@ class AttemptSerializerTestCase(TestCase):
         print("\n\n")
         print("NEW CREATED: " + str(new_created))
 
+        if serializer.is_valid():
+            print("BLARG")
+            print(str(serializer.validated_data.get('created')))
+            print(str(serializer.validated_data['created']))
+
         self.assertTrue(serializer.is_valid())
-        print("BLARG")
-        print(str(serializer.validated_data.get('created')))
-        print(str(serializer.validated_data['created']))
+
         self.assertNotEquals(new_created, serializer.validated_data['created'])
 
 
