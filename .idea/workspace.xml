@@ -74,8 +74,8 @@
       <file leaf-file-name="test_attempt_serializer.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/fyp/api/tests/test_attempt_serializer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="333">
-              <caret line="169" column="38" lean-forward="false" selection-start-line="169" selection-start-column="38" selection-end-line="169" selection-end-column="38" />
+            <state relative-caret-position="418">
+              <caret line="177" column="10" lean-forward="false" selection-start-line="177" selection-start-column="10" selection-end-line="177" selection-end-column="10" />
               <folding>
                 <element signature="e#24#63#0" expanded="true" />
               </folding>
@@ -431,8 +431,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/fyp/api/tests/test_attempt_serializer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="333">
-          <caret line="169" column="38" lean-forward="false" selection-start-line="169" selection-start-column="38" selection-end-line="169" selection-end-column="38" />
+        <state relative-caret-position="418">
+          <caret line="177" column="10" lean-forward="false" selection-start-line="177" selection-start-column="10" selection-end-line="177" selection-end-column="10" />
           <folding>
             <element signature="e#24#63#0" expanded="true" />
           </folding>
