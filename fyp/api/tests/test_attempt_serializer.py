@@ -28,7 +28,7 @@ def create_users():
            User.objects.create_user("user4", "test@gmail.com", "mypassword")
 
 
-def create_attempt():
+# def create_attempt():
 
 
 class AttemptSerializerTestCase(TestCase):
