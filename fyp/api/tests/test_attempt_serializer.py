@@ -161,6 +161,7 @@ class VerifyScanExistsTestCase(TestCase):
             print("----\n\n")
             print(attempt.id)
             print(attempt.username)
+            print(attempt.event_id)
             print(attempt.created)
             print(attempt.time_on_screen)
             print(attempt.date_on_screen)
@@ -169,11 +170,12 @@ class VerifyScanExistsTestCase(TestCase):
             print("----\n\n")
             print(attempt.id)
             print(attempt.username)
+            print(attempt.event_id)
             print(attempt.created)
             print(attempt.time_on_screen)
             print(attempt.date_on_screen)
 
-        appended_event = Event.objects.get(id=self.event.id)
+        appended_event = Event.objects.get(id=attempt1_object.event_id)
 
         print(appended_event.attending)
 
