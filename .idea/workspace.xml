@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b2c529be-bfca-4366-bb99-ac5ec9275170" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fyp/api/tests/test_attempt.py" afterPath="$PROJECT_DIR$/fyp/api/tests/test_attempt.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fyp/api/tests/test_attempt_serializer.py" afterPath="$PROJECT_DIR$/fyp/api/tests/test_attempt_serializer.py" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/fyp/api/tests/test_attempt_serializer.py" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/fyp/api/tests/test_attempt.py" afterPath="$PROJECT_DIR$/fyp/api/tests/api/test_attempt.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/fyp/api/tests/test_attempt_serializer.py" afterPath="$PROJECT_DIR$/fyp/api/tests/serializers/test_attempt_serializer.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/fyp/api/tests/test_event.py" afterPath="$PROJECT_DIR$/fyp/api/tests/api/test_event.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/fyp/api/tests/test_event_seralizer.py" afterPath="$PROJECT_DIR$/fyp/api/tests/serializers/test_event_seralizer.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/fyp/api/tests/test_user.py" afterPath="$PROJECT_DIR$/fyp/api/tests/api/test_user.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -14,10 +18,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="serializers.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="serializers.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/fyp/api/serializers.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-85">
+            <state relative-caret-position="-340">
               <caret line="136" column="47" lean-forward="true" selection-start-line="136" selection-start-column="47" selection-end-line="136" selection-end-column="47" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
@@ -27,7 +31,7 @@
         </entry>
       </file>
       <file leaf-file-name="test_event.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/fyp/api/tests/test_event.py">
+        <entry file="file://$PROJECT_DIR$/fyp/api/tests/api/test_event.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="184">
               <caret line="64" column="46" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="311" selection-end-column="0" />
@@ -37,7 +41,7 @@
         </entry>
       </file>
       <file leaf-file-name="test_attempt.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/fyp/api/tests/test_attempt.py">
+        <entry file="file://$PROJECT_DIR$/fyp/api/tests/api/test_attempt.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="362">
               <caret line="99" column="53" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="126" selection-end-column="0" />
@@ -47,7 +51,7 @@
         </entry>
       </file>
       <file leaf-file-name="test_user.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/fyp/api/tests/test_user.py">
+        <entry file="file://$PROJECT_DIR$/fyp/api/tests/api/test_user.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="85">
               <caret line="5" column="43" lean-forward="true" selection-start-line="5" selection-start-column="43" selection-end-line="5" selection-end-column="43" />
@@ -57,7 +61,7 @@
         </entry>
       </file>
       <file leaf-file-name="test_event_seralizer.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/fyp/api/tests/test_event_seralizer.py">
+        <entry file="file://$PROJECT_DIR$/fyp/api/tests/serializers/test_event_seralizer.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1297">
               <caret line="210" column="34" lean-forward="true" selection-start-line="210" selection-start-column="34" selection-end-line="210" selection-end-column="34" />
@@ -68,8 +72,8 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test_attempt_serializer.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/fyp/api/tests/test_attempt_serializer.py">
+      <file leaf-file-name="test_attempt_serializer.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/fyp/api/tests/serializers/test_attempt_serializer.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="129">
               <caret line="160" column="29" lean-forward="true" selection-start-line="160" selection-start-column="29" selection-end-line="160" selection-end-column="29" />
@@ -177,6 +181,22 @@
               <item name="api" type="462c0819:PsiDirectoryNode" />
               <item name="tests" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="fyp-django" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fyp-django" type="462c0819:PsiDirectoryNode" />
+              <item name="fyp" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+              <item name="tests" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="fyp-django" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fyp-django" type="462c0819:PsiDirectoryNode" />
+              <item name="fyp" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+              <item name="tests" type="462c0819:PsiDirectoryNode" />
+              <item name="serializers" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -188,6 +208,10 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\user\Documents\College\fyp\fyp-django\fyp\api\tests\api" />
+      <recent name="C:\Users\user\Documents\College\fyp\fyp-django\fyp\api\tests\serializers" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\user\Documents\College\fyp\fyp-django\fyp\api\tests\api" />
       <recent name="C:\Users\user\Documents\College\fyp\fyp-django\fyp\api\tests\serializers" />
@@ -205,8 +229,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.Unittests for test_event_seralizer.EventExistsTestCase">
-    <configuration name="Unittests for test_event_seralizer.EventExistsTestCase" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python tests.Unittests for test_event_seralizer.py">
+    <configuration name="Unittests for test_event_seralizer.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -218,12 +242,12 @@
       <module name="fyp-django" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_event_seralizer.EventExistsTestCase&quot;" />
+      <option name="_new_target" value="&quot;test_event_seralizer.py&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
     </configuration>
     <recent_temporary>
       <list size="1">
-        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests for test_event_seralizer.EventExistsTestCase" />
+        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests for test_event_seralizer.py" />
       </list>
     </recent_temporary>
   </component>
@@ -247,9 +271,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24963397" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24963397" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -294,7 +317,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fyp/api/tests/test_event.py">
+    <entry file="file://$PROJECT_DIR$/fyp/api/tests/api/test_event.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="595">
           <caret line="35" column="12" lean-forward="true" selection-start-line="35" selection-start-column="12" selection-end-line="37" selection-end-column="50" />
@@ -302,7 +325,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fyp/api/tests/test_attempt.py">
+    <entry file="file://$PROJECT_DIR$/fyp/api/tests/api/test_attempt.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="32" column="32" lean-forward="false" selection-start-line="32" selection-start-column="32" selection-end-line="32" selection-end-column="32" />
@@ -310,7 +333,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fyp/api/tests/test_user.py">
+    <entry file="file://$PROJECT_DIR$/fyp/api/tests/api/test_user.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -328,7 +351,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fyp/api/tests/test_event_seralizer.py">
+    <entry file="file://$PROJECT_DIR$/fyp/api/tests/serializers/test_event_seralizer.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3196">
           <caret line="195" column="0" lean-forward="true" selection-start-line="195" selection-start-column="0" selection-end-line="195" selection-end-column="0" />
@@ -374,7 +397,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fyp/api/tests/test_event.py">
+    <entry file="file://$PROJECT_DIR$/fyp/api/tests/api/test_event.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
           <caret line="64" column="46" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="311" selection-end-column="0" />
@@ -382,7 +405,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fyp/api/tests/test_user.py">
+    <entry file="file://$PROJECT_DIR$/fyp/api/tests/api/test_user.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" column="43" lean-forward="true" selection-start-line="5" selection-start-column="43" selection-end-line="5" selection-end-column="43" />
@@ -390,17 +413,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fyp/api/serializers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-85">
-          <caret line="136" column="47" lean-forward="true" selection-start-line="136" selection-start-column="47" selection-end-line="136" selection-end-column="47" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fyp/api/tests/test_attempt.py">
+    <entry file="file://$PROJECT_DIR$/fyp/api/tests/api/test_attempt.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="362">
           <caret line="99" column="53" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="126" selection-end-column="0" />
@@ -408,7 +421,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fyp/api/tests/test_event_seralizer.py">
+    <entry file="file://$PROJECT_DIR$/fyp/api/tests/serializers/test_event_seralizer.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1297">
           <caret line="210" column="34" lean-forward="true" selection-start-line="210" selection-start-column="34" selection-end-line="210" selection-end-column="34" />
@@ -418,12 +431,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fyp/api/tests/test_attempt_serializer.py">
+    <entry file="file://$PROJECT_DIR$/fyp/api/tests/serializers/test_attempt_serializer.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="129">
           <caret line="160" column="29" lean-forward="true" selection-start-line="160" selection-start-column="29" selection-end-line="160" selection-end-column="29" />
           <folding>
             <element signature="e#24#63#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fyp/api/serializers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-340">
+          <caret line="136" column="47" lean-forward="true" selection-start-line="136" selection-start-column="47" selection-end-line="136" selection-end-column="47" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
           </folding>
         </state>
       </provider>
