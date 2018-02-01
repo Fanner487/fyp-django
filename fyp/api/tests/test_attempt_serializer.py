@@ -131,7 +131,7 @@ class VerifyScanExistsTestCase(TestCase):
             'username': self.user2.username,
             'event_id': self.event.id,
             'time_on_screen': datetime.datetime.now().strftime("%H:%M:%S"),
-            'date_on_screen': datetime.datetime().now().date()
+            'date_on_screen': datetime.datetime.now().date()
         }
 
         attempt1_serializer = serializers.AttemptSerializer(data=attempt1_data)
