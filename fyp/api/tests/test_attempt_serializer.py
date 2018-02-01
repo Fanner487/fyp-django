@@ -117,8 +117,8 @@ class AttemptSerializerTestCase(TestCase):
 
         self.assertTrue(serializer.is_valid())
         print("BLARG")
-        print(serializer.validated_data.get('created'))
-        print(serializer.validated_data['created'])
+        print(str(serializer.validated_data.get('created')))
+        print(str(serializer.validated_data['created']))
         self.assertNotEquals(new_created, serializer.validated_data['created'])
 
 

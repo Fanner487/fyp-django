@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b2c529be-bfca-4366-bb99-ac5ec9275170" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fyp/api/tests/test_attempt_serializer.py" afterPath="$PROJECT_DIR$/fyp/api/tests/test_attempt_serializer.py" />
-    </list>
+    <list default="true" id="b2c529be-bfca-4366-bb99-ac5ec9275170" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -74,8 +72,8 @@
       <file leaf-file-name="test_attempt_serializer.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/fyp/api/tests/test_attempt_serializer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="404">
-              <caret line="118" column="20" lean-forward="false" selection-start-line="118" selection-start-column="20" selection-end-line="118" selection-end-column="20" />
+            <state relative-caret-position="438">
+              <caret line="120" column="56" lean-forward="false" selection-start-line="120" selection-start-column="56" selection-end-line="120" selection-end-column="56" />
               <folding>
                 <element signature="e#24#63#0" expanded="true" />
               </folding>
@@ -430,8 +428,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/fyp/api/tests/test_attempt_serializer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="404">
-          <caret line="118" column="20" lean-forward="false" selection-start-line="118" selection-start-column="20" selection-end-line="118" selection-end-column="20" />
+        <state relative-caret-position="438">
+          <caret line="120" column="56" lean-forward="false" selection-start-line="120" selection-start-column="56" selection-end-line="120" selection-end-column="56" />
           <folding>
             <element signature="e#24#63#0" expanded="true" />
           </folding>
