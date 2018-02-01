@@ -122,10 +122,7 @@ class EventSerializerTestCase(TestCase):
         serializer = serializers.EventSerializer(data=None)
 
         self.assertFalse(serializer.is_valid())
-        print("\n\n")
-        print(serializer.errors)
         self.assertEquals(serializer.errors.keys(), set(['non_field_errors']))
-        # self.assertEquals(serializer.errors, {'non_field_errors': set('No data provided')})
 
     def test_serializer_incorrect_organiser(self):
 
@@ -133,7 +130,7 @@ class EventSerializerTestCase(TestCase):
         new_serializer_data['organiser'] = 'NotAUser'
         serializer = serializers.EventSerializer(data=new_serializer_data)
         self.assertFalse(serializer.is_valid())
-        # self.assertEquals(serializer.errors.keys(), set(['organiser']))
+        self.assertEquals(serializer.errors.keys(), set(['non_field_errors']))
 
     def test_serializer_start_time_gt_finish(self):
 
@@ -141,18 +138,27 @@ class EventSerializerTestCase(TestCase):
         new_serializer_data['start_time'] = '2050-01-29T13:30:00'
         serializer = serializers.EventSerializer(data=new_serializer_data)
         self.assertFalse(serializer.is_valid())
-        # self.assertEquals(serializer.errors.keys(), set(['organiser']))
+        self.assertEquals(serializer.errors.keys(), set(['non_field_errors']))
 
     def test_serializer_sign_in_time_gt_start_time(self):
         new_serializer_data = self.serializer_data
         new_serializer_data['sign_in_time'] = '2050-01-29T13:30:00'
         serializer = serializers.EventSerializer(data=new_serializer_data)
         self.assertFalse(serializer.is_valid())
+        self.assertEquals(serializer.errors.keys(), set(['non_field_errors']))
+
+    def test_serializer_attendee_not_user(self):
+        new_serializer_data = self.serializer_data
+        new_serializer_data['attendees'] = [self.user2.username, self.user4.username, self.user4.username, "NotAUser"]
+        serializer = serializers.EventSerializer(data=new_serializer_data)
+        self.assertFalse(serializer.is_valid())
+
         print("\n\n")
         print(serializer.errors)
-        # self.assertEquals(serializer.errors.keys(), set(['organiser']))
+        self.assertEquals(serializer.errors.keys(), set(['non_field_errors']))
 
-        # attendees null, users not existing
+
+        # users not existing
         # attending populated
 
 
