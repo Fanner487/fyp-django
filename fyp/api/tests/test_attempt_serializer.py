@@ -175,7 +175,7 @@ class VerifyScanExistsTestCase(TestCase):
             print(attempt.time_on_screen)
             print(attempt.date_on_screen)
 
-        appended_event = Event.objects.get(id=attempt1_object.event_id)
+        appended_event = Event.objects.get(id=attempt2_serializer.validated_data.get('event_id'))
 
         print(appended_event.attending)
 
