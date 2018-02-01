@@ -179,6 +179,7 @@ class VerifyScanExistsTestCase(TestCase):
 
         appended_event = Event.objects.get(id=attempt2_serializer.validated_data.get('event_id'))
 
+        print(appended_event.id)
         print(appended_event.organiser)
         print(appended_event.attendees)
         print(appended_event.attending)
