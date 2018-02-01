@@ -16,17 +16,15 @@ def create_user(username, email, password):
     user.save()
 
 
-def create_event(data):
-    client = APIClient()
+def create_event(data, client):
     return client.post("/api/events/", data=data, format='json')
 
 
-def create_attempt(data):
-    client = APIClient()
+def create_attempt(data, client):
     return client.post("/api/attempts/", data=data, format='json')
 
 
-def create_test_attempt_now(username, event_id):
+def create_test_attempt_now(username, event_id, client):
     time_on_screen = (datetime.datetime.now() - datetime.timedelta(seconds=1)).strftime("%H:%M:%S")
     date_on_screen = datetime.datetime.now().strftime("%Y-%m-%d")
 
@@ -37,10 +35,10 @@ def create_test_attempt_now(username, event_id):
         'date_on_screen': date_on_screen,
     }
 
-    return create_attempt(data)
+    return create_attempt(data, client)
 
 
-def create_test_event_now():
+def create_test_event_now(client):
     event_start_time = datetime.datetime.now() + datetime.timedelta(seconds=1)
     # event_start_time = datetime.datetime.now()
     event_sign_in_time = datetime.datetime.now()
@@ -67,7 +65,7 @@ def create_test_event_now():
         'attendees': ['user2', 'user3', 'user4']
     }
 
-    return create_event(data)
+    return create_event(data, client)
 
 
 # Create your tests here.
@@ -83,20 +81,20 @@ class AttemptTestCase(TestCase):
         create_user("user4", "test4@gmail.com", "orangemonkeyeagle1")
 
     def test_attempts_success(self):
-        event_response = create_test_event_now()
+        event_response = create_test_event_now(self.client)
         self.assertEquals(event_response.status_code, status.HTTP_201_CREATED)
 
         event_id = event_response.json().get('id')
 
         sleep(2)
 
-        response1 = create_test_attempt_now("user2", event_id)
+        response1 = create_test_attempt_now("user2", event_id, self.client)
         print(response1.status_code)
         print(response1.json())
 
         sleep(1)
 
-        response2 = create_test_attempt_now("user2", event_id)
+        response2 = create_test_attempt_now("user2", event_id, self.client)
         print(response1.status_code)
         print(response1.json())
 
