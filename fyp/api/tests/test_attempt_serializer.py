@@ -106,6 +106,15 @@ class AttemptSerializerTestCase(TestCase):
         self.assertFalse(serializer.is_valid())
         self.assertEquals(serializer.errors.keys(), set(['date_on_screen', 'username']))
 
+    def test_serializer_created_populated(self):
+        new_serializer_data = self.attempt_serializer_data
+        new_serializer_data['created'] = datetime.datetime.now()
+        serializer = serializers.AttemptSerializer(data=new_serializer_data)
+        self.assertFalse(serializer.is_valid())
+        print("\n\n")
+        print(serializer.errors)
+        # self.assertEquals(serializer.errors.keys(), set(['date_on_screen'])
+
     # def test_serializer_null_start_time(self):
     #     new_serializer_data = self.serializer_data
     #     new_serializer_data['start_time'] = None
