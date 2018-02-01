@@ -114,8 +114,10 @@ class AttemptSerializerTestCase(TestCase):
 
         print("\n\n")
         print(new_created)
-        print(serializer['created'])
-        self.assertFalse(serializer.is_valid())
+
+        self.assertTrue(serializer.is_valid())
+
+        print(serializer.data['created'])
 
         # print(serializer.errors)
         # self.assertEquals(serializer.errors.keys(), set(['date_on_screen'])
