@@ -127,12 +127,29 @@ class EventSerializerTestCase(TestCase):
         self.assertEquals(serializer.errors.keys(), set(['non_field_errors']))
         # self.assertEquals(serializer.errors, {'non_field_errors': set('No data provided')})
 
-        # success
-        # None
-        # organiser doesnt exist
+    def test_serializer_incorrect_organiser(self):
 
-        # starttime > finish
-        # signintime > start
+        new_serializer_data = self.serializer_data
+        new_serializer_data['organiser'] = 'NotAUser'
+        serializer = serializers.EventSerializer(data=new_serializer_data)
+        self.assertFalse(serializer.is_valid())
+        # self.assertEquals(serializer.errors.keys(), set(['organiser']))
+
+    def test_serializer_start_time_gt_finish(self):
+
+        new_serializer_data = self.serializer_data
+        new_serializer_data['start_time'] = '2050-01-29T13:30:00'
+        serializer = serializers.EventSerializer(data=new_serializer_data)
+        self.assertFalse(serializer.is_valid())
+        # self.assertEquals(serializer.errors.keys(), set(['organiser']))
+
+    def test_serializer_sign_in_time_gt_start_time(self):
+        new_serializer_data = self.serializer_data
+        new_serializer_data['sign_in_time'] = '2050-01-29T13:30:00'
+        serializer = serializers.EventSerializer(data=new_serializer_data)
+        self.assertFalse(serializer.is_valid())
+        # self.assertEquals(serializer.errors.keys(), set(['organiser']))
+
         # attendees null, users not existing
         # attending populated
 
