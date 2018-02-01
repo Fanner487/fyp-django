@@ -128,18 +128,6 @@ def verify_scan(data):
         # Gets last attempt
         last_attempt = Attempt.objects.filter(username=username).filter(event_id=event_id).order_by("-created").first()
 
-        last_attempts = Attempt.objects.all()
-
-        print("\n\nWEEWWEEEW")
-
-        for attempt in last_attempts:
-            print(attempt.id)
-            print(attempt.event_id)
-            print(attempt.time_on_screen)
-            print(attempt.date_on_screen)
-            print(attempt.created)
-            print("\n")
-
         if last_attempt:
 
             # Verifies second attempt for event
