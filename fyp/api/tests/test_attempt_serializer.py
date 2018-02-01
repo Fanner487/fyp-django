@@ -107,15 +107,15 @@ class AttemptSerializerTestCase(TestCase):
     def test_serializer_created_auto_set_in_serializer(self):
         new_serializer_data = self.attempt_serializer_data
         new_created = datetime.datetime.now()
-        new_serializer_data['created'] = new_created
         serializer = serializers.AttemptSerializer(data=new_serializer_data)
 
+        print("\n\n")
         self.assertTrue(serializer.is_valid())
-        print("\n\nID")
-        print(serializer.validated_data.get('id'))
+        result = serializer.save()
+        print(result.id)
         self.assertNotEquals(new_created, serializer.validated_data.get('created'))
 
-#
+
 # class VerifyScanExistsTestCase(TestCase):
 #
 #     def setUp(self):
