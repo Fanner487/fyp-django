@@ -109,21 +109,51 @@ class AttemptSerializerTestCase(TestCase):
         new_created = datetime.datetime.now()
         serializer = serializers.AttemptSerializer(data=new_serializer_data)
 
-        print("\n\nyo yo yo")
         self.assertTrue(serializer.is_valid())
-        result = serializer.save()
-        print(result)
-        print("\n\nbye bye bye")
         self.assertNotEquals(new_created, serializer.validated_data.get('created'))
 
 
-# class VerifyScanExistsTestCase(TestCase):
-#
-#     def setUp(self):
-#
-#         self.event = create_event()
-#
-#     def test_add_to_attending(self):
-#
-#         # serializer
-#         # serializer = serializers.AttemptSerializer(data=self.attempt_serializer_data)
+class VerifyScanExistsTestCase(TestCase):
+
+    def setUp(self):
+        (self.user1, self.user2, self.user3, self.user4) = create_users()
+        self.event = create_event()
+
+    def test_add_to_attending(self):
+
+        attempt1_data = {
+            'username': self.user2.username,
+            'event_id': self.event.id,
+            'time_on_screen': datetime.datetime.now().strftime("%H:%M:%S"),
+            'date_on_screen': datetime.datetime().now().date()
+        }
+        attempt2_data = {
+            'username': self.user2.username,
+            'event_id': self.event.id,
+            'time_on_screen': datetime.datetime.now().strftime("%H:%M:%S"),
+            'date_on_screen': datetime.datetime().now().date()
+        }
+
+        attempt1_serializer = serializers.AttemptSerializer(data=attempt1_data)
+        attempt2_serializer = serializers.AttemptSerializer(data=attempt2_data)
+
+        attempt1_serializer.is_valid()
+        attempt2_serializer.is_valid()
+
+        attempt1_serializer.save()
+        attempt2_serializer.save()
+
+        Attempt.objects.get(event_id=attempt1_serializer.validated_data.get('event_id'))
+
+        attempt1_object = Attempt.objects.filter(username=attempt1_serializer.validated_data.get('username'))\
+            .filter(event_id=attempt1_serializer.validated_data.get('event_id'))\
+            .filter(created=attempt1_serializer.validated_data.get('created')).first()
+
+        print(attempt1_object.id)
+        print(attempt1_object.username)
+        print(attempt1_object.created)
+        print(attempt1_object.time_on_screen)
+        print(attempt1_object.date_on_screen)
+
+        # serializer
+        # serializer = serializers.AttemptSerializer(data=self.attempt_serializer_data)
