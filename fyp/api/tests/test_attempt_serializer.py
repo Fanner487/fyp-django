@@ -113,6 +113,7 @@ class AttemptSerializerTestCase(TestCase):
         self.assertTrue(serializer.is_valid())
         result = serializer.save()
         print(result)
+        print("\n\nbye bye bye")
         self.assertNotEquals(new_created, serializer.validated_data.get('created'))
 
 
