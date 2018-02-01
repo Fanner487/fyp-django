@@ -113,7 +113,7 @@ class AttemptSerializerTestCase(TestCase):
         serializer = serializers.AttemptSerializer(data=new_serializer_data)
 
         print("\n\n")
-        print(new_created)
+        print("NEW CREATED: " + str(new_created))
 
         self.assertTrue(serializer.is_valid())
 
