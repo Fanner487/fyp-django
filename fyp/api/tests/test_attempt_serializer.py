@@ -147,11 +147,15 @@ class VerifyScanExistsTestCase(TestCase):
         attempt1_serializer.save()
         attempt2_serializer.save()
 
-        # Attempt.objects.get(event_id=attempt1_serializer.validated_data.get('event_id'))
-
         attempt1_object = Attempt.objects.filter(username=attempt1_serializer.validated_data.get('username'))\
             .filter(event_id=attempt1_serializer.validated_data.get('event_id'))\
             .filter(created=attempt1_serializer.validated_data.get('created'))
+
+        attempt2_object = Attempt.objects.filter(username=attempt2_serializer.validated_data.get('username')) \
+            .filter(event_id=attempt2_serializer.validated_data.get('event_id')) \
+            .filter(created=attempt2_serializer.validated_data.get('created'))
+
+        print(self.event.attending)
 
         for attempt in attempt1_object:
             print("----\n\n")
@@ -160,6 +164,8 @@ class VerifyScanExistsTestCase(TestCase):
             print(attempt.created)
             print(attempt.time_on_screen)
             print(attempt.date_on_screen)
+
+        print(self.event.attending)
 
         # print(attempt1_object.id)
         # print(attempt1_object.username)
