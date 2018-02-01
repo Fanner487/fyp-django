@@ -106,8 +106,8 @@ class AttemptSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Attempt
-        # fields = "__all__"
-        exclude = ('created',)
+        fields = "__all__"
+        # exclude = ('created',)
         read_only_fields = ('created',)
 
 
