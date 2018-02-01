@@ -148,6 +148,7 @@ class EventSerializerTestCase(TestCase):
         new_serializer_data['sign_in_time'] = '2050-01-29T13:30:00'
         serializer = serializers.EventSerializer(data=new_serializer_data)
         self.assertFalse(serializer.is_valid())
+        print("\n\n")
         print(serializer.errors)
         # self.assertEquals(serializer.errors.keys(), set(['organiser']))
 
