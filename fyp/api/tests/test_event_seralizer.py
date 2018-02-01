@@ -152,13 +152,15 @@ class EventSerializerTestCase(TestCase):
         new_serializer_data['attendees'] = [self.user2.username, self.user4.username, self.user4.username, "NotAUser"]
         serializer = serializers.EventSerializer(data=new_serializer_data)
         self.assertFalse(serializer.is_valid())
-
-        print("\n\n")
-        print(serializer.errors)
         self.assertEquals(serializer.errors.keys(), set(['non_field_errors']))
 
+    def test_serializer_attending_populated(self):
+        new_serializer_data = self.serializer_data
+        new_serializer_data['attending'] = [self.user2.username, self.user4.username, self.user4.username]
+        serializer = serializers.EventSerializer(data=new_serializer_data)
+        self.assertFalse(serializer.is_valid())
+        self.assertEquals(serializer.errors.keys(), set(['non_field_errors']))
 
-        # users not existing
         # attending populated
 
 
