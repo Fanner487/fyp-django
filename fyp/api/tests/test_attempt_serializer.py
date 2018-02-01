@@ -147,7 +147,7 @@ class VerifyScanExistsTestCase(TestCase):
         attempt1_serializer.save()
         attempt2_serializer.save()
 
-        Attempt.objects.get(event_id=attempt1_serializer.validated_data.get('event_id'))
+        # Attempt.objects.get(event_id=attempt1_serializer.validated_data.get('event_id'))
 
         attempt1_object = Attempt.objects.filter(username=attempt1_serializer.validated_data.get('username'))\
             .filter(event_id=attempt1_serializer.validated_data.get('event_id'))\
