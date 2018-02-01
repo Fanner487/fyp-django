@@ -101,7 +101,7 @@
 #         serializer = serializers.AttemptSerializer(data=new_serializer_data)
 #         self.assertFalse(serializer.is_valid())
 #         self.assertEquals(serializer.errors.keys(), set(['date_on_screen', 'username']))
-# 
+#
 #     def test_serializer_created_auto_set_in_serializer(self):
 #         new_serializer_data = self.attempt_serializer_data
 #         new_created = datetime.datetime.now()

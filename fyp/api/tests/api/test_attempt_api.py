@@ -11,17 +11,19 @@ import datetime
 from time import sleep
 
 
-def create_user(self, username, email, password):
+def create_user(username, email, password):
     user = User.objects.create_user(username, email, password)
     user.save()
 
 
-def create_event(self, data):
-    return self.client.post("/api/events/", data=data, format='json')
+def create_event(data):
+    client = APIClient()
+    return client.post("/api/events/", data=data, format='json')
 
 
-def create_attempt(self, data):
-    return self.client.post("/api/attempts/", data=data, format='json')
+def create_attempt(data):
+    client = APIClient()
+    return client.post("/api/attempts/", data=data, format='json')
 
 
 def create_test_attempt_now(self, username, event_id):
@@ -38,7 +40,7 @@ def create_test_attempt_now(self, username, event_id):
     return create_attempt(data)
 
 
-def create_test_event_now(self):
+def create_test_event_now():
     event_start_time = datetime.datetime.now() + datetime.timedelta(seconds=1)
     # event_start_time = datetime.datetime.now()
     event_sign_in_time = datetime.datetime.now()
@@ -81,7 +83,7 @@ class AttemptTestCase(TestCase):
         create_user("user4", "test4@gmail.com", "orangemonkeyeagle1")
 
     def test_attempts_success(self):
-        event_response = self.create_test_event_now()
+        event_response = create_test_event_now()
         self.assertEquals(event_response.status_code, status.HTTP_201_CREATED)
 
         event_id = event_response.json().get('id')
@@ -105,7 +107,7 @@ class AttemptTestCase(TestCase):
         self.assertTrue("user2" in event.attending)
 
     def test_attempt_out_of_time_delta_screen(self):
-        event_response = self.create_test_event_now()
+        event_response = create_test_event_now()
         self.assertEquals(event_response.status_code, status.HTTP_201_CREATED)
 
         event_id = event_response.json().get('id')
