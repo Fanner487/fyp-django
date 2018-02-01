@@ -26,7 +26,7 @@ def create_attempt(data):
     return client.post("/api/attempts/", data=data, format='json')
 
 
-def create_test_attempt_now(self, username, event_id):
+def create_test_attempt_now(username, event_id):
     time_on_screen = (datetime.datetime.now() - datetime.timedelta(seconds=1)).strftime("%H:%M:%S")
     date_on_screen = datetime.datetime.now().strftime("%Y-%m-%d")
 
