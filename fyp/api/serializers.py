@@ -128,7 +128,7 @@ def verify_scan(data):
         # Gets last attempt
         last_attempt = Attempt.objects.filter(username=username).filter(event_id=event_id).order_by("-created").first()
 
-        last_attempts = Attempt.objects.filter(username=username).filter(event_id=event_id).order_by("-created")
+        last_attempts = Attempt.objects.filter(username=username).filter(event_id=1).order_by("-created")
 
         print("\n\nWEEWWEEEW")
 
