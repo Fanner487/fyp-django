@@ -161,18 +161,6 @@ class EventSerializerTestCase(TestCase):
         self.assertFalse(serializer.is_valid())
         self.assertEquals(serializer.errors.keys(), set(['non_field_errors']))
 
-        # attending populated
-
-
-        # organiser = models.CharField("organiser", max_length=50)
-        # event_name = models.CharField("event_name", max_length=50)
-        # location = models.CharField("location", max_length=50)
-        # start_time = models.DateTimeField()
-        # finish_time = models.DateTimeField()
-        # sign_in_time = models.DateTimeField()
-        # attendees = ArrayField(models.CharField(max_length=50))
-        # attending = ArrayField(models.CharField(max_length=50), blank=True, null=True)
-        # attendance_required = models.BooleanField(default=False)
 
 class EventExistsTestCase(TestCase):
 

@@ -139,7 +139,7 @@ def verify_scan(data):
                 delta = 10
 
                 # Makes sure that the current time after alst attempt time and within delta
-                if 0 < seconds_difference < delta :
+                if 0 < seconds_difference < delta:
 
                     print("Two attempts within delta")
                     add_to_attending(username, event_id)
