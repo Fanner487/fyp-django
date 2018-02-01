@@ -151,7 +151,7 @@ class VerifyScanExistsTestCase(TestCase):
 
         attempt1_object = Attempt.objects.filter(username=attempt1_serializer.validated_data.get('username'))\
             .filter(event_id=attempt1_serializer.validated_data.get('event_id'))\
-            .filter(created=attempt1_serializer.validated_data.get('created')).first()
+            .filter(created=attempt1_serializer.validated_data.get('created'))
 
         for attempt in attempt1_object:
             print("----\n\n")
