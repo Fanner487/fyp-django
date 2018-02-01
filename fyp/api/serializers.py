@@ -131,7 +131,8 @@ def verify_scan(data):
         if last_attempt:
 
             # Verifies second attempt for event
-            if valid_attempt_in_event(last_attempt.username, last_attempt.event_id, last_attempt.time_on_screen, last_attempt.date_on_screen, last_attempt.created):
+            if valid_attempt_in_event(last_attempt.username, last_attempt.event_id, last_attempt.time_on_screen,
+                                      last_attempt.date_on_screen, last_attempt.created):
 
                 print("Previous attempt valid")
                 # Check if time within 10 seconds of last
