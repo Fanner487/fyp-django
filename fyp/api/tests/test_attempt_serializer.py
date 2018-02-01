@@ -138,7 +138,7 @@ class VerifyScanExistsTestCase(TestCase):
             'time_on_screen': datetime.datetime.now().strftime("%H:%M:%S"),
             'date_on_screen': datetime.datetime.now().strftime("%Y-%m-%d")
         }
-        
+
         attempt2_serializer = serializers.AttemptSerializer(data=attempt2_data)
 
         attempt1_serializer.is_valid()
@@ -153,11 +153,19 @@ class VerifyScanExistsTestCase(TestCase):
             .filter(event_id=attempt1_serializer.validated_data.get('event_id'))\
             .filter(created=attempt1_serializer.validated_data.get('created')).first()
 
-        print(attempt1_object.id)
-        print(attempt1_object.username)
-        print(attempt1_object.created)
-        print(attempt1_object.time_on_screen)
-        print(attempt1_object.date_on_screen)
+        for attempt in attempt1_object:
+            print("----\n\n")
+            print(attempt.id)
+            print(attempt.username)
+            print(attempt.created)
+            print(attempt.time_on_screen)
+            print(attempt.date_on_screen)
+
+        # print(attempt1_object.id)
+        # print(attempt1_object.username)
+        # print(attempt1_object.created)
+        # print(attempt1_object.time_on_screen)
+        # print(attempt1_object.date_on_screen)
 
         # serializer
         # serializer = serializers.AttemptSerializer(data=self.attempt_serializer_data)
