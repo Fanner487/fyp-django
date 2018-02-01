@@ -108,11 +108,12 @@ class AttemptSerializerTestCase(TestCase):
 
     def test_serializer_created_populated(self):
         new_serializer_data = self.attempt_serializer_data
+        new_created = datetime.datetime.now()
         new_serializer_data['created'] = datetime.datetime.now()
         serializer = serializers.AttemptSerializer(data=new_serializer_data)
 
         print("\n\n")
-        print(datetime.datetime.now())
+        print(new_created)
         print(serializer['created'])
         self.assertFalse(serializer.is_valid())
 
