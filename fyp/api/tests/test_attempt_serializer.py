@@ -116,13 +116,14 @@ class AttemptSerializerTestCase(TestCase):
         print("NEW CREATED: " + str(new_created))
 
         if serializer.is_valid():
-            print("BLARG")
+            print("\n\n\n\nBLARG")
+            print(new_created)
             print(str(serializer.validated_data.get('created')))
             print(str(serializer.validated_data['created']))
 
         self.assertTrue(serializer.is_valid())
 
-        self.assertNotEquals(new_created, serializer.validated_data['created'])
+        self.assertNotEquals(new_created, serializer.validated_data.get('created'))
 
 
     # def test_serializer_null_start_time(self):
