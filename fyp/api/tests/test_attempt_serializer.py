@@ -109,10 +109,10 @@ class AttemptSerializerTestCase(TestCase):
         new_created = datetime.datetime.now()
         serializer = serializers.AttemptSerializer(data=new_serializer_data)
 
-        print("\n\n")
+        print("\n\nyo yo yo")
         self.assertTrue(serializer.is_valid())
         result = serializer.save()
-        print(result.id)
+        print(result)
         self.assertNotEquals(new_created, serializer.validated_data.get('created'))
 
 
