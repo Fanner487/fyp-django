@@ -7,6 +7,7 @@ from api.models import Event, Attempt
 from django.contrib.auth.models import User
 from api import serializers
 import datetime
+from time import sleep
 
 
 def create_event():
@@ -127,14 +128,17 @@ class VerifyScanExistsTestCase(TestCase):
             'time_on_screen': datetime.datetime.now().strftime("%H:%M:%S"),
             'date_on_screen': datetime.datetime.now().strftime("%Y-%m-%d")
         }
+
+        attempt1_serializer = serializers.AttemptSerializer(data=attempt1_data)
+
+        sleep(1)
         attempt2_data = {
             'username': self.user2.username,
             'event_id': self.event.id,
             'time_on_screen': datetime.datetime.now().strftime("%H:%M:%S"),
             'date_on_screen': datetime.datetime.now().strftime("%Y-%m-%d")
         }
-
-        attempt1_serializer = serializers.AttemptSerializer(data=attempt1_data)
+        
         attempt2_serializer = serializers.AttemptSerializer(data=attempt2_data)
 
         attempt1_serializer.is_valid()
