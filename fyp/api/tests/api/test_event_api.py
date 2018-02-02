@@ -348,14 +348,8 @@ class EventUpdateTest(APITestCase):
             'attendance_required': True
         })
 
-        print("\n\n" + self.url + str(self.test_event.id) + "/" + "\n\n")
-
-        get_event = self.client.get("/api/events/" + str(self.test_event.id) + "/")
-        print(get_event.json())
-
         response = self.client.patch("/api/events/" + str(self.test_event.id) + "/", new_data,
                                      content_type='application/json')
-        print(response.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.json().get('event_name'), 'new_test')
         self.assertEqual(response.json().get('location'), 'new_test')
