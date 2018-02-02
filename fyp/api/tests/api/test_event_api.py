@@ -320,6 +320,11 @@ class EventUpdateTest(APITestCase):
         self.client = APIClient()
         self.url = "/api/events/"
 
+        User.objects.create_user('user1', 'user1@example.com', 'mypassword')
+        User.objects.create_user('user2', 'user2@example.com', 'mypassword')
+        User.objects.create_user('user3', 'user3@example.com', 'mypassword')
+        User.objects.create_user('user4', 'user4@example.com', 'mypassword')
+
         self.test_event = Event.objects.create(
             organiser="user1",
             event_name="test",
