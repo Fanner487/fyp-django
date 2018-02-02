@@ -4,13 +4,14 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.viewsets import ModelViewSet
-from .serializers import EventSerializer, AttemptSerializer, UserSerializer, LoginSerializer
+from .serializers import EventSerializer, AttemptSerializer, UserSerializer, LoginSerializer, RegisterSerializer
 from .models import Event, Attempt
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from datetime import datetime
 import pytz
 # Create your views here.
+
 
 class EventViewSet(ModelViewSet):
     """ModelViewSet for Event."""
@@ -133,26 +134,35 @@ def login(request):
 
 @api_view(["POST"])
 def register(request):
-    """Register users with unique email and username."""
-    username = request.data.get("username")
-    password = request.data.get("password")
-    email = request.data.get("email")
-    first_name = request.data.get("firstname")
-    surname = request.data.get("surname")
 
-    if verify_unique_username_email(username, email):
-        print("\nEmail is unique\n")
+    serializer = RegisterSerializer(data=request.data)
 
-        new_user = User.objects.create_user(username, email, password)
+    if serializer.is_valid():
+        user = serializer.save()
 
-        new_user.is_active = True
-        new_user.first_name = first_name
-        new_user.last_name = surname
-        new_user.save()
+        if user:
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-        return Response({"message": "Created account"}, status.HTTP_200_OK)
-    else:
-        return Response({"message": "Username or email already exists"}, status.HTTP_401_UNAUTHORIZED)
+    # """Register users with unique email and username."""
+    # username = request.data.get("username")
+    # password = request.data.get("password")
+    # email = request.data.get("email")
+    # first_name = request.data.get("firstname")
+    # surname = request.data.get("surname")
+    #
+    # if verify_unique_username_email(username, email):
+    #     print("\nEmail is unique\n")
+    #
+    #     new_user = User.objects.create_user(username, email, password)
+    #
+    #     new_user.is_active = True
+    #     new_user.first_name = first_name
+    #     new_user.last_name = surname
+    #     new_user.save()
+    #
+    #     return Response({"message": "Created account"}, status.HTTP_200_OK)
+    # else:
+    #     return Response({"message": "Username or email already exists"}, status.HTTP_401_UNAUTHORIZED)
 
 
 def verify_unique_username_email(username, email):

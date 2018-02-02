@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from rest_framework.validators import UniqueValidator
 from .models import Event, Attempt
 from django.contrib.auth.models import User
 from datetime import datetime
@@ -9,21 +10,55 @@ import pytz
 
 class LoginSerializer(serializers.Serializer):
 
-    def update(self, instance, validated_data):
-        pass
-
-    def create(self, validated_data):
-        pass
-
-    username = serializers.CharField()
-    password = serializers.CharField()
-
     def validate(self, data):
 
         if not authenticate(username=data['username'], password=data['password']):
             raise serializers.ValidationError("Login denied")
 
         return data
+
+    def update(self, instance, validated_data):
+        pass
+
+    def create(self, validated_data):
+        pass
+
+
+class RegisterSerializer(serializers.ModelSerializer):
+
+    email = serializers.EmailField(
+        required=True,
+        validators=[UniqueValidator(queryset=User.objects.all())])
+
+    username = serializers.CharField(
+        required=True,
+        validators=[UniqueValidator(queryset=User.objects.all())])
+
+    password = serializers.CharField(
+        required=True,
+        write_only=True,
+        min_length=8)
+
+    first_name = serializers.CharField(
+        required=True)
+
+    last_name = serializers.CharField(
+        required=True)
+
+    def create(self, validated_data):
+
+        user = User.objects.create_user(username=validated_data['username'],
+                                        email=validated_data['email'],
+                                        password=validated_data['password'],
+                                        first_name=validated_data['first_name'],
+                                        last_name=validated_data['last_name']
+                                        )
+
+        return user
+
+    class Meta:
+        model = User
+        fields = ('id', 'username', 'email', 'password', 'first_name', 'last_name')
 
 
 # class RegisterSerializer(serializers.ModelSerializer):
