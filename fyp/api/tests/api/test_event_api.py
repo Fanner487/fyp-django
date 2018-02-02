@@ -324,9 +324,9 @@ class EventUpdateTest(APITestCase):
             organiser="user1",
             event_name="test",
             location="test",
-            start_time='2001-01-29T12:00:00',
+            start_time='2001-01-29T13:00:00',
             finish_time='2050-01-29T12:30:00',
-            sign_in_time='2001-01-29T12:00:00',
+            sign_in_time='2001-01-29T13:00:00',
             attendees=['user2', 'user3', 'user4']
         )
 
@@ -336,9 +336,9 @@ class EventUpdateTest(APITestCase):
             'organiser': 'user1',
             'event_name': 'new_test',
             'location': 'new_test',
-            'start_time': '2001-01-29T12:30:00',
-            'finish_time': '2050-01-29T12:30:00',
-            'sign_in_time': '2001-01-29T12:30:00',
+            'start_time': '2001-01-29T13:30:00',
+            'finish_time': '2050-01-29T13:30:00',
+            'sign_in_time': '2001-01-29T13:30:00',
             'attendees': ['user2', 'user3']
         })
 
@@ -357,3 +357,36 @@ class EventUpdateTest(APITestCase):
         self.assertEqual(response.json().get('finish_time'), '2050-01-29T12:30:00')
         self.assertEqual(response.json().get('sign_in_time'), '2001-01-29T12:30:00')
         self.assertEqual(response.json().get('attendees'), ['user2', 'user3'])
+    #
+    # def test_event_update(self):
+    #     data = {
+    #         'organiser': "user1",
+    #         'event_name': "Test1",
+    #         'location': "nowhere",
+    #         'start_time': '2050-01-29T13:00:00',
+    #         'finish_time': '2050-01-29T12:30:00',
+    #         'sign_in_time': '2050-01-29T13:00:00',
+    #         'attendees': ['user2', 'user3', 'user4']
+    #     }
+    #
+    #     response = self.create_event(data)
+    #
+    #     self.assertEquals(response.status_code, status.HTTP_201_CREATED)
+    #
+    #     data_update = json.dumps({
+    #         'organiser': "user1",
+    #         'event_name': "update",
+    #         'location': "update",
+    #         'start_time': '2050-01-29T12:00:00',
+    #         'finish_time': '2050-01-29T12:30:00',
+    #         'sign_in_time': '2050-01-29T12:00:00',
+    #         'attendees': ['user2', 'user3']
+    #     })
+    #
+    #     # user 4
+    #     update_response = self.client.patch("/api/events/" + str(response.json().get('id')) + "/", data_update,
+    #                                         content_type='application/json')
+    #     self.assertEquals(update_response.status_code, status.HTTP_200_OK)
+    #     self.assertEquals(update_response.json().get('event_name'), "update")
+    #     self.assertEquals(update_response.json().get('location'), "update")
+    #     self.assertEquals(update_response.json().get('attendees'), ['user2', 'user3'])
