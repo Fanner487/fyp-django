@@ -491,3 +491,20 @@ class EventUpdateTest(APITestCase):
         response = self.client.patch("/api/events/" + str(self.test_event.id) + "/", new_data,
                                      content_type='application/json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_event_update_sign_in_time_after_start_time(self):
+        new_data = json.dumps({
+            'organiser': 'user1',
+            'event_name': 'new_test',
+            'location': 'new_test',
+            'start_time': '2050-01-29T13:30:00',
+            'finish_time': '2060-01-29T13:30:00',
+            'sign_in_time': '2055-01-29T13:30:00',
+            'attendees': ['user2', 'user3'],
+            'attendance_required': True
+        })
+
+        response = self.client.patch("/api/events/" + str(self.test_event.id) + "/", new_data,
+                                     content_type='application/json')
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
