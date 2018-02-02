@@ -118,9 +118,6 @@ def get_events(request, username, event_type, time):
 def login(request):
     # """Login."""
 
-    print(request.data.get("username"))
-    print(request.data.get("password"))
-    #
     serializer = LoginSerializer(data=request.data)
 
     # user = authenticate(username=username, password=password)

@@ -12,6 +12,8 @@ class LoginSerializer(serializers.Serializer):
 
     def validate(self, data):
 
+        print(data.get('username'))
+        print(data.get('password'))
         if not authenticate(username=data.get('username'), password=data.get('password')):
             raise serializers.ValidationError("Login denied")
 
