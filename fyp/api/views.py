@@ -117,8 +117,9 @@ def get_events(request, username, event_type, time):
 @api_view(["POST"])
 def login(request):
     # """Login."""
-    username = request.data.get("username")
-    password = request.data.get("password")
+    
+    print(request.data.get("username"))
+    print(request.data.get("password"))
     #
     serializer = LoginSerializer(data=request.data)
 
@@ -135,8 +136,6 @@ def login(request):
 @api_view(["POST"])
 def register(request):
 
-    print(request.data['username'])
-    print(request.data['password'])
     serializer = RegisterSerializer(data=request.data)
 
     if serializer.is_valid():
