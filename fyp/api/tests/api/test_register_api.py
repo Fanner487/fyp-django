@@ -15,7 +15,7 @@ class RegisterTest(APITestCase):
 
         self.test_user = User.objects.create_user(
             username='testuser',
-            email='test@example.com',
+            email='testuser@example.com',
             password='testpassword',
             first_name='Test',
             last_name='User'
