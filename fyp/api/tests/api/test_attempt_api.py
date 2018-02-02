@@ -25,7 +25,6 @@ class AttemptTestCase(APITestCase):
 
     def create_user(self, username, email, password):
         user = User.objects.create_user(username, email, password)
-        user.save()
 
     def create_event(self, data):
         return self.client.post("/api/events/", data=data, format='json')
