@@ -113,8 +113,8 @@ class RegisterTest(APITestCase):
 
     def test_create_user_with_unmatching_passwords(self):
         data = {
-            'username': 'testuser5',
-            'email': 'testuser@example.com',
+            'username': 'testuser6',
+            'email': 'testuser6@example.com',
             'password': 'somepassword',
             'password_confirm': 'somepasswordNOT',
             'first_name': 'Test',
