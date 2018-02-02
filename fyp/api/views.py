@@ -122,16 +122,20 @@ def login(request):
         'username': request.data.get('username'),
         'password': request.data.get('password')
     }
-    serializer = LoginSerializer(data=data)
+    # serializer = LoginSerializer(data=data)
 
-    # user = authenticate(username=username, password=password)
-    # user = authenticate(username=username, password=password)
-
-    # if not user:
-    if not serializer.is_valid():
-        return Response(status=status.HTTP_401_UNAUTHORIZED)
-    else:
+    if authenticate(username=request.data.get('username'), password=request.data.get('password')):
         return Response({"message": "Login successful"}, status=status.HTTP_200_OK)
+    else:
+        return Response(status=status.HTTP_401_UNAUTHORIZED)
+    # user = authenticate(username=username, password=password)
+    # user = authenticate(username=username, password=password)
+
+    # # if not user:
+    # if not serializer.is_valid():
+    #     return Response(status=status.HTTP_401_UNAUTHORIZED)
+    # else:
+    #     return Response({"message": "Login successful"}, status=status.HTTP_200_OK)
 
 
 @api_view(["POST"])
