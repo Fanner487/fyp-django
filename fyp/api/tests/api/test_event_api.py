@@ -332,7 +332,7 @@ class EventUpdateTest(APITestCase):
 
     def test_event_update(self):
 
-        new_data = {
+        new_data = json.dumps({
             'organiser': 'user1',
             'event_name': 'new_test',
             'location': 'new_test',
@@ -340,9 +340,9 @@ class EventUpdateTest(APITestCase):
             'finish_time': '2050-01-29T12:30:00',
             'sign_in_time': '2001-01-29T12:30:00',
             'attendees': ['user2', 'user3']
-        }
+        })
 
-        response = self.client.patch(self.url + str(self.test_event.id), data=new_data)
+        response = self.client.patch(self.url + str(self.test_event.id), data=new_data, content_type='application/json')
         print(response.json())
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.json().get('event_name'), 'new_test')
