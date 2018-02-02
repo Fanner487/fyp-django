@@ -339,7 +339,8 @@ class EventUpdateTest(APITestCase):
             'start_time': '2001-01-29T13:30:00',
             'finish_time': '2050-01-29T13:30:00',
             'sign_in_time': '2001-01-29T13:30:00',
-            'attendees': ['user2', 'user3']
+            'attendees': ['user2', 'user3'],
+            'attendance_required': True
         })
 
         print("\n\n" + self.url + str(self.test_event.id) + "/" + "\n\n")
@@ -347,7 +348,7 @@ class EventUpdateTest(APITestCase):
         get_event = self.client.get("/api/events/" + str(self.test_event.id) + "/")
         print(get_event.json())
 
-        response = self.client.patch("/api/events/" + str(self.test_event.id), new_data,
+        response = self.client.patch("/api/events/" + str(self.test_event.id) + "/", new_data,
                                      content_type='application/json')
         # print(response.json())
         self.assertEqual(response.status_code, status.HTTP_200_OK)
