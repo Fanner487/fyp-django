@@ -363,36 +363,157 @@ class EventUpdateTest(APITestCase):
         self.assertEqual(response.json().get('finish_time'), '2060-01-29T13:30:00Z')
         self.assertEqual(response.json().get('sign_in_time'), '2050-01-29T13:30:00Z')
         self.assertEqual(response.json().get('attendees'), ['user2', 'user3'])
-    #
-    # def test_event_update(self):
-    #     data = {
-    #         'organiser': "user1",
-    #         'event_name': "Test1",
-    #         'location': "nowhere",
-    #         'start_time': '2050-01-29T13:00:00',
-    #         'finish_time': '2050-01-29T12:30:00',
-    #         'sign_in_time': '2050-01-29T13:00:00',
-    #         'attendees': ['user2', 'user3', 'user4']
-    #     }
-    #
-    #     response = self.create_event(data)
-    #
-    #     self.assertEquals(response.status_code, status.HTTP_201_CREATED)
-    #
-    #     data_update = json.dumps({
-    #         'organiser': "user1",
-    #         'event_name': "update",
-    #         'location': "update",
-    #         'start_time': '2050-01-29T12:00:00',
-    #         'finish_time': '2050-01-29T12:30:00',
-    #         'sign_in_time': '2050-01-29T12:00:00',
-    #         'attendees': ['user2', 'user3']
-    #     })
-    #
-    #     # user 4
-    #     update_response = self.client.patch("/api/events/" + str(response.json().get('id')) + "/", data_update,
-    #                                         content_type='application/json')
-    #     self.assertEquals(update_response.status_code, status.HTTP_200_OK)
-    #     self.assertEquals(update_response.json().get('event_name'), "update")
-    #     self.assertEquals(update_response.json().get('location'), "update")
-    #     self.assertEquals(update_response.json().get('attendees'), ['user2', 'user3'])
+
+    def test_event_update_null_organiser(self):
+        new_data = json.dumps({
+            'organiser': '',
+            'event_name': 'new_test',
+            'location': 'new_test',
+            'start_time': '2050-01-29T13:30:00',
+            'finish_time': '2060-01-29T13:30:00',
+            'sign_in_time': '2050-01-29T13:30:00',
+            'attendees': ['user2', 'user3'],
+            'attendance_required': True
+        })
+
+        print("\n\n" + self.url + str(self.test_event.id) + "/" + "\n\n")
+
+        get_event = self.client.get("/api/events/" + str(self.test_event.id) + "/")
+        print(get_event.json())
+
+        response = self.client.patch("/api/events/" + str(self.test_event.id) + "/", new_data,
+                                     content_type='application/json')
+        print(response.data)
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_event_update_null_event_name(self):
+        new_data = json.dumps({
+            'organiser': 'user1',
+            'event_name': '',
+            'location': 'new_test',
+            'start_time': '2050-01-29T13:30:00',
+            'finish_time': '2060-01-29T13:30:00',
+            'sign_in_time': '2050-01-29T13:30:00',
+            'attendees': ['user2', 'user3'],
+            'attendance_required': True
+        })
+
+        print("\n\n" + self.url + str(self.test_event.id) + "/" + "\n\n")
+
+        get_event = self.client.get("/api/events/" + str(self.test_event.id) + "/")
+        print(get_event.json())
+
+        response = self.client.patch("/api/events/" + str(self.test_event.id) + "/", new_data,
+                                     content_type='application/json')
+        print(response.data)
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_event_update_null_location(self):
+        new_data = json.dumps({
+            'organiser': 'user1',
+            'event_name': 'new_test',
+            'location': '',
+            'start_time': '2050-01-29T13:30:00',
+            'finish_time': '2060-01-29T13:30:00',
+            'sign_in_time': '2050-01-29T13:30:00',
+            'attendees': ['user2', 'user3'],
+            'attendance_required': True
+        })
+
+        print("\n\n" + self.url + str(self.test_event.id) + "/" + "\n\n")
+
+        get_event = self.client.get("/api/events/" + str(self.test_event.id) + "/")
+        print(get_event.json())
+
+        response = self.client.patch("/api/events/" + str(self.test_event.id) + "/", new_data,
+                                     content_type='application/json')
+        print(response.data)
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_event_update_null_start_time(self):
+        new_data = json.dumps({
+            'organiser': 'user1',
+            'event_name': 'new_test',
+            'location': 'new_test',
+            'start_time': '',
+            'finish_time': '2060-01-29T13:30:00',
+            'sign_in_time': '2050-01-29T13:30:00',
+            'attendees': ['user2', 'user3'],
+            'attendance_required': True
+        })
+
+        print("\n\n" + self.url + str(self.test_event.id) + "/" + "\n\n")
+
+        get_event = self.client.get("/api/events/" + str(self.test_event.id) + "/")
+        print(get_event.json())
+
+        response = self.client.patch("/api/events/" + str(self.test_event.id) + "/", new_data,
+                                     content_type='application/json')
+        print(response.data)
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_event_update_null_finish_time(self):
+        new_data = json.dumps({
+            'organiser': 'user1',
+            'event_name': 'new_test',
+            'location': 'new_test',
+            'start_time': '2050-01-29T13:30:00',
+            'finish_time': '',
+            'sign_in_time': '2050-01-29T13:30:00',
+            'attendees': ['user2', 'user3'],
+            'attendance_required': True
+        })
+
+        print("\n\n" + self.url + str(self.test_event.id) + "/" + "\n\n")
+
+        get_event = self.client.get("/api/events/" + str(self.test_event.id) + "/")
+        print(get_event.json())
+
+        response = self.client.patch("/api/events/" + str(self.test_event.id) + "/", new_data,
+                                     content_type='application/json')
+        print(response.data)
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_event_update_null_sign_in_time(self):
+        new_data = json.dumps({
+            'organiser': 'user1',
+            'event_name': 'new_test',
+            'location': 'new_test',
+            'start_time': '2050-01-29T13:30:00',
+            'finish_time': '2060-01-29T13:30:00',
+            'sign_in_time': '',
+            'attendees': ['user2', 'user3'],
+            'attendance_required': True
+        })
+
+        print("\n\n" + self.url + str(self.test_event.id) + "/" + "\n\n")
+
+        get_event = self.client.get("/api/events/" + str(self.test_event.id) + "/")
+        print(get_event.json())
+
+        response = self.client.patch("/api/events/" + str(self.test_event.id) + "/", new_data,
+                                     content_type='application/json')
+        print(response.data)
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_event_update_null_event_attendees(self):
+        new_data = json.dumps({
+            'organiser': 'user1',
+            'event_name': 'new_test',
+            'location': 'new_test',
+            'start_time': '2050-01-29T13:30:00',
+            'finish_time': '2060-01-29T13:30:00',
+            'sign_in_time': '2050-01-29T13:30:00',
+            'attendees': ['user2', 'user3'],
+            'attendance_required': True
+        })
+
+        print("\n\n" + self.url + str(self.test_event.id) + "/" + "\n\n")
+
+        get_event = self.client.get("/api/events/" + str(self.test_event.id) + "/")
+        print(get_event.json())
+
+        response = self.client.patch("/api/events/" + str(self.test_event.id) + "/", new_data,
+                                     content_type='application/json')
+        print(response.data)
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
