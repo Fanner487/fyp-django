@@ -26,6 +26,7 @@ class RegisterTest(APITestCase):
             'username': 'testuser2',
             'email': 'testuser2@example.com',
             'password': 'somepassword',
+            'password_confirm': 'somepassword',
             'first_name': 'Test',
             'last_name': 'User'
         }
@@ -49,6 +50,7 @@ class RegisterTest(APITestCase):
             'username': 'testuser3',
             'email': 'testuser3@example.com',
             'password': 'test',
+            'password_confirm': 'test',
             'first_name': 'Test',
             'last_name': 'User'
         }
@@ -82,6 +84,7 @@ class RegisterTest(APITestCase):
             'username': 'testuser',
             'email': 'testuser4@example.com',
             'password': 'somepassword',
+            'password_confirm': 'somepassword',
             'first_name': 'Test',
             'last_name': 'User'
         }
@@ -97,6 +100,7 @@ class RegisterTest(APITestCase):
             'username': 'testuser5',
             'email': 'testuser@example.com',
             'password': 'somepassword',
+            'password_confirm': 'somepassword',
             'first_name': 'Test',
             'last_name': 'User'
         }
@@ -107,5 +111,19 @@ class RegisterTest(APITestCase):
         self.assertEqual(User.objects.count(), 1)
         self.assertEqual(len(response.data['email']), 1)
 
+    def test_create_user_with_unmatching_passwords(self):
+        data = {
+            'username': 'testuser5',
+            'email': 'testuser@example.com',
+            'password': 'somepassword',
+            'password_confirm': 'somepasswordNOT',
+            'first_name': 'Test',
+            'last_name': 'User'
+        }
 
+        response = self.client.post(self.url, data=data, format='json')
+
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertEqual(User.objects.count(), 1)
+        self.assertEqual(len(response.data['password']), 1)
 

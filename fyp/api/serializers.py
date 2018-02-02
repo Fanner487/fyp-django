@@ -42,6 +42,11 @@ class RegisterSerializer(serializers.ModelSerializer):
         write_only=True,
         min_length=8)
 
+    password_confirm = serializers.CharField(
+        required=True,
+        write_only=True,
+        min_length=8)
+
     first_name = serializers.CharField(
         required=True)
 
@@ -59,19 +64,14 @@ class RegisterSerializer(serializers.ModelSerializer):
 
         return user
 
+    def validate(self, data):
+
+        if data.get('password') != data.get('password_confirm'):
+            raise serializers.ValidationError("Incorrect passwords")
+
     class Meta:
         model = User
         fields = ('id', 'username', 'email', 'password', 'first_name', 'last_name')
-
-
-# class RegisterSerializer(serializers.ModelSerializer):
-#     username
-#     password
-#     password_confirm
-#     email
-#     email_confirm
-#     first_name
-#     surname
 
 
 # class ChangePasswordSerializer(serializers.ModelSerializer):
