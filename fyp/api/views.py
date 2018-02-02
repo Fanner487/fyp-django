@@ -116,12 +116,12 @@ def get_events(request, username, event_type, time):
 @api_view(["POST"])
 def login(request):
     # """Login."""
-    # username = request.data.get("username")
-    # password = request.data.get("password")
+    username = request.data.get("username")
+    password = request.data.get("password")
     #
     serializer = LoginSerializer(data=request.data)
 
-    # user = authenticate(data=request.data)
+    user = authenticate(data=request.data)
 
     if not serializer.is_valid():
         return Response(status=status.HTTP_401_UNAUTHORIZED)
