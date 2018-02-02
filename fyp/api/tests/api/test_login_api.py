@@ -9,7 +9,7 @@ class LoginTest(APITestCase):
     def setUp(self):
 
         self.client = APIClient()
-        self.url = "/api/register"
+        self.url = "/api/login/"
         # self.create_url = reverse("/api/register")
 
         self.test_user = User.objects.create_user(
@@ -20,4 +20,12 @@ class LoginTest(APITestCase):
             last_name='User'
         )
 
+    def test_login(self):
+        data = {
+            'username': 'testuser',
+            'password': 'testpassword'
+        }
 
+        response = self.client.post(self.url, data=data, format='json')
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
