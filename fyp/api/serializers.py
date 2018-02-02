@@ -3,7 +3,35 @@ from .models import Event, Attempt
 from django.contrib.auth.models import User
 from datetime import datetime
 from django.utils import timezone
+from django.contrib.auth import authenticate
 import pytz
+
+
+class LoginSerializer(serializers.ModelSerializer):
+    
+    username = serializers.CharField()
+    password = serializers.CharField()
+
+    def validate(self, data):
+
+        if not authenticate(username=data['username'], password=data['password']):
+            raise serializers.ValidationError("Login denied")
+
+
+# class RegisterSerializer(serializers.ModelSerializer):
+#     username
+#     password
+#     password_confirm
+#     email
+#     email_confirm
+#     first_name
+#     surname
+
+
+# class ChangePasswordSerializer(serializers.ModelSerializer):
+#     username
+#     current_password
+#     new_password
 
 
 class UserSerializer(serializers.ModelSerializer):

@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.viewsets import ModelViewSet
-from .serializers import EventSerializer, AttemptSerializer, UserSerializer
+from .serializers import EventSerializer, AttemptSerializer, UserSerializer, LoginSerializer
 from .models import Event, Attempt
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
@@ -115,13 +115,15 @@ def get_events(request, username, event_type, time):
 
 @api_view(["POST"])
 def login(request):
-    """Login."""
-    username = request.data.get("username")
-    password = request.data.get("password")
+    # """Login."""
+    # username = request.data.get("username")
+    # password = request.data.get("password")
+    #
+    serializer = LoginSerializer(data=request.data)
 
-    user = authenticate(username=username, password=password)
+    # user = authenticate(data=request.data)
 
-    if not user:
+    if not serializer.is_valid():
         return Response(status=status.HTTP_401_UNAUTHORIZED)
     else:
         return Response({"message": "Login successful"}, status=status.HTTP_200_OK)
