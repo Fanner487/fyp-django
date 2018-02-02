@@ -123,7 +123,7 @@ def login(request):
 
     user = authenticate(data=request.data)
 
-    if not serializer.is_valid():
+    if not user:
         return Response(status=status.HTTP_401_UNAUTHORIZED)
     else:
         return Response({"message": "Login successful"}, status=status.HTTP_200_OK)
