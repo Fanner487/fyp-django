@@ -97,4 +97,5 @@ class AttemptTestCase(APITestCase):
         self.assertEquals(response2.status_code, status.HTTP_201_CREATED)
 
         event = Event.objects.get(id=event_id)
-        self.assertTrue("user2" not in event.attending)
+        self.assertIsNone(event.attending)
+        # self.assertTrue("user2" not in event.attending)
