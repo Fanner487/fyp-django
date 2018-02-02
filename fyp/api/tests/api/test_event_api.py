@@ -318,6 +318,30 @@ class EventUpdateTest(APITestCase):
     def setUp(self):
 
         self.client = APIClient()
-        self.url = "/api/events"
+        self.url = "/api/events/"
 
-        self.test_event = Event.objects.create()
+        self.test_event = Event.objects.create(
+            organiser="user1",
+            event_name="test",
+            location="test",
+            start_time='2001-01-29T12:00:00',
+            finish_time='2050-01-29T12:30:00',
+            sign_in_time='2001-01-29T12:00:00',
+            attendees=['user2', 'user3', 'user4']
+        )
+
+    def test_event_update(self):
+
+        new_data = {
+            'organiser': 'user1',
+            'event_name': 'new_test',
+            'location': 'new_test',
+            'start_time': '2001-01-29T12:30:00',
+            'finish_time': '2050-01-29T12:30:00',
+            'sign_in_time': '2001-01-29T12:30:00',
+            'attendees': ['user2', 'user3']
+        }
+
+        response = self.client.patch(self.url, data=new_data)
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
