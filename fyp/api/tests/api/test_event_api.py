@@ -504,7 +504,7 @@ class EventUpdateTest(APITestCase):
             'start_time': '2050-01-29T13:30:00',
             'finish_time': '2060-01-29T13:30:00',
             'sign_in_time': '2050-01-29T13:30:00',
-            'attendees': ['user2', 'user3'],
+            'attendees': '',
             'attendance_required': True
         })
 
