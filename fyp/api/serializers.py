@@ -69,6 +69,8 @@ class RegisterSerializer(serializers.ModelSerializer):
         if data.get('password') != data.get('password_confirm'):
             raise serializers.ValidationError("Incorrect passwords")
 
+        return data
+
     class Meta:
         model = User
         fields = ('id', 'username', 'email', 'password', 'password_confirm', 'first_name', 'last_name')
