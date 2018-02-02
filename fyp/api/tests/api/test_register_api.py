@@ -11,7 +11,7 @@ class RegisterTest(APITestCase):
 
         self.client = APIClient()
         self.url = "/api/register"
-        self.create_url = reverse("/api/register")
+        # self.create_url = reverse("/api/register")
 
         self.test_user = User.objects.create_user(
             username='testuser',
