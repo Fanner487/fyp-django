@@ -23,6 +23,8 @@ class LoginSerializer(serializers.Serializer):
         if not authenticate(username=data['username'], password=data['password']):
             raise serializers.ValidationError("Login denied")
 
+        return data
+
 
 # class RegisterSerializer(serializers.ModelSerializer):
 #     username
