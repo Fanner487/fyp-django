@@ -117,7 +117,7 @@ def get_events(request, username, event_type, time):
 @api_view(["POST"])
 def login(request):
     # """Login."""
-    
+
     print(request.data.get("username"))
     print(request.data.get("password"))
     #
