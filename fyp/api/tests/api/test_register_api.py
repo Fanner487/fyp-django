@@ -9,7 +9,7 @@ class RegisterTest(APITestCase):
 
     def setUp(self):
 
-        self.client = APIClient
+        self.client = APIClient()
         self.url = "/api/register"
         self.create_url = reverse("/api/register/")
 
@@ -31,7 +31,7 @@ class RegisterTest(APITestCase):
             'last_name': 'User'
         }
 
-        response = self.client.post(self.create_url, data=data, format='json')
+        response = self.client.post(self.url, data=data, format='json')
 
         # We want to make sure we have two users in the database..
         self.assertEqual(User.objects.count(), 2)
