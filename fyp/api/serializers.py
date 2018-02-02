@@ -15,8 +15,6 @@ class LoginSerializer(serializers.Serializer):
 
     def validate(self, data):
         print("\n\n We in here")
-        print(self.username)
-        print(self.password)
         
         print(data)
         if not authenticate(username=data.get('username'), password=data.get('password')):
