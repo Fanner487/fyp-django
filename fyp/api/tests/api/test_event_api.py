@@ -329,9 +329,9 @@ class EventUpdateTest(APITestCase):
             organiser="user1",
             event_name="test",
             location="test",
-            start_time='2050-01-29T13:00:00',
-            finish_time='2060-01-29T12:30:00',
-            sign_in_time='2050-01-29T13:00:00',
+            start_time='2001-01-29T13:00:00',
+            finish_time='2050-01-29T12:30:00',
+            sign_in_time='2001-01-29T13:00:00',
             attendees=['user2', 'user3', 'user4']
         )
 
@@ -341,9 +341,9 @@ class EventUpdateTest(APITestCase):
             'organiser': 'user1',
             'event_name': 'new_test',
             'location': 'new_test',
-            'start_time': '2001-01-29T13:30:00',
-            'finish_time': '2050-01-29T13:30:00',
-            'sign_in_time': '2001-01-29T13:30:00',
+            'start_time': '2050-01-29T13:30:00',
+            'finish_time': '2060-01-29T13:30:00',
+            'sign_in_time': '2050-01-29T13:30:00',
             'attendees': ['user2', 'user3'],
             'attendance_required': True
         })
