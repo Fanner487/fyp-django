@@ -24,8 +24,8 @@ class RegisterTest(APITestCase):
     def test_create_user(self):
 
         data = {
-            'username': 'foobar',
-            'email': 'foobar@example.com',
+            'username': 'testuser2',
+            'email': 'testuser2@example.com',
             'password': 'somepassword',
             'first_name': 'Test',
             'last_name': 'User'
@@ -47,8 +47,8 @@ class RegisterTest(APITestCase):
     def test_create_user_with_short_password(self):
 
         data = {
-            'username': 'foobar',
-            'email': 'foobar@example.com',
+            'username': 'testuser3',
+            'email': 'testuser3@example.com',
             'password': '',
             'first_name': 'Test',
             'last_name': 'User'
@@ -59,3 +59,21 @@ class RegisterTest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(User.objects.count(), 1)
         self.assertEqual(len(response.data['password']), 1)
+
+    def test_create_user_with_existing_username(self):
+        data = {
+            'username': 'testuser',
+            'email': 'testuser4@example.com',
+            'password': 'somepassword',
+            'first_name': 'Test',
+            'last_name': 'User'
+        }
+
+        response = self.client.post(self.url, data=data, format='json')
+
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertEqual(User.objects.count(), 1)
+        self.assertEqual(len(response.data['username']), 1)
+
+
+
