@@ -347,7 +347,7 @@ class EventUpdateTest(APITestCase):
         get_event = self.client.get("/api/events/" + str(self.test_event.id) + "/")
         print(get_event.json())
 
-        response = self.client.patch("/api/events/" + str(self.test_event.id) + "/", new_data,
+        response = self.client.patch("/api/events/" + str(self.test_event.id), new_data,
                                      content_type='application/json')
         # print(response.json())
         self.assertEqual(response.status_code, status.HTTP_200_OK)
