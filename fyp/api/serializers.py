@@ -7,8 +7,14 @@ from django.contrib.auth import authenticate
 import pytz
 
 
-class LoginSerializer(serializers.ModelSerializer):
-    
+class LoginSerializer(serializers.Serializer):
+
+    def update(self, instance, validated_data):
+        pass
+
+    def create(self, validated_data):
+        pass
+
     username = serializers.CharField()
     password = serializers.CharField()
 
