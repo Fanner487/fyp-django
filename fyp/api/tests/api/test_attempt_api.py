@@ -5,6 +5,7 @@ from django.test import TestCase
 from rest_framework.test import APIClient
 from django.contrib.auth.models import User
 from rest_framework import status
+from rest_framework.test import APITestCase
 from api.models import Event
 
 import datetime
@@ -12,8 +13,16 @@ from time import sleep
 
 
 # Create your tests here.
-# User login test
-class AttemptTestCase(TestCase):
+class AttemptTestCase(APITestCase):
+
+    def setUp(self):
+        self.client = APIClient()
+
+        self.create_user("user1", "test1@gmail.com", "orangemonkeyeagle1")
+        self.create_user("user2", "test2@gmail.com", "orangemonkeyeagle1")
+        self.create_user("user3", "test3@gmail.com", "orangemonkeyeagle1")
+        self.create_user("user4", "test4@gmail.com", "orangemonkeyeagle1")
+
     def create_user(self, username, email, password):
         user = User.objects.create_user(username, email, password)
         user.save()
@@ -23,14 +32,6 @@ class AttemptTestCase(TestCase):
 
     def create_attempt(self, data):
         return self.client.post("/api/attempts/", data=data, format='json')
-
-    def setUp(self):
-        client = APIClient()
-
-        self.create_user("user1", "test1@gmail.com", "orangemonkeyeagle1")
-        self.create_user("user2", "test2@gmail.com", "orangemonkeyeagle1")
-        self.create_user("user3", "test3@gmail.com", "orangemonkeyeagle1")
-        self.create_user("user4", "test4@gmail.com", "orangemonkeyeagle1")
 
     def create_test_attempt_now(self, username, event_id):
         time_on_screen = (datetime.datetime.now() - datetime.timedelta(seconds=1)).strftime("%H:%M:%S")
