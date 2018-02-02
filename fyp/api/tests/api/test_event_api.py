@@ -344,7 +344,7 @@ class EventUpdateTest(APITestCase):
 
         print("\n\n" + self.url + str(self.test_event.id) + "/" + "\n\n")
 
-        response = self.client.patch(self.url + str(self.test_event.id) + "/", new_data,
+        response = self.client.patch("/api/events/" + str(self.test_event.id) + "/", new_data,
                                      content_type='application/json')
         # print(response.json())
         self.assertEqual(response.status_code, status.HTTP_200_OK)
