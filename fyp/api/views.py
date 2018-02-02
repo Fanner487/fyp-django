@@ -135,6 +135,8 @@ def login(request):
 @api_view(["POST"])
 def register(request):
 
+    print(request.data['username'])
+    print(request.data['password'])
     serializer = RegisterSerializer(data=request.data)
 
     if serializer.is_valid():
