@@ -121,7 +121,7 @@ def login(request):
     #
     serializer = LoginSerializer(data=request.data)
 
-    user = authenticate(data=request.data)
+    user = authenticate(username, password)
 
     if not user:
         return Response(status=status.HTTP_401_UNAUTHORIZED)
