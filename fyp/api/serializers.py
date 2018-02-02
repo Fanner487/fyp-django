@@ -71,7 +71,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'username', 'email', 'password', 'first_name', 'last_name')
+        fields = ('id', 'username', 'email', 'password', 'password_confirm', 'first_name', 'last_name')
 
 
 # class ChangePasswordSerializer(serializers.ModelSerializer):
