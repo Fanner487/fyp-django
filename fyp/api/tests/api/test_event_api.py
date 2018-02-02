@@ -22,7 +22,7 @@ class EventTestCase(TestCase):
         return self.client.post("/api/events/", data=data, format='json')
 
     def setUp(self):
-        self.client = APIClient()
+        client = APIClient()
 
         self.create_user("user1", "test1@gmail.com", "orangemonkeyeagle1")
         self.create_user("user2", "test2@gmail.com", "orangemonkeyeagle1")
