@@ -75,7 +75,7 @@
         <entry file="file://$PROJECT_DIR$/fyp/api/tests/api/test_event_api.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="328">
-              <caret line="344" column="66" lean-forward="false" selection-start-line="344" selection-start-column="66" selection-end-line="344" selection-end-column="66" />
+              <caret line="344" column="71" lean-forward="false" selection-start-line="344" selection-start-column="71" selection-end-line="344" selection-end-column="71" />
               <folding>
                 <element signature="e#24#63#0" expanded="true" />
               </folding>
@@ -689,7 +689,7 @@
     <entry file="file://$PROJECT_DIR$/fyp/api/tests/api/test_event_api.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="328">
-          <caret line="344" column="66" lean-forward="false" selection-start-line="344" selection-start-column="66" selection-end-line="344" selection-end-column="66" />
+          <caret line="344" column="71" lean-forward="false" selection-start-line="344" selection-start-column="71" selection-end-line="344" selection-end-column="71" />
           <folding>
             <element signature="e#24#63#0" expanded="true" />
           </folding>
