@@ -143,6 +143,8 @@ def register(request):
         if user:
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
     # """Register users with unique email and username."""
     # username = request.data.get("username")
     # password = request.data.get("password")

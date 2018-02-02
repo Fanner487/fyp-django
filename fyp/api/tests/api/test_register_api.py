@@ -41,3 +41,21 @@ class RegisterTest(APITestCase):
         self.assertEqual(response.data['username'], data['username'])
         self.assertEqual(response.data['email'], data['email'])
         self.assertFalse('password' in response.data)
+        self.assertEqual(response.data['first_name'], data['first_name'])
+        self.assertEqual(response.data['last_name'], data['last_name'])
+
+    def test_create_user_with_short_password(self):
+
+        data = {
+            'username': 'foobar',
+            'email': 'foobar@example.com',
+            'password': '',
+            'first_name': 'Test',
+            'last_name': 'User'
+        }
+
+        response = self.client.post(self.url, data=data, format='json')
+
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertEqual(User.objects.count(), 1)
+        self.assertEqual(len(response.data['password']), 1)
