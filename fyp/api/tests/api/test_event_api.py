@@ -3,8 +3,9 @@ from __future__ import unicode_literals
 
 from django.test import TestCase
 from rest_framework.test import APIClient
-from rest_framework.test import APIRequestFactory
+from rest_framework.test import APITestCase
 from django.contrib.auth.models import User
+from api.models import Event
 from rest_framework import status
 import json
 
@@ -310,3 +311,13 @@ class EventTestCase(TestCase):
 
         self.assertEquals(delete_response.status_code, status.HTTP_204_NO_CONTENT)
         self.assertEquals(get_response.status_code, status.HTTP_404_NOT_FOUND)
+
+
+class EventUpdateTest(APITestCase):
+
+    def setUp(self):
+
+        self.client = APIClient()
+        self.url = "/api/events"
+
+        self.test_event = Event.objects.create()
