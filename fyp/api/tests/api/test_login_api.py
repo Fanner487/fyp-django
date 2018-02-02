@@ -5,9 +5,7 @@ from rest_framework.test import APIClient
 
 
 class LoginTest(APITestCase):
-
     def setUp(self):
-
         self.client = APIClient()
         self.url = "/api/login"
         # self.create_url = reverse("/api/register")
