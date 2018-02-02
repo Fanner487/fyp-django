@@ -9,7 +9,7 @@ class LoginTest(APITestCase):
     def setUp(self):
 
         self.client = APIClient()
-        self.url = "/api/login/"
+        self.url = "/api/login"
         # self.create_url = reverse("/api/register")
 
         self.test_user = User.objects.create_user(
