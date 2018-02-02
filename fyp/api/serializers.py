@@ -14,9 +14,7 @@ class LoginSerializer(serializers.Serializer):
     password = serializers.CharField(required=True)
 
     def validate(self, data):
-        print("\n\n We in here")
-        
-        print(data)
+
         if not authenticate(username=data.get('username'), password=data.get('password')):
             raise serializers.ValidationError("Login denied")
 
