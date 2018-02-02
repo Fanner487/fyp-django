@@ -359,9 +359,9 @@ class EventUpdateTest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.json().get('event_name'), 'new_test')
         self.assertEqual(response.json().get('location'), 'new_test')
-        self.assertEqual(response.json().get('start_time'), '2050-01-29T13:30:00')
-        self.assertEqual(response.json().get('finish_time'), '2060-01-29T13:30:00')
-        self.assertEqual(response.json().get('sign_in_time'), '2050-01-29T13:30:00')
+        self.assertEqual(response.json().get('start_time'), '2050-01-29T13:30:00Z')
+        self.assertEqual(response.json().get('finish_time'), '2060-01-29T13:30:00Z')
+        self.assertEqual(response.json().get('sign_in_time'), '2050-01-29T13:30:00Z')
         self.assertEqual(response.json().get('attendees'), ['user2', 'user3'])
     #
     # def test_event_update(self):
