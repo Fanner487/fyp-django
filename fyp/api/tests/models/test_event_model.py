@@ -27,6 +27,7 @@ class EventModelTestCase(TestCase):
         self.assertEqual(event.finish_time, '2050-01-29T12:30:00')
         self.assertEqual(event.sign_in_time, '2050-01-29T12:00:00')
         self.assertEqual(event.attendees, ['user2', 'user3', 'user4'])
+        self.assertEqual(event.attending, [])
         self.assertEqual(event.attendance_required, False)
     #
     # def test_event_create_wrong_values_compare(self):
