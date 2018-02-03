@@ -30,9 +30,23 @@ class UserModelTestCase(TestCase):
                                         first_name="Test", last_name="User")
 
         self.assertEqual(user.username, "testuser2")
+        self.assertEqual(user.email, "test2@example.com")
+        self.assertEqual(user.first_name, "Test")
+        self.assertEqual(user.last_name, "User")
 
         user.username = "newtestuser2"
         user.save()
 
         updated_user = User.objects.get(id=user.id)
         self.assertEqual(updated_user.username, "newtestuser2")
+
+    def test_user_create_user_destroy(self):
+        user = User.objects.create_user(username="testuser3", email="test3@example.com", password="mypassword",
+                                        first_name="Test", last_name="User")
+
+        self.assertEqual(user.username, "testuser3")
+        self.assertEqual(user.email, "test3@example.com")
+        self.assertEqual(user.first_name, "Test")
+        self.assertEqual(user.last_name, "User")
+
+        updated_user = User.objects.destroy(id=user.id)
