@@ -7,11 +7,9 @@ from rest_framework.viewsets import ModelViewSet, GenericViewSet
 from .serializers import EventSerializer, AttemptSerializer, UserSerializer, LoginSerializer, RegisterSerializer
 from .models import Event, Attempt
 from rest_framework import mixins
-from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from datetime import datetime
 import pytz
-# Create your views here.
 
 
 class EventViewSet(ModelViewSet):
@@ -91,7 +89,7 @@ def get_events(request, username, event_type, time):
 
     elif event_type == "attending":
 
-        attending_events = Event.objects.filter(attendees__icontains=username)\
+        attending_events = Event.objects.filter(attendees__icontains=username) \
             .order_by('-start_time')
 
         attending_events_filtered = []
@@ -101,7 +99,6 @@ def get_events(request, username, event_type, time):
         for event in attending_events:
 
             if username in event.attendees:
-
                 attending_events_filtered.append(event)
 
         time_filtered_events = filter_events_by_time(attending_events_filtered, time)
@@ -119,18 +116,7 @@ def get_events(request, username, event_type, time):
 def login(request):
     # """Login."""
 
-    data = {
-        'username': request.data.get('username'),
-        'password': request.data.get('password')
-    }
     serializer = LoginSerializer(data=request.data)
-
-    # if authenticate(username=request.data.get('username'), password=request.data.get('password')):
-    #     return Response({"message": "Login successful"}, status=status.HTTP_200_OK)
-    # else:
-    #     return Response(status=status.HTTP_401_UNAUTHORIZED)
-    # user = authenticate(username=username, password=password)
-    # user = authenticate(username=username, password=password)
 
     # if not user:
     if not serializer.is_valid():
@@ -141,7 +127,6 @@ def login(request):
 
 @api_view(["POST"])
 def register(request):
-
     serializer = RegisterSerializer(data=request.data)
 
     if serializer.is_valid():
@@ -155,17 +140,13 @@ def register(request):
 
 @api_view(["GET"])
 def delete_table(request, table):
-
     if table == "event":
-
         Event.objects.all().delete()
 
     if table == "attempt":
-
         Attempt.objects.all().delete()
 
     if table == "all":
-
         Event.objects.all().delete()
         Attempt.objects.all().delete()
 
