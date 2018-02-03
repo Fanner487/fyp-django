@@ -25,13 +25,14 @@ class UserModelTestCase(TestCase):
         self.assertNotEqual(user.first_name, "NOTTest")
         self.assertNotEqual(user.last_name, "NOtUser")
 
-    def test_user_create_user_invalid(self):
-        user = User.objects.create_user(username="tes   tuser2", email="test2@example.com", password="mypassword",
+    def test_user_create_user_update(self):
+        user = User.objects.create_user(username="testtuser2", email="test2@example.com", password="mypassword",
                                         first_name="Test", last_name="User")
 
-        print(user.username)
+        self.assertEqual(user.username, "testuser2")
 
-        # self.assertNotEqual(user.username, "NOTtestuser")
-        # self.assertNotEqual(user.email, "testNOT@example.com")
-        # self.assertNotEqual(user.first_name, "NOTTest")
-        # self.assertNotEqual(user.last_name, "NOtUser")
+        user.username = "newtestuser2"
+        user.save()
+
+        updated_user = User.objects.get(id=user.id)
+        self.assertEqual(updated_user, "newtestuser2")
