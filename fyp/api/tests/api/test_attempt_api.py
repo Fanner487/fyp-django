@@ -14,6 +14,10 @@ from time import sleep
 
 # Create your tests here.
 class AttemptTestCase(APITestCase):
+    """
+    Tests successful appending to an event from two scan attempts and also a failure
+    where the event won't add to attending after the two attempts are outside the delta
+    """
 
     def setUp(self):
         self.client = APIClient()
@@ -127,6 +131,9 @@ class AttemptTestCase(APITestCase):
 
 
 class AttemptUpdateDeleteTestCase(APITestCase):
+    """
+    Tests the UPDATE, DELETE restrictions in the attempt API View. Only POSTs are permitted
+    """
 
     def setUp(self):
         self.client = APIClient()

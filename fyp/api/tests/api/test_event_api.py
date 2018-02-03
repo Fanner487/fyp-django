@@ -10,10 +10,11 @@ from rest_framework import status
 import json
 
 
-# Create your tests here.s
-
-
 class EventTestCase(TestCase):
+    """
+    Tests all API calls for CRUD operations of the Event model.
+    All potential invalid and non-nullable fields are tested
+    """
 
     def create_user(self, username, email, password):
         user = User.objects.create_user(username, email, password)
@@ -314,9 +315,7 @@ class EventTestCase(TestCase):
 
 
 class EventUpdateTest(APITestCase):
-
     def setUp(self):
-
         self.client = APIClient()
         self.url = "/api/events/"
 
@@ -336,7 +335,6 @@ class EventUpdateTest(APITestCase):
         )
 
     def test_event_update(self):
-
         new_data = json.dumps({
             'organiser': 'user1',
             'event_name': 'new_test',
@@ -502,3 +500,24 @@ class EventUpdateTest(APITestCase):
                                      content_type='application/json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
+
+class EventDeleteTest(APITestCase):
+    def setUp(self):
+        self.client = APIClient()
+        self.event = Event.objects.create(
+            organiser='user1',
+            event_name='test',
+            location='test',
+            start_time='2050-01-29T13:30:00',
+            finish_time='2060-01-29T13:30:00',
+            sign_in_time='2050-01-29T13:30:00',
+            attendees=['user2', 'user3'],
+        )
+
+        self.client = APIClient()
+
+    def test_event_delete(self):
+        response = self.client.delete("/api/attempts/" + str(self.event.id) + "/")
+
+        print(self.event.id)
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
