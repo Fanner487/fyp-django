@@ -6,6 +6,7 @@ from rest_framework.decorators import api_view
 from rest_framework.viewsets import ModelViewSet
 from .serializers import EventSerializer, AttemptSerializer, UserSerializer, LoginSerializer, RegisterSerializer
 from .models import Event, Attempt
+from rest_framework import mixins
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from datetime import datetime
@@ -20,7 +21,8 @@ class EventViewSet(ModelViewSet):
     queryset = Event.objects.all()
 
 
-class AttemptViewSet(ModelViewSet):
+class AttemptViewSet(mixins.CreateModelMixin,
+                     ModelViewSet):
     """ModelViewSet for Attempt."""
 
     serializer_class = AttemptSerializer
