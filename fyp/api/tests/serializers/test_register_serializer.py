@@ -138,3 +138,18 @@ class LoginSerializerTest(TestCase):
         serializer = serializers.RegisterSerializer(data=data)
         self.assertFalse(serializer.is_valid())
         self.assertEqual(len(serializer.errors['last_name']), 1)
+
+    def test_register_null_incorrect_matching_passwords(self):
+
+        data = {
+            'username': 'testuser10',
+            'email': "test10@example.com",
+            'password': 'mypassword',
+            'password_confirm': 'NOTmypassword',
+            'first_name': "Test",
+            'last_name': "User"
+        }
+
+        serializer = serializers.RegisterSerializer(data=data)
+        self.assertFalse(serializer.is_valid())
+        self.assertEqual(len(serializer.errors['non_field_errors']), 1)
