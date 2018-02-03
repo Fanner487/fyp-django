@@ -55,20 +55,86 @@ class LoginSerializerTest(TestCase):
         serializer = serializers.RegisterSerializer(data=data)
         self.assertFalse(serializer.is_valid())
 
-    # def test_login_null_username(self):
-    #     data = {
-    #         'password': 'mypassword'
-    #     }
-    #
-    #     serializer = serializers.RegisterSerializer(data=data)
-    #     self.assertFalse(serializer.is_valid())
-    #     self.assertEqual(len(serializer.errors['username']), 1)
-    #
-    # def test_login_null_password(self):
-    #     data = {
-    #         'username': 'testuser'
-    #     }
-    #
-    #     serializer = serializers.LoginSerializer(data=data)
-    #     self.assertFalse(serializer.is_valid())
-    #     self.assertEqual(len(serializer.errors['password']), 1)
+    def test_register_null_username(self):
+
+        data = {
+            'email': "test4@example.com",
+            'password': 'mypassword',
+            'password_confirm': 'mypassword',
+            'first_name': "Test",
+            'last_name': "User"
+        }
+
+        serializer = serializers.RegisterSerializer(data=data)
+        self.assertFalse(serializer.is_valid())
+        self.assertEqual(len(serializer.errors['username']), 1)
+
+    def test_register_null_email(self):
+
+        data = {
+            'username': 'testuser5',
+            'password': 'mypassword',
+            'password_confirm': 'mypassword',
+            'first_name': "Test",
+            'last_name': "User"
+        }
+
+        serializer = serializers.RegisterSerializer(data=data)
+        self.assertFalse(serializer.is_valid())
+        self.assertEqual(len(serializer.errors['email']), 1)
+
+    def test_register_null_password(self):
+
+        data = {
+            'username': 'testuser6',
+            'email': "test6@example.com",
+            'password_confirm': 'mypassword',
+            'first_name': "Test",
+            'last_name': "User"
+        }
+
+        serializer = serializers.RegisterSerializer(data=data)
+        self.assertFalse(serializer.is_valid())
+        self.assertEqual(len(serializer.errors['password']), 1)
+
+    def test_register_null_confirm_password(self):
+
+        data = {
+            'username': 'testuser7',
+            'email': "test7@example.com",
+            'password': 'mypassword',
+            'first_name': "Test",
+            'last_name': "User"
+        }
+
+        serializer = serializers.RegisterSerializer(data=data)
+        self.assertFalse(serializer.is_valid())
+        self.assertEqual(len(serializer.errors['confirm_password']), 1)
+
+    def test_register_null_first_name(self):
+
+        data = {
+            'username': 'testuser8',
+            'email': "test8@example.com",
+            'password': 'mypassword',
+            'password_confirm': 'mypassword',
+            'last_name': "User"
+        }
+
+        serializer = serializers.RegisterSerializer(data=data)
+        self.assertFalse(serializer.is_valid())
+        self.assertEqual(len(serializer.errors['first_name']), 1)
+
+    def test_register_null_last_name(self):
+
+        data = {
+            'username': 'testuser9',
+            'email': "test9@example.com",
+            'password': 'mypassword',
+            'password_confirm': 'mypassword',
+            'first_name': "Test",
+        }
+
+        serializer = serializers.RegisterSerializer(data=data)
+        self.assertFalse(serializer.is_valid())
+        self.assertEqual(len(serializer.errors['last_name']), 1)
