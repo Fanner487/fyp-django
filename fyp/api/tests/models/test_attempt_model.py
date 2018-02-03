@@ -16,7 +16,7 @@ class AttemptModelTestCase(TestCase):
             date_on_screen='2050-01-29'
         )
 
-        self.assertEqual(attempt.organiser, "user1")
+        self.assertEqual(attempt.username, "user1")
         self.assertEqual(attempt.event_id, 1)
         self.assertGreater(timezone.now().strftime("%Y-%m-%d"), attempt.date_on_screen)
         self.assertGreater(timezone.now().strftime("%H:%M:%S"), attempt.time_on_screen)

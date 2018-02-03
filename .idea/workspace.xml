@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="b2c529be-bfca-4366-bb99-ac5ec9275170" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fyp/api/tests/models/test_attempt_model.py" afterPath="$PROJECT_DIR$/fyp/api/tests/models/test_attempt_model.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fyp/api/tests/models/test_event_model.py" afterPath="$PROJECT_DIR$/fyp/api/tests/models/test_event_model.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -99,8 +98,8 @@
       <file leaf-file-name="test_attempt_model.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/fyp/api/tests/models/test_attempt_model.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" column="9" lean-forward="true" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
+            <state relative-caret-position="306">
+              <caret line="18" column="41" lean-forward="false" selection-start-line="18" selection-start-column="41" selection-end-line="18" selection-end-column="41" />
               <folding>
                 <element signature="e#24#63#0" expanded="true" />
               </folding>
@@ -805,8 +804,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/fyp/api/tests/models/test_attempt_model.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="9" lean-forward="true" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
+        <state relative-caret-position="306">
+          <caret line="18" column="41" lean-forward="false" selection-start-line="18" selection-start-column="41" selection-end-line="18" selection-end-column="41" />
           <folding>
             <element signature="e#24#63#0" expanded="true" />
           </folding>
