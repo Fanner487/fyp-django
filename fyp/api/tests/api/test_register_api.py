@@ -5,12 +5,14 @@ from rest_framework.test import APIClient
 
 
 class RegisterTest(APITestCase):
+    """
+    Tests all register API calls with parameters
+    """
 
     def setUp(self):
 
         self.client = APIClient()
         self.url = "/api/register"
-        # self.create_url = reverse("/api/register")
 
         self.test_user = User.objects.create_user(
             username='testuser',
@@ -127,4 +129,39 @@ class RegisterTest(APITestCase):
         self.assertEqual(User.objects.count(), 1)
         print(response.content)
         self.assertEqual(len(response.data['non_field_errors']), 1)
+
+    def test_create_user_with_no_first_name(self):
+
+        data = {
+            'username': 'testuser3',
+            'email': 'testuser3@example.com',
+            'password': 'test',
+            'password_confirm': 'test',
+            'last_name': 'User'
+        }
+
+        response = self.client.post(self.url, data=data, format='json')
+
+        # asserts status_code, only one
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertEqual(User.objects.count(), 1)
+        self.assertEqual(len(response.data['first_name']), 1)
+
+    def test_create_user_with_no_last_name(self):
+
+        data = {
+            'username': 'testuser3',
+            'email': 'testuser3@example.com',
+            'password': 'test',
+            'password_confirm': 'test',
+            'first_name': "User"
+        }
+
+        response = self.client.post(self.url, data=data, format='json')
+
+        # asserts status_code, only one
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertEqual(User.objects.count(), 1)
+        self.assertEqual(len(response.data['last_name']), 1)
+
 

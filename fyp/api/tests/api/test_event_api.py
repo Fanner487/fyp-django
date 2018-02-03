@@ -9,11 +9,15 @@ from api.models import Event
 from rest_framework import status
 import json
 
+"""
+Tests all API calls for CRUD operations of the Event model.
+All potential invalid and non-nullable fields are tested
+"""
 
-class EventTestCase(TestCase):
+
+class EventCreateTestCase(TestCase):
     """
-    Tests all API calls for CRUD operations of the Event model.
-    All potential invalid and non-nullable fields are tested
+    Tests all parameters of API POST operations
     """
 
     def create_user(self, username, email, password):
@@ -314,7 +318,11 @@ class EventTestCase(TestCase):
         self.assertEquals(get_response.status_code, status.HTTP_404_NOT_FOUND)
 
 
-class EventUpdateTest(APITestCase):
+class EventUpdateTestCase(APITestCase):
+    """
+    Tests all parameters of API PATCH operations
+    """
+
     def setUp(self):
         self.client = APIClient()
         self.url = "/api/events/"
@@ -501,7 +509,11 @@ class EventUpdateTest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
 
-class EventDeleteTest(APITestCase):
+class EventDeleteTestCase(APITestCase):
+    """
+    Test event delete API operations
+    """
+
     def setUp(self):
         self.client = APIClient()
         self.event = Event.objects.create(
@@ -524,17 +536,9 @@ class EventDeleteTest(APITestCase):
         self.assertEqual(response_get.json().get('organiser'), 'user1')
 
         response = self.client.delete("/api/events/" + str(self.event.id) + "/")
-
-        print(self.event.id)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
-        # event = Event.objects.get(id=self.event.id)
-        # self.assertIsNone(Event.objects.get(id=self.event.id))
-        # print("\n\n")
-        # print(event.event_name)
-
     def test_event_delete_wrong_id(self):
-        response = self.client.delete("/api/events/9999999/")
 
-        print(self.event.id)
+        response = self.client.delete("/api/events/9999999/")
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)

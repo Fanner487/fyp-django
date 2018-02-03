@@ -5,6 +5,10 @@ from rest_framework.test import APIClient
 
 
 class LoginTest(APITestCase):
+    """
+    Tests all login API calls with parameters
+    """
+
     def setUp(self):
         self.client = APIClient()
         self.url = "/api/login"
