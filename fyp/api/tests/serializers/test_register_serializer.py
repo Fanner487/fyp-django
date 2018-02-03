@@ -109,7 +109,7 @@ class LoginSerializerTest(TestCase):
 
         serializer = serializers.RegisterSerializer(data=data)
         self.assertFalse(serializer.is_valid())
-        self.assertEqual(len(serializer.errors['confirm_password']), 1)
+        self.assertEqual(len(serializer.errors['password_confirm']), 1)
 
     def test_register_null_first_name(self):
 
