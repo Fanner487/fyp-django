@@ -187,6 +187,9 @@ class EventExistsTestCase(TestCase):
 
 
 class AttendeeIsUserTestCase(TestCase):
+    """
+    attendee_is_user function test
+    """
 
     def setUp(self):
 
