@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 from django.test import TestCase
 from django.contrib.auth.models import User
+import pprint
 
 
 class UserModelTestCase(TestCase):
@@ -52,6 +53,6 @@ class UserModelTestCase(TestCase):
         user_id = user.id
 
         deleted_user = User.objects.get(pk=user_id).delete()
-        print(deleted_user)
+        pprint(deleted_user)
 
         # self.assertFalse()
