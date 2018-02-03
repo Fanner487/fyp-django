@@ -61,8 +61,8 @@ class UserModelTestCase(TestCase):
         user = User.objects.create_user(username="testuser4", email="test4@example.com", password="mypassword",
                                         first_name="Test", last_name="User")
 
-        self.assertEqual(user.username, "testuser3")
-        self.assertEqual(user.email, "test3@example.com")
+        self.assertEqual(user.username, "testuser4")
+        self.assertEqual(user.email, "test4@example.com")
         self.assertEqual(user.first_name, "Test")
         self.assertEqual(user.last_name, "User")
 
