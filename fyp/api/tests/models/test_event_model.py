@@ -29,30 +29,55 @@ class EventModelTestCase(TestCase):
         self.assertEqual(event.attendees, ['user2', 'user3', 'user4'])
         self.assertIsNone(event.attending)
         self.assertEqual(event.attendance_required, False)
-    #
-    # def test_event_create_wrong_values_compare(self):
-    #     user = User.objects.create_user(username="testuser1", email="test1@example.com", password="mypassword",
-    #                                     first_name="Test", last_name="User")
-    #
-    #     self.assertNotEqual(user.username, "NOTtestuser")
-    #     self.assertNotEqual(user.email, "testNOT@example.com")
-    #     self.assertNotEqual(user.first_name, "NOTTest")
-    #     self.assertNotEqual(user.last_name, "NOtUser")
-    #
-    # def test_event_create_user_update(self):
-    #     user = User.objects.create_user(username="testuser2", email="test2@example.com", password="mypassword",
-    #                                     first_name="Test", last_name="User")
-    #
-    #     self.assertEqual(user.username, "testuser2")
-    #     self.assertEqual(user.email, "test2@example.com")
-    #     self.assertEqual(user.first_name, "Test")
-    #     self.assertEqual(user.last_name, "User")
-    #
-    #     user.username = "newtestuser2"
-    #     user.save()
-    #
-    #     updated_user = User.objects.get(id=user.id)
-    #     self.assertEqual(updated_user.username, "newtestuser2")
+
+    def test_event_create_wrong_values_compare(self):
+
+        event = Event.objects.create(
+            organiser="user1",
+            event_name="test",
+            location="test",
+            start_time='2050-01-29T12:00:00',
+            finish_time='2050-01-29T12:30:00',
+            sign_in_time='2050-01-29T12:00:00',
+            attendees=['user2', 'user3', 'user4']
+        )
+
+        self.assertEqual(event.organiser, "user1NOT")
+        self.assertEqual(event.event_name, "testNOT")
+        self.assertEqual(event.location, "testNOT")
+        self.assertEqual(event.start_time, '2060-01-29T12:00:00')
+        self.assertEqual(event.finish_time, '2060-01-29T12:30:00')
+        self.assertEqual(event.sign_in_time, '2060-01-29T12:00:00')
+        self.assertEqual(event.attendees, ['user2', 'user3'])
+        # self.assertIsNone(event.attending)
+        self.assertEqual(event.attendance_required, False)
+
+    def test_event_create_user_update(self):
+        event = Event.objects.create(
+            organiser="user1",
+            event_name="test",
+            location="test",
+            start_time='2050-01-29T12:00:00',
+            finish_time='2050-01-29T12:30:00',
+            sign_in_time='2050-01-29T12:00:00',
+            attendees=['user2', 'user3', 'user4']
+        )
+
+        self.assertEqual(event.organiser, "user1")
+        self.assertEqual(event.event_name, "test")
+        self.assertEqual(event.location, "test")
+        self.assertEqual(event.start_time, '2050-01-29T12:00:00')
+        self.assertEqual(event.finish_time, '2050-01-29T12:30:00')
+        self.assertEqual(event.sign_in_time, '2050-01-29T12:00:00')
+        self.assertEqual(event.attendees, ['user2', 'user3', 'user4'])
+        self.assertIsNone(event.attending)
+        self.assertEqual(event.attendance_required, False)
+
+        event.location = "new_location"
+        event.save()
+
+        updated_event = User.objects.get(id=event.id)
+        self.assertEqual(updated_event.location, "new_location")
     #
     # def test_event_create_user_destroy(self):
     #     user = User.objects.create_user(username="testuser3", email="test3@example.com", password="mypassword",
