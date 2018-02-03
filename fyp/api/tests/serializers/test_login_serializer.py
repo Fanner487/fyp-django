@@ -2,7 +2,6 @@
 from __future__ import unicode_literals
 
 from django.test import TestCase
-from api.models import Event
 from django.contrib.auth.models import User
 from api import serializers
 
@@ -46,12 +45,12 @@ class LoginSerializerTest(TestCase):
         }
 
         serializer = serializers.LoginSerializer(data=data)
-        self.assertFalse(serializer.is_valid())
+        self.assertTrue(serializer.is_valid())
 
-    def test_login_password(self):
+    def test_login_null_password(self):
         data = {
             'username': 'testuser'
         }
 
         serializer = serializers.LoginSerializer(data=data)
-        self.assertFalse(serializer.is_valid())
+        self.assertTrue(serializer.is_valid())
