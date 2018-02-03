@@ -214,29 +214,21 @@ class AttemptUpdateDeleteTestCase(APITestCase):
                                             content_type='application/json')
 
         self.assertEqual(response_update.status_code, status.HTTP_404_NOT_FOUND)
-    #
-    # def test_attempt_out_of_time_delta_screen(self):
-    #     event_response = self.create_test_event_now()
-    #     self.assertEquals(event_response.status_code, status.HTTP_201_CREATED)
-    #
-    #     event_id = event_response.json().get('id')
-    #
-    #     sleep(2)
-    #
-    #     response1 = self.create_test_attempt_now("user2", event_id)
-    #     print(response1.status_code)
-    #     print(response1.json())
-    #
-    #     sleep(10)
-    #
-    #     response2 = self.create_test_attempt_now("user2", event_id)
-    #     print(response1.status_code)
-    #     print(response1.json())
-    #
-    #     self.assertEquals(response1.status_code, status.HTTP_201_CREATED)
-    #     self.assertEquals(response2.status_code, status.HTTP_201_CREATED)
-    #
-    #     event = Event.objects.get(id=event_id)
-    #     # self.assertIsNone(event.attending)
-    #     self.assertTrue("user2" not in event.attending)
+
+    def test_attempt_delete(self):
+        event_response = self.create_test_event_now()
+        self.assertEquals(event_response.status_code, status.HTTP_201_CREATED)
+
+        event_id = event_response.json().get('id')
+
+        sleep(2)
+
+        response = self.create_test_attempt_now("user2", event_id)
+
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
+        response_update = self.client.delete("/api/attempts/" + str(event_id) + "/")
+
+        self.assertEqual(response_update.status_code, status.HTTP_404_NOT_FOUND)
+
 
