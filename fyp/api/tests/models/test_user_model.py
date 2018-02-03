@@ -49,8 +49,10 @@ class UserModelTestCase(TestCase):
         self.assertEqual(user.first_name, "Test")
         self.assertEqual(user.last_name, "User")
 
+        id = user.id
         user.delete()
 
-        print(User.objects.get(id=user.id))
+        deleted_user = User.objects.get(pk=id).delete()
+        print(deleted_user)
 
         # self.assertFalse()
