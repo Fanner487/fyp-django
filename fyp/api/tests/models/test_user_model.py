@@ -26,7 +26,7 @@ class UserModelTestCase(TestCase):
         self.assertNotEqual(user.last_name, "NOtUser")
 
     def test_user_create_user_update(self):
-        user = User.objects.create_user(username="testtuser2", email="test2@example.com", password="mypassword",
+        user = User.objects.create_user(username="testuser2", email="test2@example.com", password="mypassword",
                                         first_name="Test", last_name="User")
 
         self.assertEqual(user.username, "testuser2")
