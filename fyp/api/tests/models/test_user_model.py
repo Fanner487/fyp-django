@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from django.test import TestCase
 from django.contrib.auth.models import User
-import pprint
+from pprint import pprint
 
 
 class UserModelTestCase(TestCase):
