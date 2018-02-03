@@ -39,7 +39,7 @@ class LoginSerializerTest(TestCase):
             'last_name': "User"
         }
 
-        serializer = serializers.LoginSerializer(data=data)
+        serializer = serializers.RegisterSerializer(data=data)
         self.assertFalse(serializer.is_valid())
 
     def test_register_existing_email(self):
