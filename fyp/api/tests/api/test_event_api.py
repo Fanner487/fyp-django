@@ -522,8 +522,8 @@ class EventDeleteTest(APITestCase):
         print(self.event.id)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
-        event = Event.objects.get(id=self.event.id)
-        self.assertIsNone(event)
+        # event = Event.objects.get(id=self.event.id)
+        self.assertIsNone(Event.objects.get(id=self.event.id))
         # print("\n\n")
         # print(event.event_name)
 
