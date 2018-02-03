@@ -76,7 +76,7 @@ class EventModelTestCase(TestCase):
         event.location = "new_location"
         event.save()
 
-        updated_event = User.objects.get(id=event.id)
+        updated_event = Event.objects.get(id=event.id)
         self.assertEqual(updated_event.location, "new_location")
     #
     # def test_event_create_user_destroy(self):
