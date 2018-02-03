@@ -520,12 +520,12 @@ class EventDeleteTest(APITestCase):
         response = self.client.delete("/api/events/" + str(self.event.id) + "/")
 
         print(self.event.id)
-        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
         event = Event.objects.get(id=self.event.id)
-
-        print("\n\n")
-        print(event.event_name)
+        self.assertIsNone(event)
+        # print("\n\n")
+        # print(event.event_name)
 
     def test_event_delete_wrong_id(self):
         response = self.client.delete("/api/events/9999999/")
