@@ -213,7 +213,9 @@ class AttemptUpdateDeleteTestCase(APITestCase):
         response_update = self.client.patch("/api/attempts/" + str(event_id) + "/", data=data,
                                             content_type='application/json')
 
-        self.assertEqual(response_update.status_code, status.HTTP_204_NO_CONTENT)
+        print("\n\n")
+        print(response.data)
+        self.assertEqual(response_update.status_code, status.HTTP_404_NOT_FOUND)
     #
     # def test_attempt_out_of_time_delta_screen(self):
     #     event_response = self.create_test_event_now()
