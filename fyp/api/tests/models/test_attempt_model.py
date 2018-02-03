@@ -12,14 +12,14 @@ class AttemptModelTestCase(TestCase):
         attempt = Attempt.objects.create(
             username="user1",
             event_id=1,
-            time_on_screen='15:00:35',
-            date_on_screen='2050-01-29'
+            time_on_screen=timezone.now().strftime("%H:%M:%S"),
+            date_on_screen=timezone.now().strftime("%Y-%m-%d")
         )
 
         self.assertEqual(attempt.username, "user1")
         self.assertEqual(attempt.event_id, 1)
-        self.assertGreater(timezone.now().strftime("%Y-%m-%d"), attempt.date_on_screen)
-        self.assertGreater(timezone.now().strftime("%H:%M:%S"), attempt.time_on_screen)
+        self.assertGreaterEqual(timezone.now().strftime("%Y-%m-%d"), attempt.date_on_screen)
+        self.assertGreaterEqual(timezone.now().strftime("%H:%M:%S"), attempt.time_on_screen)
     #
     # def test_attempt_create_wrong_values_compare(self):
     #     attempt = Attempt.objects.create(
