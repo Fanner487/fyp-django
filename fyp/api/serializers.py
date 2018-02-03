@@ -328,8 +328,11 @@ def add_to_attending(username, event_id):
 
     event = Event.objects.get(id=event_id)
 
+    print("organiser: " + str(event.organiser))
+    print("location: " + str(event.location))
     print("Username to append:" + username)
     print("Event_id to append: " + str(event_id))
+    print("Attending: " + str(event.attending))
 
     if username not in event.attending or event.attending is not None:
 
