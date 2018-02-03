@@ -2,7 +2,6 @@
 from __future__ import unicode_literals
 
 from django.test import TestCase
-from django.contrib.auth.models import User
 from pprint import pprint
 from api.models import Event
 
