@@ -55,4 +55,4 @@ class UserModelTestCase(TestCase):
         deleted_user = User.objects.get(pk=user_id).delete()
         pprint(deleted_user)
 
-        # self.assertFalse()
+        self.assertEqual(deleted_user.json().get(auth.User), 1)
