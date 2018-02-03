@@ -19,7 +19,7 @@ class EventViewSet(ModelViewSet):
     queryset = Event.objects.all()
 
 
-class AttemptViewSet(mixins.CreateModelMixin, GenericViewSet):
+class AttemptViewSet(mixins.ListModelMixin, mixins.CreateModelMixin, GenericViewSet):
     """ModelViewSet for Attempt."""
 
     serializer_class = AttemptSerializer
