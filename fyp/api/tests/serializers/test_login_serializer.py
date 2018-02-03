@@ -45,7 +45,7 @@ class LoginSerializerTest(TestCase):
         }
 
         serializer = serializers.LoginSerializer(data=data)
-        self.assertTrue(serializer.is_valid())
+        self.assertFalse(serializer.is_valid())
 
     def test_login_null_password(self):
         data = {
@@ -53,4 +53,4 @@ class LoginSerializerTest(TestCase):
         }
 
         serializer = serializers.LoginSerializer(data=data)
-        self.assertTrue(serializer.is_valid())
+        self.assertFalse(serializer.is_valid())
