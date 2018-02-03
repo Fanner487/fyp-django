@@ -135,6 +135,11 @@ class EventSerializer(serializers.ModelSerializer):
 
         return data
 
+    def create(self, validated_data):
+        validated_data['attending'] = []
+        event = Event.objects.create(**validated_data)
+        return event
+
     class Meta:
         model = Event
         fields = "__all__"
