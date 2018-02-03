@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view
-from rest_framework.viewsets import ModelViewSet
+from rest_framework.viewsets import ModelViewSet, GenericViewSet
 from .serializers import EventSerializer, AttemptSerializer, UserSerializer, LoginSerializer, RegisterSerializer
 from .models import Event, Attempt
 from rest_framework import mixins
@@ -22,7 +22,7 @@ class EventViewSet(ModelViewSet):
 
 
 class AttemptViewSet(mixins.CreateModelMixin,
-                     ModelViewSet):
+                     GenericViewSet):
     """ModelViewSet for Attempt."""
 
     serializer_class = AttemptSerializer
