@@ -35,4 +35,4 @@ class UserModelTestCase(TestCase):
         user.save()
 
         updated_user = User.objects.get(id=user.id)
-        self.assertEqual(updated_user, "newtestuser2")
+        self.assertEqual(updated_user.username, "newtestuser2")
