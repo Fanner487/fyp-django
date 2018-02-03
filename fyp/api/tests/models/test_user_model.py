@@ -55,5 +55,5 @@ class UserModelTestCase(TestCase):
         deleted_user = User.objects.get(pk=user_id).delete()
         pprint(deleted_user)
 
+        # Asserts how many users deleted
         self.assertEqual(deleted_user[0], 1)
-        # self.assert
