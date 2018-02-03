@@ -14,7 +14,9 @@ import pytz
 # Create your views here.
 
 
-class EventViewSet(ModelViewSet):
+class EventViewSet(
+    mixins.CreateModelMixin,
+    GenericViewSet):
     """ModelViewSet for Event."""
 
     serializer_class = EventSerializer
