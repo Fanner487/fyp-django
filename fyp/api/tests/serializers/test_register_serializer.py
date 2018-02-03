@@ -21,6 +21,7 @@ class LoginSerializerTest(TestCase):
             'username': 'testuser1',
             'email': "test1@example.com",
             'password': 'mypassword',
+            'password_confirm': 'mypassword',
             'first_name': "Test",
             'last_name': "User"
         }
@@ -33,6 +34,7 @@ class LoginSerializerTest(TestCase):
             'username': 'testuser',
             'email': "test2@example.com",
             'password': 'mypassword',
+            'password_confirm': 'mypassword',
             'first_name': "Test",
             'last_name': "User"
         }
@@ -45,6 +47,7 @@ class LoginSerializerTest(TestCase):
             'username': 'testuser3',
             'email': "test@example.com",
             'password': 'mypassword',
+            'password_confirm': 'mypassword',
             'first_name': "Test",
             'last_name': "User"
         }
