@@ -37,18 +37,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test_login_api.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/fyp/api/tests/api/test_login_api.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-624">
-              <caret line="7" column="4" lean-forward="false" selection-start-line="7" selection-start-column="4" selection-end-line="9" selection-end-column="7" />
-              <folding>
-                <element signature="e#0#43#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="test_event_serializer.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/fyp/api/tests/serializers/test_event_serializer.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -83,11 +71,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test_login_serializer.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="test_login_serializer.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/fyp/api/tests/serializers/test_login_serializer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="48" column="56" lean-forward="false" selection-start-line="48" selection-start-column="56" selection-end-line="48" selection-end-column="56" />
+            <state relative-caret-position="170">
+              <caret line="10" column="43" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+              <folding>
+                <element signature="e#24#63#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test_register_serializer.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/fyp/api/tests/serializers/test_register_serializer.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="243">
+              <caret line="54" column="4" lean-forward="false" selection-start-line="54" selection-start-column="6" selection-end-line="71" selection-end-column="0" />
               <folding>
                 <element signature="e#24#63#0" expanded="true" />
               </folding>
@@ -148,6 +148,7 @@
         <option value="$PROJECT_DIR$/fyp/api/tests/serializers/test_event_serializer.py" />
         <option value="$PROJECT_DIR$/fyp/api/tests/serializers/test_attempt_serializer.py" />
         <option value="$PROJECT_DIR$/fyp/api/tests/serializers/test_login_serializer.py" />
+        <option value="$PROJECT_DIR$/fyp/api/tests/serializers/test_register_serializer.py" />
       </list>
     </option>
   </component>
@@ -648,16 +649,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fyp/api/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-46">
-          <caret line="21" column="44" lean-forward="false" selection-start-line="21" selection-start-column="44" selection-end-line="21" selection-end-column="44" />
-          <folding>
-            <element signature="e#24#63#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/fyp/api/tests/api/test_user_api.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-981">
@@ -704,16 +695,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fyp/api/tests/api/test_login_api.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-624">
-          <caret line="7" column="4" lean-forward="false" selection-start-line="7" selection-start-column="4" selection-end-line="9" selection-end-column="7" />
-          <folding>
-            <element signature="e#0#43#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/fyp/api/tests/serializers/test_event_serializer.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2414">
@@ -724,10 +705,40 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/fyp/api/tests/api/test_login_api.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-624">
+          <caret line="7" column="4" lean-forward="false" selection-start-line="7" selection-start-column="4" selection-end-line="9" selection-end-column="7" />
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fyp/api/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-46">
+          <caret line="21" column="44" lean-forward="false" selection-start-line="21" selection-start-column="44" selection-end-line="21" selection-end-column="44" />
+          <folding>
+            <element signature="e#24#63#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/fyp/api/tests/serializers/test_login_serializer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="48" column="56" lean-forward="false" selection-start-line="48" selection-start-column="56" selection-end-line="48" selection-end-column="56" />
+        <state relative-caret-position="170">
+          <caret line="10" column="43" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+          <folding>
+            <element signature="e#24#63#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fyp/api/tests/serializers/test_register_serializer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="54" column="4" lean-forward="false" selection-start-line="54" selection-start-column="6" selection-end-line="71" selection-end-column="0" />
           <folding>
             <element signature="e#24#63#0" expanded="true" />
           </folding>
