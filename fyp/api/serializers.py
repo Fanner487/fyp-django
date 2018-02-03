@@ -332,9 +332,9 @@ def add_to_attending(username, event_id):
     print("location: " + str(event.location))
     print("Username to append:" + username)
     print("Event_id to append: " + str(event_id))
-    print("Attending: " + str(event.attending))
+    print("Attending: " + str(event.attendees))
 
-    if username not in event.attending or event.attending is not None:
+    if username not in event.attending or event.attending is None:
 
         print("Appending user")
         event.attending.append(username.strip().lower())
