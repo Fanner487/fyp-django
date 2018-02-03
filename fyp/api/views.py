@@ -14,16 +14,14 @@ import pytz
 # Create your views here.
 
 
-class EventViewSet(
-    mixins.CreateModelMixin,
-    GenericViewSet):
+class EventViewSet(ModelViewSet):
     """ModelViewSet for Event."""
 
     serializer_class = EventSerializer
     queryset = Event.objects.all()
 
 
-class AttemptViewSet(ModelViewSet):
+class AttemptViewSet(mixins.CreateModelMixin, GenericViewSet):
     """ModelViewSet for Attempt."""
 
     serializer_class = AttemptSerializer
