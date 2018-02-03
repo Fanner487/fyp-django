@@ -86,8 +86,8 @@
       <file leaf-file-name="test_user_model.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/fyp/api/tests/models/test_user_model.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="430">
-              <caret line="55" column="28" lean-forward="true" selection-start-line="55" selection-start-column="28" selection-end-line="55" selection-end-column="28" />
+            <state relative-caret-position="464">
+              <caret line="57" column="39" lean-forward="true" selection-start-line="57" selection-start-column="39" selection-end-line="57" selection-end-column="39" />
               <folding>
                 <element signature="e#24#63#0" expanded="true" />
               </folding>
@@ -794,8 +794,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/fyp/api/tests/models/test_user_model.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="430">
-          <caret line="55" column="28" lean-forward="true" selection-start-line="55" selection-start-column="28" selection-end-line="55" selection-end-column="28" />
+        <state relative-caret-position="464">
+          <caret line="57" column="39" lean-forward="true" selection-start-line="57" selection-start-column="39" selection-end-line="57" selection-end-column="39" />
           <folding>
             <element signature="e#24#63#0" expanded="true" />
           </folding>
