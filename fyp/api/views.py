@@ -13,66 +13,98 @@ import pytz
 
 
 class EventViewSet(ModelViewSet):
-    """ModelViewSet for Event."""
+    """
+    ModelViewSet for Event.
+    GET, POST, PATCH operations and handling are generated from the parent class
+    Only the serializer and relevant object class are needed
+    """
 
     serializer_class = EventSerializer
     queryset = Event.objects.all()
 
 
 class AttemptViewSet(mixins.ListModelMixin, mixins.CreateModelMixin, GenericViewSet):
-    """ModelViewSet for Attempt."""
+    """
+    Generic for Event.
+    Only list and create methods are permitted from the mixins in the declaration above
+    It forbids end users to update, or delete attempts using the API (DELETE, PATCH)
+    """
 
     serializer_class = AttemptSerializer
     queryset = Attempt.objects.all()
 
 
 class UserViewSet(ModelViewSet):
-    """ModelViewSet for User."""
+    """
+    ModelViewSet for User.
+    GET, POST, PATCH, DELETE operations and handling are generated from the parent class
+    Only the serializer and relevant object class are needed
+    """
 
     serializer_class = UserSerializer
     queryset = User.objects.all()
 
 
-def filter_events_by_time(events, event_time):
-    """Filters events by all, past, ongoing or future."""
-    utc = pytz.UTC  # using timezomes for time checking
-    time_now = datetime.now().replace(tzinfo=utc)
+@api_view(["POST"])
+def login(request):
+    """
+    Login API view.
+    Returns appropriate authentication messages
+    """
 
-    filtered_set = []
+    serializer = LoginSerializer(data=request.data)
 
-    if event_time == "all":
-
-        filtered_set = events
-
-    elif event_time == "past":
-
-        for event in events:
-
-            if event.finish_time < time_now:
-                filtered_set.append(event)
-
-    elif event_time == "ongoing":
-
-        for event in events:
-
-            if event.start_time <= time_now <= event.finish_time:
-                filtered_set.append(event)
-
-    elif event_time == "upcoming":
-
-        for event in events:
-
-            if event.start_time > time_now:
-                filtered_set.append(event)
+    # if not user:
+    if not serializer.is_valid():
+        return Response(status=status.HTTP_401_UNAUTHORIZED)
     else:
-        filtered_set = []
+        return Response({"message": "Login successful"}, status=status.HTTP_200_OK)
 
-    return filtered_set
+
+@api_view(["POST"])
+def register(request):
+    """
+    Register API view.
+    Returns appropriate validation messages from the serializer
+    """
+    serializer = RegisterSerializer(data=request.data)
+
+    if serializer.is_valid():
+        user = serializer.save()
+
+        if user:
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(["GET"])
+def delete_table(request, table):
+    """
+    Delete table API view.
+    Deletes specified tables.
+    This is scrictly for debugging purposes
+    """
+
+    if table == "event":
+        Event.objects.all().delete()
+
+    if table == "attempt":
+        Attempt.objects.all().delete()
+
+    if table == "all":
+        Event.objects.all().delete()
+        Attempt.objects.all().delete()
+
+    return Response(status=status.HTTP_200_OK)
 
 
 @api_view(["GET"])
 def get_events(request, username, event_type, time):
-    """Get events for user according to organising, and time tense."""
+    """
+    Get events for user according to organising/attending, and time tense.
+    """
+
     username = username.strip().lower()
     event_type = event_type.strip().lower()
 
@@ -112,42 +144,40 @@ def get_events(request, username, event_type, time):
         return Response(status=status.HTTP_400_BAD_REQUEST)
 
 
-@api_view(["POST"])
-def login(request):
-    # """Login."""
+def filter_events_by_time(events, event_time):
+    """Filters events by all, past, ongoing or future."""
 
-    serializer = LoginSerializer(data=request.data)
+    utc = pytz.UTC  # using timezones for time checking
+    time_now = datetime.now().replace(tzinfo=utc)
 
-    # if not user:
-    if not serializer.is_valid():
-        return Response(status=status.HTTP_401_UNAUTHORIZED)
+    filtered_set = []
+
+    if event_time == "all":
+
+        filtered_set = events
+
+    elif event_time == "past":
+
+        for event in events:
+
+            if event.finish_time < time_now:
+                filtered_set.append(event)
+
+    elif event_time == "ongoing":
+
+        for event in events:
+
+            if event.start_time <= time_now <= event.finish_time:
+                filtered_set.append(event)
+
+    elif event_time == "upcoming":
+
+        for event in events:
+
+            if event.start_time > time_now:
+                filtered_set.append(event)
     else:
-        return Response({"message": "Login successful"}, status=status.HTTP_200_OK)
+        filtered_set = []
 
+    return filtered_set
 
-@api_view(["POST"])
-def register(request):
-    serializer = RegisterSerializer(data=request.data)
-
-    if serializer.is_valid():
-        user = serializer.save()
-
-        if user:
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-
-    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-@api_view(["GET"])
-def delete_table(request, table):
-    if table == "event":
-        Event.objects.all().delete()
-
-    if table == "attempt":
-        Attempt.objects.all().delete()
-
-    if table == "all":
-        Event.objects.all().delete()
-        Attempt.objects.all().delete()
-
-    return Response(status=status.HTTP_200_OK)

@@ -8,6 +8,10 @@ from django.utils import timezone
 
 
 class AttemptModelTestCase(TestCase):
+    """
+    Tests Attempt model for creation, comparison, update and delete
+    """
+
     def test_attempt_create(self):
         attempt = Attempt.objects.create(
             username="user1",

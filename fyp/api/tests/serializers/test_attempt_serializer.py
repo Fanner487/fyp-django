@@ -6,7 +6,10 @@ from api.models import Event, Attempt
 from django.contrib.auth.models import User
 from api import serializers
 import datetime
-from time import sleep
+
+"""
+Tests all parameters and fields of AttemptSerializer
+"""
 
 
 def create_event():

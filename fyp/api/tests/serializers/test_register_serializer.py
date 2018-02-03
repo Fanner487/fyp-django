@@ -6,9 +6,9 @@ from django.contrib.auth.models import User
 from api import serializers
 
 
-class LoginSerializerTest(TestCase):
+class RegisterSerializerTest(TestCase):
     """
-    Tests all parameters of LoginSerializer
+    Tests all parameters of RegisterSerializer
     """
 
     def setUp(self):

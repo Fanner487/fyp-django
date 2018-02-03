@@ -7,10 +7,10 @@ from api import serializers
 
 
 class LoginSerializerTest(TestCase):
-    """
-    Tests all parameters of LoginSerializer
-    """
 
+    """
+        Tests all parameters of LoginSerializer
+        """
     def setUp(self):
         self.user = User.objects.create_user(username="testuser", email="test@example.com", password="mypassword")
 

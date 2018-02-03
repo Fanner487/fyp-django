@@ -8,7 +8,18 @@ from django.contrib.auth import authenticate
 import pytz
 
 
+"""
+Serializers declared
+Serializers are the middleware between models and the API views.
+Data can be validated here before the object gets created in the DB
+Data can be de/serialized to/from JSON into a format the ORM understands
+"""
+
+
 class LoginSerializer(serializers.Serializer):
+    """
+    Authenticates username and password against the DB
+    """
 
     username = serializers.CharField(required=True)
     password = serializers.CharField(required=True)
@@ -28,6 +39,10 @@ class LoginSerializer(serializers.Serializer):
 
 
 class RegisterSerializer(serializers.ModelSerializer):
+    """
+    Serializer for User registration. Verifies unique usernames, emails
+    and validates other fields required for registration
+    """
 
     email = serializers.EmailField(
         required=True,
@@ -66,6 +81,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     def validate(self, data):
 
+        # Validates if user input the same password to be valid
         if data.get('password') != data.get('password_confirm'):
             raise serializers.ValidationError("Incorrect passwords")
 
@@ -83,6 +99,10 @@ class RegisterSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
+    """
+    Serializer for User display
+    """
+
     class Meta:
         model = User
         # fields = "__all__"
@@ -90,6 +110,10 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class EventSerializer(serializers.ModelSerializer):
+    """
+    Serializer for Event CRUD operations.
+    Verifies if users exists in attendees and organisers
+    """
 
     def validate(self, data):
 
@@ -136,6 +160,8 @@ class EventSerializer(serializers.ModelSerializer):
         return data
 
     def create(self, validated_data):
+
+        # Makes sure attending does not get instantiated with NoneType during creation
         validated_data['attending'] = []
         event = Event.objects.create(**validated_data)
         return event
@@ -147,6 +173,20 @@ class EventSerializer(serializers.ModelSerializer):
 
 
 class AttemptSerializer(serializers.ModelSerializer):
+    """
+    Serializer for Attempt.
+    Verifies username, event existing and if user is specified attendee in the event or
+    is already in the attending list
+
+    This is the main validation for event sign-in
+    The method verify_scan() is as follows
+    1. Verify if current attempt is valid
+        - valid in event
+        - data scanned from camera is valid within timestamp and the information scanned on the screen of the phone
+    2. Retrieve and verify the last attempt with the same username and event_id
+        - validate attempt as per step 1
+    3. If the two attempts or scans are within the time delta(10 seconds), the user is added to the event attending list
+    """
 
     def validate(self, data):
 
@@ -154,8 +194,6 @@ class AttemptSerializer(serializers.ModelSerializer):
 
         username = data.get('username').strip()
         event_id = data.get('event_id')
-        # time_on_screen = data.get('time_on_screen')
-        # date_on_screen = data.get('date_on_screen')
 
         # Setting created_time to now
         data['created'] = now
@@ -192,6 +230,15 @@ class AttemptSerializer(serializers.ModelSerializer):
 
 
 def verify_scan(data):
+    """
+    Algorithm
+    1. Verify if current attempt is valid
+        - valid in event
+        - data scanned from camera is valid within timestamp and the information scanned on the screen of the phone
+    2. Retrieve and verify the last attempt with the same username and event_id
+        - validate attempt as per step 1
+    3. If the two attempts or scans are within the time delta(10 seconds), the user is added to the event attending list
+    """
 
     username = data.get('username')
     event_id = data.get('event_id')
@@ -246,6 +293,11 @@ def verify_scan(data):
 
 
 def valid_attempt_in_event(username, event_id, time_on_screen, date_on_screen, timestamp):
+    """
+    Checks if time scanned on screen AND the creation time stamp is within the event sign_in_time an finish_time
+    Verifies if the user is part of the event specified
+    Checks if the creation timestamp and time/date scanned from the phone screen is within a certain delta
+    """
 
     print("\n Validating attempt")
 
@@ -308,6 +360,7 @@ def event_exists(event_id):
         return False
 
 
+# Checks to see if attendee of an event is part of the event
 def attendee_is_user(username, event_id):
 
     if user_exists(username) and event_exists(event_id):
@@ -329,6 +382,7 @@ def attendee_is_user(username, event_id):
         return False
 
 
+# Adds a user to the attending list of an event if they're not already in there
 def add_to_attending(username, event_id):
 
     event = Event.objects.get(id=event_id)

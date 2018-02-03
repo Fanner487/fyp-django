@@ -4,8 +4,13 @@ from __future__ import unicode_literals
 from django.db import models
 from django.contrib.postgres.fields import ArrayField
 
+"""
+Data model ORM declaration for the app
+This data is migrated into the DB 
+Objects and CRUD operations are conducted through the Database ORM API 
+"""
 
-# Create your models here.
+
 class Event(models.Model):
     organiser = models.CharField("organiser", max_length=50)
     event_name = models.CharField("event_name", max_length=50)

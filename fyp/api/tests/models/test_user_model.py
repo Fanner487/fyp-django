@@ -7,6 +7,9 @@ from pprint import pprint
 
 
 class UserModelTestCase(TestCase):
+    """
+    Tests User model for creation, comparison, update and delete
+    """
 
     def test_user_create(self):
         user = User.objects.create_user(username="testuser", email="test@example.com", password="mypassword",

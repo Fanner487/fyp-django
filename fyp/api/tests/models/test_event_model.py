@@ -7,6 +7,9 @@ from api.models import Event
 
 
 class EventModelTestCase(TestCase):
+    """
+    Tests Event model for creation, comparison, update and delete
+    """
 
     def test_event_create(self):
         event = Event.objects.create(

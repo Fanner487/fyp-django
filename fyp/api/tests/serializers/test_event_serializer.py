@@ -7,6 +7,11 @@ from django.contrib.auth.models import User
 from api import serializers
 
 
+"""
+Tests all parameters and fields of EventSerializer
+"""
+
+
 def create_event():
     return Event.objects.create(
         organiser="user1",
