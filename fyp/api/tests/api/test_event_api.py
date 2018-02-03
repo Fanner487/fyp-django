@@ -517,6 +517,11 @@ class EventDeleteTest(APITestCase):
         self.client = APIClient()
 
     def test_event_delete(self):
+        response_get = self.client.get("/api/events/" + str(self.event.id) + "/")
+
+        self.assertEqual(response_get.status_code, status.HTTP_200_OK)
+        self.assertEqual(response_get.json().get('organiser'), 'user1')
+
         response = self.client.delete("/api/events/" + str(self.event.id) + "/")
 
         print(self.event.id)
