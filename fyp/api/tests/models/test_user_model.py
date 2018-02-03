@@ -49,4 +49,8 @@ class UserModelTestCase(TestCase):
         self.assertEqual(user.first_name, "Test")
         self.assertEqual(user.last_name, "User")
 
-        updated_user = User.objects.destroy(id=user.id)
+        user.delete()
+
+        print(User.objects.get(id=user.id))
+
+        # self.assertFalse()
