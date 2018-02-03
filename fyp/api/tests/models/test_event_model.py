@@ -78,20 +78,32 @@ class EventModelTestCase(TestCase):
 
         updated_event = Event.objects.get(id=event.id)
         self.assertEqual(updated_event.location, "new_location")
-    #
-    # def test_event_create_user_destroy(self):
-    #     user = User.objects.create_user(username="testuser3", email="test3@example.com", password="mypassword",
-    #                                     first_name="Test", last_name="User")
-    #
-    #     self.assertEqual(user.username, "testuser3")
-    #     self.assertEqual(user.email, "test3@example.com")
-    #     self.assertEqual(user.first_name, "Test")
-    #     self.assertEqual(user.last_name, "User")
-    #
-    #     user_id = user.id
-    #
-    #     deleted_user = User.objects.get(pk=user_id).delete()
-    #     pprint(deleted_user)
-    #
-    #     # Asserts how many users deleted
-    #     self.assertEqual(deleted_user[0], 1)
+
+    def test_event_destroy(self):
+        event = Event.objects.create(
+            organiser="user1",
+            event_name="test",
+            location="test",
+            start_time='2050-01-29T12:00:00',
+            finish_time='2050-01-29T12:30:00',
+            sign_in_time='2050-01-29T12:00:00',
+            attendees=['user2', 'user3', 'user4']
+        )
+
+        self.assertEqual(event.organiser, "user1")
+        self.assertEqual(event.event_name, "test")
+        self.assertEqual(event.location, "test")
+        self.assertEqual(event.start_time, '2050-01-29T12:00:00')
+        self.assertEqual(event.finish_time, '2050-01-29T12:30:00')
+        self.assertEqual(event.sign_in_time, '2050-01-29T12:00:00')
+        self.assertEqual(event.attendees, ['user2', 'user3', 'user4'])
+        self.assertIsNone(event.attending)
+        self.assertEqual(event.attendance_required, False)
+
+        event_id = event.id
+
+        deleted_event = Event.objects.get(id=event_id).delete()
+        pprint(deleted_event)
+
+        # Asserts how many users deleted
+        self.assertEqual(deleted_event[0], 1)
