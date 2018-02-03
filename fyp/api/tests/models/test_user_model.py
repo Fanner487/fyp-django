@@ -56,3 +56,19 @@ class UserModelTestCase(TestCase):
         pprint(deleted_user)
 
         self.assertEqual(len(deleted_user), user_id)
+
+    def test_user_create_user_destroy2(self):
+        user = User.objects.create_user(username="testuser3", email="test3@example.com", password="mypassword",
+                                        first_name="Test", last_name="User")
+
+        self.assertEqual(user.username, "testuser3")
+        self.assertEqual(user.email, "test3@example.com")
+        self.assertEqual(user.first_name, "Test")
+        self.assertEqual(user.last_name, "User")
+
+        user_id = user.id
+
+        deleted_user = User.objects.get(pk=user_id).delete()
+        pprint(deleted_user)
+
+        self.assertEqual(len(deleted_user), user_id)
