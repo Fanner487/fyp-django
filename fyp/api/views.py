@@ -11,6 +11,10 @@ from django.contrib.auth.models import User
 from datetime import datetime
 import pytz
 
+"""
+This is the API access points for users, events and attempts
+"""
+
 
 class EventViewSet(ModelViewSet):
     """
