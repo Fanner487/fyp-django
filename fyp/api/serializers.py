@@ -109,16 +109,20 @@ class VerifyGroupSerializer(serializers.Serializer):
         users = data.get('usernames')
 
         print(users)
-        
-        print("In validate")
-        for user in data.get('usernames'):
-            print(user)
-            if not user_exists(user):
-                print(user + "does not exist")
-                raise serializers.ValidationError(user + " does not exist")
-            else:
-                print(user + "exists")
 
+        print("In validate")
+
+        if users is not None:
+
+            for user in data.get('usernames'):
+                print(user)
+                if not user_exists(user):
+                    print(user + "does not exist")
+                    raise serializers.ValidationError(user + " does not exist")
+                else:
+                    print(user + "exists")
+        else:
+            raise serializers.ValidationError("Empty list")
         return data
 
     def update(self, instance, validated_data):
