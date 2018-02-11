@@ -76,6 +76,7 @@ class LoginTest(APITestCase):
         data = None
         response = self.client.post(self.url, data=data, format='json')
 
+        print(str(response.data))
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(len(response.data['non_field_errors']), 1)
 
