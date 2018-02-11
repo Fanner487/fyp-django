@@ -4,7 +4,7 @@ from rest_framework import status
 from rest_framework.test import APIClient
 
 
-class GroupVerifyTest(APITestCase):
+class VerifyGroupApiTest(APITestCase):
     """
     Tests all group verify API POSTS with parameters
     """
