@@ -70,19 +70,13 @@ def verify_group(request):
     """
     Verifies that all users that are in a group are in the database
     """
-    print("In verify group")
-
-    print(request.data)
-    print(request.data.get('usernames'))
 
     serializer = VerifyGroupSerializer(data=request.data)
 
-    if not serializer.is_valid():
-        print("Not valid")
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    else:
-        print("Valid")
+    if serializer.is_valid():
         return Response(status=status.HTTP_200_OK)
+    else:
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(["POST"])
