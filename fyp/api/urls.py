@@ -3,7 +3,7 @@ from rest_framework.routers import SimpleRouter
 
 # from .views import SubscriberView
 from .views import EventViewSet, AttemptViewSet, UserViewSet
-from .views import login, register, get_events, delete_table
+from .views import login, register, get_events, delete_table, verify_group
 
 """
 URLs and patterns specified for the REST API views
@@ -21,6 +21,7 @@ urlpatterns = [
     url(r'^register', register, name="register"),
     url(r'^profile/(?P<username>[\w.@+-]+)/(?P<event_type>[-\w]+)/(?P<time>[-\w]+)/$', get_events, name="get_events"),
     url(r'^deletetable/(?P<table>[\w.@+-]+)/$', delete_table, name="delete_table"),
+    url(r'^verify_group', verify_group, name="verify_group"),
 ]
 
 urlpatterns += router.urls

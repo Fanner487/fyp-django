@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.viewsets import ModelViewSet, GenericViewSet
-from .serializers import EventSerializer, AttemptSerializer, UserSerializer, LoginSerializer, RegisterSerializer
+from .serializers import EventSerializer, AttemptSerializer, UserSerializer, LoginSerializer, RegisterSerializer, VerifyGroupSeralizer
 from .models import Event, Attempt
 from rest_framework import mixins
 from django.contrib.auth.models import User
@@ -63,6 +63,20 @@ def login(request):
         return Response(status=status.HTTP_401_UNAUTHORIZED)
     else:
         return Response({"message": "Login successful"}, status=status.HTTP_200_OK)
+
+
+@api_view(["POST"])
+def verify_group(request):
+    """
+    Verifies that all users that are in a group are in the database
+    """
+
+    serializer = VerifyGroupSeralizer(data=request.data)
+
+    if not serializer.is_valid():
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+    else:
+        return Response(status=status.HTTP_200_OK)
 
 
 @api_view(["POST"])

@@ -98,6 +98,29 @@ class RegisterSerializer(serializers.ModelSerializer):
 #     new_password
 
 
+class VerifyGroupSerializer(serializers.Serializer):
+
+    usernames = serializers.ListField(
+        child=serializers.CharField()
+    )
+
+    def validate(self, data):
+
+        for user in data.get('usernames'):
+
+            if not user_exists(user):
+
+                raise serializers.ValidationError(user + " does not exist")
+
+        return data
+
+    def update(self, instance, validated_data):
+        pass
+
+    def create(self, validated_data):
+        pass
+
+
 class UserSerializer(serializers.ModelSerializer):
     """
     Serializer for User display
@@ -119,7 +142,7 @@ class EventSerializer(serializers.ModelSerializer):
 
         utc = pytz.UTC  # using timezones for time checking
 
-        username= data.get('organiser').strip()
+        username = data.get('organiser').strip()
         start_time = data.get('start_time').replace(tzinfo=utc)
         finish_time = data.get('finish_time').replace(tzinfo=utc)
         sign_in_time = data.get('sign_in_time').replace(tzinfo=utc)
