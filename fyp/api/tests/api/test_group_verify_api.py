@@ -29,15 +29,15 @@ class LoginTest(APITestCase):
             last_name='User'
         )
         User.objects.create_user(
-            username='testuser2',
-            email='testuser1@example.com',
+            username='testuser3',
+            email='testuser3@example.com',
             password='testpassword',
             first_name='Test',
             last_name='User'
         )
         User.objects.create_user(
-            username='testuser3',
-            email='testuser3@example.com',
+            username='testuser4',
+            email='testuser4@example.com',
             password='testpassword',
             first_name='Test',
             last_name='User'
