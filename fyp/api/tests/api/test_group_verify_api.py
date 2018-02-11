@@ -4,7 +4,7 @@ from rest_framework import status
 from rest_framework.test import APIClient
 
 
-class LoginTest(APITestCase):
+class GroupVerifyTest(APITestCase):
     """
     Tests all group verify API POSTS with parameters
     """
@@ -76,45 +76,5 @@ class LoginTest(APITestCase):
         data = None
         response = self.client.post(self.url, data=data, format='json')
 
-        print(str(response.data))
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-        self.assertEqual(len(response.data['non_field_errors']), 1)
-
-    # def test_login_incorrect_password(self):
-    #     data = {
-    #         'username': 'testuser',
-    #         'password': 'nottherealpassword'
-    #     }
-    #
-    #     response = self.client.post(self.url, data=data, format='json')
-    #
-    #     self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
-    #
-    # def test_login_incorrect_username(self):
-    #     data = {
-    #         'username': 'notauser',
-    #         'password': 'testpassword'
-    #     }
-    #
-    #     response = self.client.post(self.url, data=data, format='json')
-    #
-    #     self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
-    #
-    # def test_login_null_username(self):
-    #     data = {
-    #
-    #         'password': 'testpassword'
-    #     }
-    #
-    #     response = self.client.post(self.url, data=data, format='json')
-    #
-    #     self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
-    #
-    # def test_login_null_password(self):
-    #     data = {
-    #         'username': 'testuser'
-    #     }
-    #
-    #     response = self.client.post(self.url, data=data, format='json')
-    #
-    #     self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+        self.assertEqual(len(response.data['usernames']), 1)
