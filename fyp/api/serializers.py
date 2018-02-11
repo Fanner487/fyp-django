@@ -105,6 +105,11 @@ class VerifyGroupSerializer(serializers.Serializer):
     )
 
     def validate(self, data):
+
+        users = data.get('usernames')
+
+        print(users)
+        
         print("In validate")
         for user in data.get('usernames'):
             print(user)
