@@ -79,7 +79,7 @@ def verify_group(request):
 
     if not serializer.is_valid():
         print("Not valid")
-        return Response(status=status.HTTP_400_BAD_REQUEST)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     else:
         print("Valid")
         return Response(status=status.HTTP_200_OK)
