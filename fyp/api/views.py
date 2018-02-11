@@ -71,6 +71,8 @@ def verify_group(request):
     Verifies that all users that are in a group are in the database
     """
     print("In verify group")
+
+    print(request.data)
     serializer = VerifyGroupSerializer(data=request.data)
 
     if not serializer.is_valid():
