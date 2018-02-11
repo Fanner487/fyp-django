@@ -45,7 +45,7 @@ class LoginTest(APITestCase):
 
     def test_verify_group_success(self):
         data = {
-            'username': ['testuser1', 'testuser2', 'testuser3']
+            'usernames': ['testuser1', 'testuser2', 'testuser3']
         }
 
         response = self.client.post(self.url, data=data, format='json')
