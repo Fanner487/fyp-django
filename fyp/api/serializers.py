@@ -100,20 +100,18 @@ class RegisterSerializer(serializers.ModelSerializer):
 
 class VerifyGroupSerializer(serializers.Serializer):
 
-    usernames = serializers.ListField(
-        child=serializers.CharField()
-    )
+    usernames = serializers.ListField(child=serializers.CharField())
 
     def validate(self, data):
 
         users = data.get('usernames')
 
-        if users is not None or not users == []:
-            
+        if users is not None or not users:
+
             for user in data.get('usernames'):
                 print(user)
                 if not user_exists(user):
-                    print(user + "does not exist")
+                    print(user + " does not exist")
                     raise serializers.ValidationError(user + " does not exist")
                 else:
                     print(user + "exists")
