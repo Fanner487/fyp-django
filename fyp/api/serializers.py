@@ -105,7 +105,7 @@ class VerifyGroupSerializer(serializers.Serializer):
     )
 
     def validate(self, data):
-
+        print("In validate")
         for user in data.get('usernames'):
             print(user)
             if not user_exists(user):

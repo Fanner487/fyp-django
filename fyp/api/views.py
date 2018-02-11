@@ -70,12 +70,14 @@ def verify_group(request):
     """
     Verifies that all users that are in a group are in the database
     """
-
+    print("In verify group")
     serializer = VerifyGroupSerializer(data=request.data)
 
     if not serializer.is_valid():
+        print("Not valid")
         return Response(status=status.HTTP_400_BAD_REQUEST)
     else:
+        print("Valid")
         return Response(status=status.HTTP_200_OK)
 
 
