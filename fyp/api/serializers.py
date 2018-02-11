@@ -108,6 +108,10 @@ class VerifyGroupSerializer(serializers.Serializer):
         print("In validate")
         print(str(len(users)))
 
+        if len(users) == 0:
+            print("In user size validation")
+            raise serializers.ValidationError("Empty list")
+
         if users is not None or not len(users) == 0:
 
             for user in data.get('usernames'):
