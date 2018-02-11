@@ -72,7 +72,7 @@ def verify_group(request):
     """
     print("In verify group")
 
-    print(request.data.get('usernames'))
+    print(request.data)
     serializer = VerifyGroupSerializer(data=request.data)
 
     if not serializer.is_valid():
