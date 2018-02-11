@@ -71,12 +71,14 @@ def verify_group(request):
     Verifies that all users that are in a group are in the database
     """
 
-    serializer = VerifyGroupSerializer(data=request.data)
+    return Response("Hello")
 
-    if not serializer.is_valid():
-        return Response(status=status.HTTP_400_BAD_REQUEST)
-    else:
-        return Response(status=status.HTTP_200_OK)
+    # serializer = VerifyGroupSerializer(data=request.data)
+    #
+    # if not serializer.is_valid():
+    #     return Response(status=status.HTTP_400_BAD_REQUEST)
+    # else:
+    #     return Response(status=status.HTTP_200_OK)
 
 
 @api_view(["POST"])
