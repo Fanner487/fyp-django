@@ -72,15 +72,15 @@ def verify_group(request):
     """
     print("In verify group")
 
-    print(request.data)
-    serializer = VerifyGroupSerializer(data=request.data)
-
-    if not serializer.is_valid():
-        print("Not valid")
-        return Response(status=status.HTTP_400_BAD_REQUEST)
-    else:
-        print("Valid")
-        return Response(status=status.HTTP_200_OK)
+    print(request.data.get('user'))
+    # serializer = VerifyGroupSerializer(data=request.data)
+    #
+    # if not serializer.is_valid():
+    #     print("Not valid")
+    #     return Response(status=status.HTTP_400_BAD_REQUEST)
+    # else:
+    #     print("Valid")
+    #     return Response(status=status.HTTP_200_OK)
 
 
 @api_view(["POST"])
