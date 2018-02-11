@@ -72,6 +72,7 @@ def verify_group(request):
     """
     print("In verify group")
 
+    print(request.data)
     print(request.data.get('user'))
     return Response(status=status.HTTP_200_OK)
     # serializer = VerifyGroupSerializer(data=request.data)
