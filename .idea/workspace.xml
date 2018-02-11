@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b2c529be-bfca-4366-bb99-ac5ec9275170" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fyp/api/serializers.py" afterPath="$PROJECT_DIR$/fyp/api/serializers.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fyp/api/urls.py" afterPath="$PROJECT_DIR$/fyp/api/urls.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fyp/api/views.py" afterPath="$PROJECT_DIR$/fyp/api/views.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -38,11 +35,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/fyp/api/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="76" column="58" lean-forward="false" selection-start-line="76" selection-start-column="58" selection-end-line="76" selection-end-column="58" />
+            <state relative-caret-position="498">
+              <caret line="82" column="22" lean-forward="true" selection-start-line="82" selection-start-column="22" selection-end-line="82" selection-end-column="22" />
               <folding>
                 <element signature="e#24#63#0" expanded="true" />
               </folding>
@@ -50,7 +47,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/fyp/api/urls.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="85">
@@ -144,8 +141,8 @@
         <option value="$PROJECT_DIR$/fyp/api/tests/api/wds.py" />
         <option value="$PROJECT_DIR$/fyp/api/tests/serializers/test_attempt_serializer.py" />
         <option value="$PROJECT_DIR$/fyp/api/urls.py" />
-        <option value="$PROJECT_DIR$/fyp/api/views.py" />
         <option value="$PROJECT_DIR$/fyp/api/serializers.py" />
+        <option value="$PROJECT_DIR$/fyp/api/views.py" />
       </list>
     </option>
   </component>
@@ -657,6 +654,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/fyp/api/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="8" lean-forward="false" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/fyp/api/serializers.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -669,19 +674,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/fyp/api/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="76" column="58" lean-forward="false" selection-start-line="76" selection-start-column="58" selection-end-line="76" selection-end-column="58" />
+        <state relative-caret-position="498">
+          <caret line="82" column="22" lean-forward="true" selection-start-line="82" selection-start-column="22" selection-end-line="82" selection-end-column="22" />
           <folding>
             <element signature="e#24#63#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fyp/api/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="8" lean-forward="false" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
