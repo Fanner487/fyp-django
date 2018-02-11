@@ -108,11 +108,13 @@ class VerifyGroupSerializer(serializers.Serializer):
         print("In validate")
         print(str(len(users)))
 
-        if len(users) == 0:
-            print("In user size validation")
-            raise serializers.ValidationError("Empty list")
+        # if len(users) == 0:
+        #     print("In user size validation")
+        #     raise serializers.ValidationError("Empty list")
 
-        if users is not None or not len(users) == 0:
+        if users is None or len(users) == 0:
+            raise serializers.ValidationError("Empty list")
+        else:
 
             for user in data.get('usernames'):
                 print(user)
@@ -121,8 +123,7 @@ class VerifyGroupSerializer(serializers.Serializer):
                     raise serializers.ValidationError(user + " does not exist")
                 else:
                     print(user + "exists")
-        else:
-            raise serializers.ValidationError("Empty list")
+
         return data
 
     def update(self, instance, validated_data):
