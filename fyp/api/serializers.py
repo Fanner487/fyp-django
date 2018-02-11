@@ -112,7 +112,7 @@ class VerifyGroupSerializer(serializers.Serializer):
 
         print("In validate")
 
-        if users is not None:
+        if users is not None or users == []:
 
             for user in data.get('usernames'):
                 print(user)
