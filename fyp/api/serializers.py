@@ -107,10 +107,12 @@ class VerifyGroupSerializer(serializers.Serializer):
     def validate(self, data):
 
         for user in data.get('usernames'):
-
+            print(user)
             if not user_exists(user):
-
+                print(user + "does not exist")
                 raise serializers.ValidationError(user + " does not exist")
+            else:
+                print(user + "exists")
 
         return data
 
@@ -366,6 +368,7 @@ def valid_attempt_in_event(username, event_id, time_on_screen, date_on_screen, t
 
 # Checks if user exists with only one entry
 def user_exists(username):
+
     user_count = User.objects.filter(username__iexact=username.strip()).count()
 
     if user_count == 1:
