@@ -99,18 +99,16 @@ class RegisterSerializer(serializers.ModelSerializer):
 
 
 class VerifyGroupSerializer(serializers.Serializer):
+    """
+    Serializer for verifying users. Verifies unique usernames, emails
+    and validates other fields required for registration
+    """
 
     usernames = serializers.ListField(child=serializers.CharField())
 
     def validate(self, data):
 
         users = data.get('usernames')
-        print("In validate")
-        print(str(len(users)))
-
-        # if len(users) == 0:
-        #     print("In user size validation")
-        #     raise serializers.ValidationError("Empty list")
 
         if users is None or len(users) == 0:
             raise serializers.ValidationError("Empty list")
