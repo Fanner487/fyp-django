@@ -10,6 +10,7 @@ from rest_framework import mixins
 from django.contrib.auth.models import User
 from datetime import datetime
 import pytz
+from pprint import pprint
 
 """
 This is the API access points for users, events and attempts
@@ -131,8 +132,8 @@ def get_events_for_user(request, username):
     events_attending = Event.objects.filter(attendees__icontains=username) \
         .order_by('-start_time')
 
-    print(events_organised)
-    print(events_attending)
+    pprint(events_organised)
+    pprint(events_attending)
 
     events_attending_filtered = []
     for event in events_attending:
@@ -141,7 +142,7 @@ def get_events_for_user(request, username):
             events_attending_filtered.append(event)
 
     for event in events_organised:
-        print(event.event_name)
+        pprint(event)
 
     print("\n\nFiltered attending")
 
@@ -149,7 +150,7 @@ def get_events_for_user(request, username):
         print(event.event_name)
 
     # events_combined = list(events_organised) | events_attending_filtered
-    events_combined = list(events_attending_filtered)
+    # events_combined = list(events_attending_filtered)
     events_combined = events_organised
 
     if events_combined:
