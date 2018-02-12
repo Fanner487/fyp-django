@@ -143,17 +143,22 @@ def get_events_for_user(request, username):
 
     # Only returns distinct events. Filters out duplicates
     events_combined = set(list(events_organised) + events_attending_filtered)
+    serialized = EventSerializer(events_combined, many=True)
 
-    if events_combined:
-
-        serialized = EventSerializer(data=events_combined, many=True)
-
-        if serialized.is_valid():
-            return Response(serialized.data)
-        else:
-            return Response(serialized.errors, status=status.HTTP_400_BAD_REQUEST)
+    if serialized:
+        return Response(serialized.data)
     else:
         return Response(status=status.HTTP_404_NOT_FOUND)
+    # if events_combined:
+    #
+    #     serialized = EventSerializer(data=events_combined, many=True)
+    #
+    #     if serialized.is_valid():
+    #         return Response(serialized.data)
+    #     else:
+    #         return Response(serialized.errors, status=status.HTTP_400_BAD_REQUEST)
+    # else:
+    #     return Response(status=status.HTTP_404_NOT_FOUND)
 
 
 @api_view(["GET"])
