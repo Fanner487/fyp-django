@@ -146,7 +146,7 @@ def get_events_for_user(request, username):
 
     if events_combined:
 
-        serialized = EventSerializer(events_combined, many=True)
+        serialized = EventSerializer(data=events_combined, many=True)
 
         if serialized.is_valid():
             return Response(serialized.data)
