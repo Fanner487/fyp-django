@@ -118,7 +118,7 @@ def delete_table(request, table):
 
 
 @api_view(["GET"])
-def get_events(request, username):
+def get_events_for_user(request, username):
     """
     Get events for user according to organising/attending, and time tense.
     """
