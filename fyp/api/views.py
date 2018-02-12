@@ -149,7 +149,7 @@ def get_events_for_user(request, username):
     events_combined = events_organised | events_attending
 
     if events_combined:
-        serialized = EventSerializer(data=events_combined, many=True)
+        serialized = EventSerializer(events_combined, many=True)
 
         if serialized.is_valid():
             print("Serializer valid")
