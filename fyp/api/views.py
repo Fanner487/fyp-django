@@ -140,6 +140,12 @@ def get_events_for_user(request, username):
         if username in event.attendees:
             events_attending_filtered.append(event)
 
+    for event in events_organised:
+        print(event)
+
+    for event in events_attending_filtered:
+        print(event)
+
     events_combined = events_organised | events_attending_filtered
 
     if events_combined:
