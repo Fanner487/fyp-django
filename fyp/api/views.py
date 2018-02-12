@@ -143,6 +143,8 @@ def get_events_for_user(request, username):
     for event in events_organised:
         print(event.event_name)
 
+    print("\n\nFiltered attending")
+
     for event in events_attending_filtered:
         print(event.event_name)
 
