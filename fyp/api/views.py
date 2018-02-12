@@ -156,7 +156,7 @@ def get_events_for_user(request, username):
             return Response(serialized.data)
         else:
             print("Serializer not valid")
-            return Response(status=status.HTTP_400_BAD_REQUEST)
+            return Response(serialized.errors, status=status.HTTP_400_BAD_REQUEST)
     else:
         print("Events not combined")
         return Response(status=status.HTTP_400_BAD_REQUEST)
