@@ -121,9 +121,9 @@ def delete_table(request, table):
 @api_view(["GET"])
 def get_events_for_user(request, username):
     """
-    Get events for user according to organising/attending, and time tense.
+    Gets all events for user
     """
-    print("\n\n\nget_events_for_user")
+
     username = username.strip().lower()
 
     events_organised = Event.objects.filter(organiser__iexact=username) \
@@ -132,42 +132,28 @@ def get_events_for_user(request, username):
     events_attending = Event.objects.filter(attendees__icontains=username) \
         .order_by('-start_time')
 
-    pprint(events_organised)
-    pprint(events_attending)
-
     events_attending_filtered = []
+
+    # "attendees__icontains" will do 'LIKE' searching, not exact for arrays. Is not suitable for arrays
+    # QuerySet data needs to be accessed individually to filter out
     for event in events_attending:
 
         if username in event.attendees:
             events_attending_filtered.append(event)
 
-    for event in events_organised:
-        print(event.event_name)
-
-    print("\n\nFiltered attending")
-
-    for event in events_attending_filtered:
-        print(event.event_name)
-
+    # Only returns distinct events. Filters out duplicates
     events_combined = set(list(events_organised) + events_attending_filtered)
-    # events_combined = events_attending_filtered
-    # events_combined = events_organised
 
-    serialized = EventSerializer(events_combined, many=True)
-    return Response(serialized.data)
+    if events_combined:
 
-    # if events_combined:
-    #     serialized = EventSerializer(events_combined, many=True)
-    #
-    #     if serialized.is_valid():
-    #         print("Serializer valid")
-    #         return Response(serialized.data)
-    #     else:
-    #         print("Serializer not valid")
-    #         return Response(serialized.errors, status=status.HTTP_400_BAD_REQUEST)
-    # else:
-    #     print("Events not combined")
-    #     return Response(status=status.HTTP_400_BAD_REQUEST)
+        serialized = EventSerializer(events_combined, many=True)
+
+        if serialized.is_valid():
+            return Response(serialized.data)
+        else:
+            return Response(serialized.errors, status=status.HTTP_400_BAD_REQUEST)
+    else:
+        return Response(status=status.HTTP_404_NOT_FOUND)
 
 
 @api_view(["GET"])
