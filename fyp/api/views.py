@@ -122,7 +122,7 @@ def get_events_for_user(request, username):
     """
     Get events for user according to organising/attending, and time tense.
     """
-
+    print("\n\n\nget_events_for_user")
     username = username.strip().lower()
 
     events_organised = Event.objects.filter(organiser__iexact=username) \
@@ -130,6 +130,9 @@ def get_events_for_user(request, username):
 
     events_attending = Event.objects.filter(attendees__icontains=username) \
         .order_by('-start_time')
+
+    print(events_organised)
+    print(events_attending)
 
     events_attending_filtered = []
     for event in events_attending:
