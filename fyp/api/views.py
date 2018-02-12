@@ -150,6 +150,7 @@ def get_events_for_user(request, username):
 
     # events_combined = list(events_organised) | events_attending_filtered
     events_combined = list(events_attending_filtered)
+    events_combined = events_organised
 
     if events_combined:
         serialized = EventSerializer(data=events_combined, many=True)
