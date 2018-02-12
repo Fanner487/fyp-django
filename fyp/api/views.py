@@ -153,18 +153,21 @@ def get_events_for_user(request, username):
     events_combined = events_attending_filtered
     # events_combined = events_organised
 
-    if events_combined:
-        serialized = EventSerializer(events_combined, many=True)
+    serialized = EventSerializer(events_combined, many=True)
+    return Response(serialized.data)
 
-        if serialized.is_valid():
-            print("Serializer valid")
-            return Response(serialized.data)
-        else:
-            print("Serializer not valid")
-            return Response(serialized.errors, status=status.HTTP_400_BAD_REQUEST)
-    else:
-        print("Events not combined")
-        return Response(status=status.HTTP_400_BAD_REQUEST)
+    # if events_combined:
+    #     serialized = EventSerializer(events_combined, many=True)
+    #
+    #     if serialized.is_valid():
+    #         print("Serializer valid")
+    #         return Response(serialized.data)
+    #     else:
+    #         print("Serializer not valid")
+    #         return Response(serialized.errors, status=status.HTTP_400_BAD_REQUEST)
+    # else:
+    #     print("Events not combined")
+    #     return Response(status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(["GET"])
