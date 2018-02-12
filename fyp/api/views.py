@@ -142,7 +142,7 @@ def get_events_for_user(request, username):
             events_attending_filtered.append(event)
 
     for event in events_organised:
-        pprint(event)
+        print(event.event_name)
 
     print("\n\nFiltered attending")
 
@@ -150,11 +150,11 @@ def get_events_for_user(request, username):
         print(event.event_name)
 
     # events_combined = list(events_organised) | events_attending_filtered
-    # events_combined = list(events_attending_filtered)
-    events_combined = events_organised
+    events_combined = events_attending_filtered
+    # events_combined = events_organised
 
     if events_combined:
-        serialized = EventSerializer(data=events_combined, many=True)
+        serialized = EventSerializer(events_combined, many=True)
 
         if serialized.is_valid():
             print("Serializer valid")
