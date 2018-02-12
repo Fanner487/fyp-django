@@ -145,7 +145,7 @@ def get_events_for_user(request, username):
     events_combined = set(list(events_organised) + events_attending_filtered)
     serialized = EventSerializer(events_combined, many=True)
 
-    if serialized:
+    if serialized.data:
         return Response(serialized.data)
     else:
         return Response(status=status.HTTP_404_NOT_FOUND)
