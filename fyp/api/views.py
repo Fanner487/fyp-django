@@ -118,6 +118,35 @@ def delete_table(request, table):
 
 
 @api_view(["GET"])
+def get_events(request, username):
+    """
+    Get events for user according to organising/attending, and time tense.
+    """
+
+    username = username.strip().lower()
+
+    events_organised = Event.objects.filter(organiser__iexact=username) \
+        .order_by('-start_time')
+
+    events_attending = Event.objects.filter(attendees__icontains=username) \
+        .order_by('-start_time')
+
+    events_attending_filtered = []
+    for event in events_attending:
+
+        if username in event.attendees:
+            events_attending_filtered.append(event)
+
+    events_combined = events_organised | events_attending_filtered
+
+    if events_combined:
+        serialized = EventSerializer(data=events_combined, many=True)
+        return Response(serialized.data)
+    else:
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(["GET"])
 def get_events(request, username, event_type, time):
     """
     Get events for user according to organising/attending, and time tense.
