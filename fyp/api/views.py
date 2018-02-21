@@ -113,6 +113,8 @@ def verify_group(request):
 
 
 @api_view(["POST"])
+@authentication_classes(())
+@permission_classes(())
 def register(request):
     """
     Register API view.
@@ -130,6 +132,8 @@ def register(request):
 
 
 @api_view(["GET"])
+@authentication_classes(())
+@permission_classes(())
 def delete_table(request, table):
     """
     Delete table API view.
@@ -194,6 +198,8 @@ def get_events_for_user(request, username):
 
 
 @api_view(["GET"])
+@authentication_classes(())
+@permission_classes(())
 def get_events(request, username, event_type, time):
     """
     Get events for user according to organising/attending, and time tense.
