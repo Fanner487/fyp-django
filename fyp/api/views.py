@@ -21,8 +21,8 @@ This is the API access points for users, events and attempts
 
 class EventViewSet(ModelViewSet):
 
-    authentication_classes = ()
-    permission_classes = ()
+    # authentication_classes = ()
+    # permission_classes = ()
     """
     ModelViewSet for Event.
     GET, POST, PATCH operations and handling are generated from the parent class
@@ -40,6 +40,9 @@ class AttemptViewSet(mixins.ListModelMixin, mixins.CreateModelMixin, GenericView
     It forbids end users to update, or delete attempts using the API (DELETE, PATCH)
     """
 
+    authentication_classes = ()
+    permission_classes = ()
+
     serializer_class = AttemptSerializer
     queryset = Attempt.objects.all()
 
@@ -50,6 +53,8 @@ class UserViewSet(ModelViewSet):
     GET, POST, PATCH, DELETE operations and handling are generated from the parent class
     Only the serializer and relevant object class are needed
     """
+    authentication_classes = ()
+    permission_classes = ()
 
     serializer_class = UserSerializer
     queryset = User.objects.all()
@@ -76,7 +81,8 @@ def jwt_login(request):
 
 
 @api_view(["POST"])
-@authentication_classes(())
+@authentication_classes()
+@permission_classes()
 def login(request):
     """
     Login API view.
