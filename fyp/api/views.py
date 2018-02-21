@@ -52,7 +52,7 @@ class UserViewSet(ModelViewSet):
 
 
 @api_view(["POST"])
-@authentication_classes(JSONWebTokenAuthentication,)
+# @authentication_classes(JSONWebTokenAuthentication)
 def jwt_login(request):
     """
     Login API view.
