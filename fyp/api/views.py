@@ -2,11 +2,12 @@
 from __future__ import unicode_literals
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework.decorators import api_view, authentication_classes
+from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework.viewsets import ModelViewSet, GenericViewSet
 from .serializers import EventSerializer, AttemptSerializer, UserSerializer, LoginSerializer, RegisterSerializer, VerifyGroupSerializer
 from .models import Event, Attempt
 from rest_framework import mixins
+from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth.models import User
 from datetime import datetime
 import pytz
@@ -52,7 +53,8 @@ class UserViewSet(ModelViewSet):
 
 
 @api_view(["GET"])
-@authentication_classes(JSONWebTokenAuthentication)
+@authentication_classes(JSONWebTokenAuthentication,)
+@permission_classes(IsAuthenticated,)
 def jwt_login(request):
     """
     Login API view.
