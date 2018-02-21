@@ -81,8 +81,8 @@ def jwt_login(request):
 
 
 @api_view(["POST"])
-@authentication_classes()
-@permission_classes()
+@authentication_classes(())
+@permission_classes(())
 def login(request):
     """
     Login API view.
