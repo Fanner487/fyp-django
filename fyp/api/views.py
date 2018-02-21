@@ -21,7 +21,7 @@ This is the API access points for users, events and attempts
 
 class EventViewSet(ModelViewSet):
 
-    # authentication_classes = (JSONWebTokenAuthentication,)
+    authentication_classes = ()
     """
     ModelViewSet for Event.
     GET, POST, PATCH operations and handling are generated from the parent class
@@ -75,6 +75,7 @@ def jwt_login(request):
 
 
 @api_view(["POST"])
+@authentication_classes(())
 def login(request):
     """
     Login API view.
