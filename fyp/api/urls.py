@@ -3,7 +3,7 @@ from rest_framework.routers import SimpleRouter
 
 # from .views import SubscriberView
 from .views import EventViewSet, AttemptViewSet, UserViewSet
-from .views import login, register, get_events, delete_table, verify_group, get_events_for_user
+from .views import login, register, get_events, delete_table, verify_group, get_events_for_user, jwt_login
 from rest_framework_jwt.views import obtain_jwt_token
 
 """
@@ -19,6 +19,7 @@ router.register("users", UserViewSet)
 
 urlpatterns = [
     url(r'^login', login, name="login"),
+    url(r'^jwt_login', jwt_login, name="login"),
     url(r'^register', register, name="register"),
     url(r'^profile/(?P<username>[\w.@+-]+)/(?P<event_type>[-\w]+)/(?P<time>[-\w]+)/$', get_events, name="get_events"),
     url(r'^deletetable/(?P<table>[\w.@+-]+)/$', delete_table, name="delete_table"),

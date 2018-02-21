@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, authentication_classes
 from rest_framework.viewsets import ModelViewSet, GenericViewSet
 from .serializers import EventSerializer, AttemptSerializer, UserSerializer, LoginSerializer, RegisterSerializer, VerifyGroupSerializer
 from .models import Event, Attempt
@@ -10,6 +10,7 @@ from rest_framework import mixins
 from django.contrib.auth.models import User
 from datetime import datetime
 import pytz
+from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 from pprint import pprint
 
 """
@@ -48,6 +49,26 @@ class UserViewSet(ModelViewSet):
 
     serializer_class = UserSerializer
     queryset = User.objects.all()
+
+
+@api_view(["POST"])
+@authentication_classes(JSONWebTokenAuthentication,)
+def jwt_login(request):
+    """
+    Login API view.
+    Returns appropriate authentication messages
+    """
+
+    return Response({"message": "something happened"}, status=status.HTTP_200_OK)
+
+    # serializer = LoginSerializer(data=request.data)
+    #
+    # # if not user:
+    # if not serializer.is_valid():
+    #     return Response(status=status.HTTP_401_UNAUTHORIZED)
+    # else:
+    #     return Response({"message": "Login successful"}, status=status.HTTP_200_OK)
+
 
 
 @api_view(["POST"])
