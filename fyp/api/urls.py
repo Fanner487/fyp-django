@@ -4,6 +4,7 @@ from rest_framework.routers import SimpleRouter
 # from .views import SubscriberView
 from .views import EventViewSet, AttemptViewSet, UserViewSet
 from .views import login, register, get_events, delete_table, verify_group, get_events_for_user
+from rest_framework_jwt.views import obtain_jwt_token
 
 """
 URLs and patterns specified for the REST API views
@@ -23,6 +24,8 @@ urlpatterns = [
     url(r'^deletetable/(?P<table>[\w.@+-]+)/$', delete_table, name="delete_table"),
     url(r'^verify_group', verify_group, name="verify_group"),
     url(r'^(?P<username>[\w.@+-]+)/events', get_events_for_user, name="get_events_for_user"),
+    url(r'^(?P<username>[\w.@+-]+)/events', get_events_for_user, name="get_events_for_user"),
+    url(r'^api-token-auth/', obtain_jwt_token),
 ]
 
 urlpatterns += router.urls
