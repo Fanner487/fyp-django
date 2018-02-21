@@ -21,8 +21,8 @@ This is the API access points for users, events and attempts
 
 class EventViewSet(ModelViewSet):
 
-    authentication_classes = (())
-    permission_classes = (())
+    authentication_classes = ()
+    permission_classes = ()
     """
     ModelViewSet for Event.
     GET, POST, PATCH operations and handling are generated from the parent class
