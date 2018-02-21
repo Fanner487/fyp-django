@@ -51,8 +51,8 @@ class UserViewSet(ModelViewSet):
     queryset = User.objects.all()
 
 
-@api_view(["POST"])
-@authentication_classes(JSONWebTokenAuthentication)
+@api_view(["GET"])
+@authentication_classes(JSONWebTokenAuthentication,)
 def jwt_login(request):
     """
     Login API view.
@@ -68,7 +68,6 @@ def jwt_login(request):
     #     return Response(status=status.HTTP_401_UNAUTHORIZED)
     # else:
     #     return Response({"message": "Login successful"}, status=status.HTTP_200_OK)
-
 
 
 @api_view(["POST"])
