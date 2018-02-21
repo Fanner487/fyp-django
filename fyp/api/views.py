@@ -53,8 +53,8 @@ class UserViewSet(ModelViewSet):
 
 
 @api_view(["GET"])
-@authentication_classes(JSONWebTokenAuthentication,)
-@permission_classes(IsAuthenticated,)
+@authentication_classes((JSONWebTokenAuthentication,))
+# @permission_classes(IsAuthenticated,)
 def jwt_login(request):
     """
     Login API view.
