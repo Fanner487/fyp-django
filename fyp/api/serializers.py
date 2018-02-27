@@ -142,6 +142,67 @@ class UserSerializer(serializers.ModelSerializer):
         exclude = ('password',)
 
 
+class EventUpdateSerializer(serializers.ModelSerializer):
+    """
+    Serializer for Event CRUD operations.
+    Verifies if users exists in attendees and organisers
+    """
+
+    def validate(self, data):
+
+        utc = pytz.UTC  # using timezones for time checking
+
+        username = data.get('organiser').strip()
+        start_time = data.get('start_time').replace(tzinfo=utc)
+        finish_time = data.get('finish_time').replace(tzinfo=utc)
+        sign_in_time = data.get('sign_in_time').replace(tzinfo=utc)
+        attendees = data.get('attendees')
+
+        print("Update Serializer data")
+        print("Start time: " + str(start_time))
+        print("End time: " + str(finish_time))
+        print("Attendees: " + str(data.get('attendees')))
+        print("Attending: " + str(data.get('attending')))
+
+        # Checks if user exists
+        if not user_exists(username.strip()):
+            raise serializers.ValidationError("User does not exist")
+
+        if not attendees:
+            raise serializers.ValidationError("Attendees cannot be null")
+
+        # Throw if start time after finish_time
+        if start_time >= finish_time:
+            raise serializers.ValidationError("Invalid time entry")
+
+        if sign_in_time > start_time:
+            raise serializers.ValidationError("Sign in time must be in before or equal start time")
+
+        # Checks every username in attendee list
+        for attendee in attendees:
+
+            if not user_exists(attendee.strip()):
+                raise serializers.ValidationError(attendee + " does not exist")
+
+        # Attending must be empty
+        # if data.get('attending'):
+        #     raise serializers.ValidationError("Attending must be empty")
+
+        return data
+
+    def create(self, validated_data):
+
+        # Makes sure attending does not get instantiated with NoneType during creation
+        validated_data['attending'] = []
+        event = Event.objects.create(**validated_data)
+        return event
+
+    class Meta:
+        model = Event
+        fields = "__all__"
+        # exclude = ('created',)
+
+
 class EventSerializer(serializers.ModelSerializer):
     """
     Serializer for Event CRUD operations.
