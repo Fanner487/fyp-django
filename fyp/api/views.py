@@ -4,7 +4,8 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework.viewsets import ModelViewSet, GenericViewSet
-from .serializers import EventSerializer, AttemptSerializer, UserSerializer, LoginSerializer, RegisterSerializer, VerifyGroupSerializer
+from .serializers import EventSerializer, AttemptSerializer, UserSerializer, LoginSerializer, RegisterSerializer,\
+    VerifyGroupSerializer, EventUpdateSerializer
 from .models import Event, Attempt
 from rest_framework import mixins
 from rest_framework.permissions import IsAuthenticated
@@ -38,7 +39,8 @@ class EventViewSet(ModelViewSet):
 
         partial = kwargs.pop('partial', False)
         instance = self.get_object()
-        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+
+        serializer = EventUpdateSerializer(instance, data=request.data, partial=partial)
         serializer.is_valid(raise_exception=True)
         self.perform_update(serializer)
         #
