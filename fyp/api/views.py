@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework.viewsets import ModelViewSet, GenericViewSet
-from .serializers import EventSerializer, AttemptSerializer, UserSerializer, LoginSerializer, RegisterSerializer,\
+from .serializers import EventSerializer, AttemptSerializer, UserSerializer, LoginSerializer, RegisterSerializer, \
     VerifyGroupSerializer, EventUpdateSerializer
 from .models import Event, Attempt
 from rest_framework import mixins
@@ -21,7 +21,6 @@ This is the API access points for users, events and attempts
 
 
 class EventViewSet(ModelViewSet):
-
     # authentication_classes = ()
     # permission_classes = ()
     """
@@ -34,7 +33,10 @@ class EventViewSet(ModelViewSet):
     queryset = Event.objects.all()
 
     def update(self, request, *args, **kwargs):
-        print("In update")
+        """
+        Update override of the ModelViewSet so EventUpdateSerializer
+        can be used to validate data
+        """
         print(request.data)
 
         partial = kwargs.pop('partial', False)
@@ -45,20 +47,9 @@ class EventViewSet(ModelViewSet):
 
         print("Update serializer is valid, updating now")
         self.perform_update(serializer)
-        #
-        # if getattr(instance, '_prefetched_objects_cache', None):
-        #     # If 'prefetch_related' has been applied to a queryset, we need to
-        #     # forcibly invalidate the prefetch cache on the instance.
-        #     instance._prefetched_objects_cache = {}
+
         #
         return Response(serializer.data)
-
-        # print("In update")
-        #
-        # print(request.data)
-        # return super().update(request, *args, **kwargs)
-
-
 
 
 class AttemptViewSet(mixins.ListModelMixin, mixins.CreateModelMixin, GenericViewSet):
@@ -213,16 +204,16 @@ def get_events_for_user(request, username):
         return Response(serialized.data)
     else:
         return Response(status=status.HTTP_404_NOT_FOUND)
-    # if events_combined:
-    #
-    #     serialized = EventSerializer(data=events_combined, many=True)
-    #
-    #     if serialized.is_valid():
-    #         return Response(serialized.data)
-    #     else:
-    #         return Response(serialized.errors, status=status.HTTP_400_BAD_REQUEST)
-    # else:
-    #     return Response(status=status.HTTP_404_NOT_FOUND)
+        # if events_combined:
+        #
+        #     serialized = EventSerializer(data=events_combined, many=True)
+        #
+        #     if serialized.is_valid():
+        #         return Response(serialized.data)
+        #     else:
+        #         return Response(serialized.errors, status=status.HTTP_400_BAD_REQUEST)
+        # else:
+        #     return Response(status=status.HTTP_404_NOT_FOUND)
 
 
 @api_view(["GET"])
@@ -308,4 +299,3 @@ def filter_events_by_time(events, event_time):
         filtered_set = []
 
     return filtered_set
-

@@ -144,8 +144,11 @@ class UserSerializer(serializers.ModelSerializer):
 
 class EventUpdateSerializer(serializers.ModelSerializer):
     """
-    Serializer for Event CRUD operations.
+    Serializer for Event Update endpoint.
     Verifies if users exists in attendees and organisers
+    Similar to EventSerializer but without checking if the event create time
+    is after current time
+    Performs updates on attendees/attending
     """
 
     def validate(self, data):
@@ -195,6 +198,8 @@ class EventUpdateSerializer(serializers.ModelSerializer):
 
             print("New data")
             print(data.get('attending'))
+        else:
+            data['attending'] = update_attendees(data.get('attendees'), data.get('attending'))
 
         return data
 
@@ -209,6 +214,19 @@ class EventUpdateSerializer(serializers.ModelSerializer):
         model = Event
         fields = "__all__"
         # exclude = ('created',)
+
+
+def update_attendees(attendees, attending):
+
+    new_attending = []
+
+    for user in attending:
+
+        if user in attendees:
+            
+            new_attending.append(user)
+
+    return new_attending
 
 
 class EventSerializer(serializers.ModelSerializer):
