@@ -218,13 +218,19 @@ class EventUpdateSerializer(serializers.ModelSerializer):
 
 def update_attendees(attendees, attending):
 
+    print("in update attendees")
+    print("old attending")
+    print(attending)
     new_attending = []
 
     for user in attending:
 
         if user in attendees:
-            
+
             new_attending.append(user)
+
+    print("new attending")
+    print(new_attending)
 
     return new_attending
 
