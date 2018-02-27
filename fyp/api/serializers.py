@@ -188,6 +188,9 @@ class EventUpdateSerializer(serializers.ModelSerializer):
         # if data.get('attending'):
         #     raise serializers.ValidationError("Attending must be empty")
 
+        if data.get('attending') is None:
+            data['attending'] = []
+
         return data
 
     def create(self, validated_data):
