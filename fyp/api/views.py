@@ -47,6 +47,8 @@ class EventViewSet(ModelViewSet):
         # return Response(serializer.data)
 
         print("In update")
+
+        print(request.data)
         return super().update(request, *args, **kwargs)
 
 
