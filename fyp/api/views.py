@@ -42,6 +42,8 @@ class EventViewSet(ModelViewSet):
 
         serializer = EventUpdateSerializer(instance, data=request.data, partial=partial)
         serializer.is_valid(raise_exception=True)
+
+        print("Update serializer is valid, updating now")
         self.perform_update(serializer)
         #
         # if getattr(instance, '_prefetched_objects_cache', None):
