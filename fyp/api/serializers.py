@@ -189,7 +189,12 @@ class EventUpdateSerializer(serializers.ModelSerializer):
         #     raise serializers.ValidationError("Attending must be empty")
 
         if data.get('attending') is None:
+
+            print("Attending is none, assigning new data")
             data['attending'] = []
+
+            print("New data")
+            print(data.get('attending'))
 
         return data
 
