@@ -44,13 +44,15 @@ class EventUpdateSerializerTestCase(TestCase):
             'start_time': '2050-01-29T12:00:00',
             'finish_time': '2050-01-29T12:30:00',
             'sign_in_time': '2050-01-29T12:00:00',
-            'attendees': [self.user2.username, self.user4.username, self.user4.username],
+            'attendees': [self.user2.username, self.user4.username, self.user3.username],
             'attending': [self.user2.username, self.user4.username]
         }
 
     def test_serializer_valid(self):
 
         serializer = serializers.EventSerializer(data=self.serializer_data)
+        serializer.is_valid()
+        print(serializer.errors)
         self.assertTrue(serializer.is_valid())
 
     def test_serializer_null_organiser(self):

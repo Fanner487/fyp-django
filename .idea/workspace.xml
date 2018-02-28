@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b2c529be-bfca-4366-bb99-ac5ec9275170" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/fyp/api/tests/api/test_get_events_for_user.py" afterPath="$PROJECT_DIR$/fyp/api/tests/api/test_get_events_for_user_api.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fyp/api/tests/serializers/test_event_update_serializer.py" afterPath="$PROJECT_DIR$/fyp/api/tests/serializers/test_event_update_serializer.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -51,8 +51,8 @@
       <file leaf-file-name="test_event_update_serializer.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/fyp/api/tests/serializers/test_event_update_serializer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="591">
-              <caret line="110" column="71" lean-forward="false" selection-start-line="110" selection-start-column="71" selection-end-line="110" selection-end-column="71" />
+            <state relative-caret-position="271">
+              <caret line="54" column="31" lean-forward="false" selection-start-line="54" selection-start-column="31" selection-end-line="54" selection-end-column="31" />
               <folding>
                 <element signature="e#24#63#0" expanded="true" />
               </folding>
@@ -722,8 +722,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/fyp/api/tests/serializers/test_event_update_serializer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="591">
-          <caret line="110" column="71" lean-forward="false" selection-start-line="110" selection-start-column="71" selection-end-line="110" selection-end-column="71" />
+        <state relative-caret-position="271">
+          <caret line="54" column="31" lean-forward="false" selection-start-line="54" selection-start-column="31" selection-end-line="54" selection-end-column="31" />
           <folding>
             <element signature="e#24#63#0" expanded="true" />
           </folding>
