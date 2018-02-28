@@ -5,7 +5,7 @@ from rest_framework import status
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework.viewsets import ModelViewSet, GenericViewSet
 from .serializers import EventSerializer, AttemptSerializer, UserSerializer, LoginSerializer, RegisterSerializer, \
-    VerifyGroupSerializer, EventUpdateSerializer
+    VerifyGroupSerializer, EventUpdateSerializer, ManualSignInSerializer
 from .models import Event, Attempt
 from rest_framework import mixins
 from rest_framework.permissions import IsAuthenticated
@@ -115,6 +115,22 @@ def login(request):
         return Response(status=status.HTTP_401_UNAUTHORIZED)
     else:
         return Response({"message": "Login successful"}, status=status.HTTP_200_OK)
+
+
+@api_view(["POST"])
+@authentication_classes((JSONWebTokenAuthentication,))
+def manually_sign_in_user(request):
+
+    serializer = ManualSignInSerializer(data=request.data)
+
+    serializer.is_valid(raise_exception=True)
+
+    event = Event.objects.get(id=serializer.validated_data['event_id'])
+    event.attending.append(serializer.validated_data['user'])
+
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
+    # Return response
 
 
 @api_view(["POST"])

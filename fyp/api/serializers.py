@@ -235,6 +235,34 @@ def update_attendees(attendees, attending):
     return new_attending
 
 
+class ManualSignInSerializer(serializers.Serializer):
+
+    event_id = serializers.IntegerField()
+    user = serializers.CharField()
+
+    def validate(self, data):
+
+        user = data.get('user')
+        event_id = data.get('event_id')
+
+        if not user_exists(user):
+            raise serializers.ValidationError("User does not exist")
+
+        if not attendee_is_user(user.strip().lower(), event_id):
+            raise serializers.ValidationError("User is not attendee to event")
+
+        return data
+
+    def create(self, validated_data):
+        pass
+
+    def update(self, instance, validated_data):
+        pass
+
+    def __reduce_ex__(self, protocol: int) -> tuple:
+        return super().__reduce_ex__(protocol)
+
+
 class EventSerializer(serializers.ModelSerializer):
     """
     Serializer for Event CRUD operations.
