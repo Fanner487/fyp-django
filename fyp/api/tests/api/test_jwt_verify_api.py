@@ -3,11 +3,8 @@ from __future__ import unicode_literals
 
 from django.test import TestCase
 from rest_framework.test import APIClient
-from rest_framework.test import APITestCase
 from django.contrib.auth.models import User
-from api.models import Event
 from rest_framework import status
-import json
 
 """
 Tests all API calls for CRUD operations of the Event model.
