@@ -12,7 +12,7 @@ class VerifyGroupApiTest(APITestCase):
     def setUp(self):
         self.client = APIClient()
         self.url = "/api/verify_group"
-        self.token_url = "/api/api-token-auth"
+        self.token_url = "/api/api-token-auth/"
 
         User.objects.create_user(
             username='testuser1',
