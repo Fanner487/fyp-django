@@ -130,6 +130,10 @@ def manually_sign_in_user(request):
     print(str(serializer.validated_data['user']))
 
     event = Event.objects.get(id=serializer.validated_data['event_id'])
+    
+    if event.attending is None:
+        event.attending = []
+
     event.attending.append(serializer.validated_data['user'])
     event.save()
 
