@@ -65,11 +65,20 @@ class EventCreateTestCase(TestCase):
             attendees=['test2']
         )
 
-    def test_get_events_for_user(self):
+    def test_get_events_for_user_success(self):
 
         self.url = "/api/" + self.user1.username + "/events"
 
         response = self.client.get(self.url)
 
-        print(response.json)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertIsNotNone(response.data)
+
+    def test_get_events_wrong_user(self):
+        self.url = "/api/sdfsdfsdfdfs/events"
+
+        response = self.client.get(self.url)
+        
+        print(response.data)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertIsNotNone(response.data)
