@@ -66,6 +66,7 @@ class ManualUserSignInTest(TestCase):
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertIsNotNone(response.data)
+        print(response.data)
 
     def test_manual_sign_in_wrong_event_id(self):
 
