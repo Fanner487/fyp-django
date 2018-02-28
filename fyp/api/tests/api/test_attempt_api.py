@@ -157,6 +157,20 @@ class AttemptUpdateDeleteTestCase(APITestCase):
         self.create_user("user3", "test3@gmail.com", "orangemonkeyeagle1")
         self.create_user("user4", "test4@gmail.com", "orangemonkeyeagle1")
 
+        login_data = {
+            'username': 'user1',
+            'password': 'orangemonkeyeagle1'
+        }
+
+        self.token_url = "/api/api-token-auth/"
+
+        token_response = self.client.post(self.token_url, data=login_data, format='json')
+        self.token = token_response.data.get('token')
+        print("\n\ntoken")
+        print(self.token)
+
+        self.client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token)
+
     def create_user(self, username, email, password):
         User.objects.create_user(username, email, password)
 
