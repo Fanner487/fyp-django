@@ -47,6 +47,7 @@ class ApiTokenVerifyTest(TestCase):
         self.assertEqual(token_response.status_code, status.HTTP_200_OK)
 
     def test_token_verify_fail(self):
+
         data = {
             'token': self.token
         }
@@ -61,6 +62,11 @@ class ApiTokenVerifyTest(TestCase):
         new_token_response = self.client.post(self.token_url, data=self.login_data, format='json')
 
         new_token = new_token_response.data.get('token')
+
+        print("old token")
+        print(old_token)
+        print("new token")
+        print(new_token)
 
         data = {
             'token': old_token
