@@ -71,5 +71,5 @@ class EventCreateTestCase(TestCase):
 
         response = self.client.get(self.url)
 
-        print(response.data)
+        print(response.json)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
