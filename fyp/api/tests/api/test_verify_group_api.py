@@ -49,7 +49,7 @@ class VerifyGroupApiTest(APITestCase):
             'password': 'testpassword'
         }
 
-        token_response = self.client.post(self.token_url, data=login_data)
+        token_response = self.client.post(self.token_url, data=login_data, format='json')
         print("\n\ntoken_response")
         print(token_response.status_code)
         print(token_response)
