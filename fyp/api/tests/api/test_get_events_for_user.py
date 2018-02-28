@@ -31,6 +31,11 @@ class EventCreateTestCase(TestCase):
         self.password2 = "mypassword"
         self.user2 = User.objects.create_user(self.username2, self.email2, self.password2)
 
+        self.username3 = "test3"
+        self.email3 = "test2@example.com"
+        self.password3 = "mypassword"
+        self.user3 = User.objects.create_user(self.username3, self.email3, self.password3)
+
         login_data = {
             'username': 'test1',
             'password': 'mypassword'
@@ -81,4 +86,13 @@ class EventCreateTestCase(TestCase):
 
         print(response.data)
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+        self.assertIsNone(response.data)
+
+    def test_get_events_for_user_no_events(self):
+
+        self.url = "/api/" + self.user3.username + "/events"
+
+        response = self.client.get(self.url)
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertIsNotNone(response.data)
