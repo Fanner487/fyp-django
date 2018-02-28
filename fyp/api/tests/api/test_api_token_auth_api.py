@@ -47,7 +47,7 @@ class ApiTokenAuthApi(TestCase):
         }
 
         token_response = self.client.post(self.url, data=self.login_data, format='json')
-        
+
         self.assertEqual(token_response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertIsNotNone(token_response.data)
         self.assertIsNone(token_response.json().get('token'))
@@ -66,3 +66,29 @@ class ApiTokenAuthApi(TestCase):
         self.assertIsNotNone(token_response.data)
         self.assertIsNone(token_response.json().get('token'))
         self.assertIsNotNone(token_response.json().get('non_field_errors'))
+
+    def test_token_obtain_blank_username(self):
+
+        self.login_data = {
+            'password': "NOT"
+        }
+
+        token_response = self.client.post(self.url, data=self.login_data, format='json')
+
+        self.assertEqual(token_response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertIsNotNone(token_response.data)
+        self.assertIsNone(token_response.json().get('token'))
+        self.assertIsNotNone(token_response.json().get('username'))
+
+    def test_token_obtain_blank_password(self):
+
+        self.login_data = {
+            'username': self.username
+        }
+
+        token_response = self.client.post(self.url, data=self.login_data, format='json')
+
+        self.assertEqual(token_response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertIsNotNone(token_response.data)
+        self.assertIsNone(token_response.json().get('token'))
+        self.assertIsNotNone(token_response.json().get('password'))
