@@ -78,7 +78,7 @@ class EventCreateTestCase(TestCase):
         self.url = "/api/sdfsdfsdfdfs/events"
 
         response = self.client.get(self.url)
-        
+
         print(response.data)
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
         self.assertIsNotNone(response.data)
