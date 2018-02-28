@@ -547,7 +547,10 @@ class EventDeleteTestCase(APITestCase):
     """
 
     def setUp(self):
+
         self.client = APIClient()
+        User.objects.create_user('user1', 'user1@example.com', 'mypassword')
+        
         self.event = Event.objects.create(
             organiser='user1',
             event_name='test',
