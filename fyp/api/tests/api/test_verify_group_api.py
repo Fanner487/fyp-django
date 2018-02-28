@@ -52,7 +52,7 @@ class VerifyGroupApiTest(APITestCase):
         token_response = self.client.post(self.token_url, data=login_data, format='json')
         self.token = token_response.data.get('token')
         print("\n\ntoken")
-        print(token)
+        print(self.token)
 
     def test_verify_group_success(self):
         data = {

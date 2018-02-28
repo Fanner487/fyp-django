@@ -50,8 +50,8 @@
       <file leaf-file-name="test_verify_group_api.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/fyp/api/tests/api/test_verify_group_api.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="91" column="71" lean-forward="false" selection-start-line="91" selection-start-column="71" selection-end-line="91" selection-end-column="71" />
+            <state relative-caret-position="367">
+              <caret line="66" column="14" lean-forward="true" selection-start-line="66" selection-start-column="14" selection-end-line="66" selection-end-column="14" />
               <folding>
                 <element signature="e#0#43#0" expanded="true" />
               </folding>
@@ -716,8 +716,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/fyp/api/tests/api/test_verify_group_api.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="91" column="71" lean-forward="false" selection-start-line="91" selection-start-column="71" selection-end-line="91" selection-end-column="71" />
+        <state relative-caret-position="367">
+          <caret line="66" column="14" lean-forward="true" selection-start-line="66" selection-start-column="14" selection-end-line="66" selection-end-column="14" />
           <folding>
             <element signature="e#0#43#0" expanded="true" />
           </folding>
