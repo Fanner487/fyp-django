@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b2c529be-bfca-4366-bb99-ac5ec9275170" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fyp/api/tests/api/test_event_api.py" afterPath="$PROJECT_DIR$/fyp/api/tests/api/test_event_api.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fyp/api/tests/api/test_verify_group_api.py" afterPath="$PROJECT_DIR$/fyp/api/tests/api/test_verify_group_api.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -47,11 +48,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test_verify_group_api.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="test_verify_group_api.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/fyp/api/tests/api/test_verify_group_api.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="94" column="41" lean-forward="false" selection-start-line="94" selection-start-column="41" selection-end-line="94" selection-end-column="41" />
+            <state relative-caret-position="47">
+              <caret line="46" column="8" lean-forward="false" selection-start-line="46" selection-start-column="8" selection-end-line="56" selection-end-column="71" />
               <folding>
                 <element signature="e#0#43#0" expanded="true" />
               </folding>
@@ -59,53 +60,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test.py" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/rest_framework/test.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="338" column="36" lean-forward="false" selection-start-line="338" selection-start-column="32" selection-end-line="338" selection-end-column="36" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="mixins.py" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/rest_framework/mixins.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="65" column="8" lean-forward="false" selection-start-line="65" selection-start-column="8" selection-end-line="76" selection-end-column="40" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="builtins.py" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/.PyCharm2017.2/system/python_stubs/-1968995184/builtins.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="167">
-              <caret line="5215" column="8" lean-forward="false" selection-start-line="5215" selection-start-column="8" selection-end-line="5215" selection-end-column="8" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/fyp/api/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="464">
-              <caret line="29" column="11" lean-forward="true" selection-start-line="29" selection-start-column="11" selection-end-line="29" selection-end-column="25" />
-              <folding>
-                <element signature="e#0#32#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test_event_api.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="test_event_api.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/fyp/api/tests/api/test_event_api.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="784">
-              <caret line="57" column="59" lean-forward="false" selection-start-line="57" selection-start-column="59" selection-end-line="57" selection-end-column="86" />
+            <state relative-caret-position="160">
+              <caret line="39" column="43" lean-forward="false" selection-start-line="39" selection-start-column="43" selection-end-line="39" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -146,7 +105,6 @@
         <option value="$PROJECT_DIR$/fyp/fyp/urls.py" />
         <option value="$PROJECT_DIR$/fyp/api/tests/serializers/test_event_seralizer.py" />
         <option value="$PROJECT_DIR$/fyp/api/tests/api/test_attempt_api.py" />
-        <option value="$PROJECT_DIR$/fyp/api/tests/api/test_event_api.py" />
         <option value="$PROJECT_DIR$/fyp/api/tests/api/test_login_api.py" />
         <option value="$PROJECT_DIR$/fyp/api/tests/api/test_register_api.py" />
         <option value="$PROJECT_DIR$/fyp/api/tests/api/test_user_api.py" />
@@ -170,6 +128,7 @@
         <option value="$PROJECT_DIR$/fyp/api/urls.py" />
         <option value="$PROJECT_DIR$/fyp/api/views.py" />
         <option value="$PROJECT_DIR$/fyp/api/tests/api/test_verify_group_api.py" />
+        <option value="$PROJECT_DIR$/fyp/api/tests/api/test_event_api.py" />
       </list>
     </option>
   </component>
@@ -616,14 +575,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fyp/api/tests/api/test_event_api.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="784">
-          <caret line="57" column="59" lean-forward="false" selection-start-line="57" selection-start-column="59" selection-end-line="57" selection-end-column="86" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/fyp/api/tests/api/test_login_api.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="320">
@@ -716,11 +667,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/fyp/api/tests/api/test_verify_group_api.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="94" column="41" lean-forward="false" selection-start-line="94" selection-start-column="41" selection-end-line="94" selection-end-column="41" />
+        <state relative-caret-position="47">
+          <caret line="46" column="8" lean-forward="false" selection-start-line="46" selection-start-column="8" selection-end-line="56" selection-end-column="71" />
           <folding>
             <element signature="e#0#43#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fyp/api/tests/api/test_event_api.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="39" column="43" lean-forward="false" selection-start-line="39" selection-start-column="43" selection-end-line="39" selection-end-column="43" />
+          <folding />
         </state>
       </provider>
     </entry>

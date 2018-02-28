@@ -35,6 +35,18 @@ class EventCreateTestCase(TestCase):
         self.create_user("user3", "test3@gmail.com", "orangemonkeyeagle1")
         self.create_user("user4", "test4@gmail.com", "orangemonkeyeagle1")
 
+        login_data = {
+            'username': 'user1',
+            'password': 'orangemonkeyeagle1'
+        }
+
+        token_response = self.client.post(self.token_url, data=login_data, format='json')
+        self.token = token_response.data.get('token')
+        print("\n\ntoken")
+        print(self.token)
+
+        self.client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token)
+
     def test_event_create_success(self):
         data = {
             'organiser': "user1",
