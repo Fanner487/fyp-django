@@ -48,8 +48,11 @@ class ApiTokenVerifyTest(TestCase):
 
     def test_token_verify_fail(self):
         data = {
-            'token': "sdfsdfsdfs"
+            'token': self.token
         }
+
+        token_response = self.client.post(self.token_url, data=self.login_data, format='json')
+        new_token = token_response.data.get('token')
 
         token_response = self.client.post(self.url, data=data, format='json')
 
