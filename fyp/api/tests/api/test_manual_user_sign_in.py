@@ -81,7 +81,7 @@ class ManualUserSignInTest(TestCase):
         self.assertNotEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertIsNotNone(response.data)
-        self.assertIsNone(response.json().get('non_field_errors'))
+        self.assertIsNone(response.data.get('non_field_errors'))
 
     def test_manual_sign_in_wrong_user(self):
 
@@ -95,7 +95,8 @@ class ManualUserSignInTest(TestCase):
         self.assertNotEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertIsNotNone(response.data)
-        self.assertIsNone(response.json().get('non_field_errors'))
+        # print()
+        self.assertIsNone(response.data.get('user'))
 
     def test_manual_sign_in_already_signed_in(self):
         data = {
