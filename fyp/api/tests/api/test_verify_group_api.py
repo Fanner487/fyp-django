@@ -51,6 +51,8 @@ class VerifyGroupApiTest(APITestCase):
 
         token_response = self.client.post(self.token_url, data=login_data)
         print("\n\ntoken_response")
+        print(token_response.status_code)
+        print(token_response)
         print(str(token_response.body))
 
     def test_verify_group_success(self):
