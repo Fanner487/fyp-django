@@ -56,8 +56,6 @@ class ManualUserSignInTest(TestCase):
         )
 
     def test_manual_sign_in_success(self):
-        # print(str(serializer.validated_data['event_id']))
-        # print(str(serializer.validated_data['user']))
 
         data = {
             'event_id': self.event.id,
@@ -81,8 +79,6 @@ class ManualUserSignInTest(TestCase):
         self.assertNotEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertIsNotNone(response.data)
-        print("wrong event")
-        print(response.data)
         self.assertIsNotNone(response.data.get('non_field_errors'))
 
     def test_manual_sign_in_wrong_user(self):
@@ -97,8 +93,6 @@ class ManualUserSignInTest(TestCase):
         self.assertNotEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertIsNotNone(response.data)
-        print("wrong user")
-        print(response.data)
         self.assertIsNotNone(response.data.get('non_field_errors'))
 
     def test_manual_sign_in_already_signed_in(self):
@@ -117,7 +111,28 @@ class ManualUserSignInTest(TestCase):
         self.assertNotEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertIsNotNone(response.data)
-        print("already signed in")
-        print(response.data)
         self.assertIsNotNone(response.data.get('non_field_errors'))
 
+    def test_manual_sign_in_already_no_user(self):
+        data = {
+            'event_id': self.event.id
+        }
+
+        response = self.client.post(self.url, data=data, format='json')
+
+        self.assertNotEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertIsNotNone(response.data)
+        self.assertIsNotNone(response.data.get('user'))
+
+    def test_manual_sign_in_already_no_event(self):
+        data = {
+            'user': self.user2.username
+        }
+
+        response = self.client.post(self.url, data=data, format='json')
+
+        self.assertNotEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertIsNotNone(response.data)
+        self.assertIsNotNone(response.data.get('event_id'))
