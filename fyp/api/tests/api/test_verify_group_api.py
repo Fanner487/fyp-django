@@ -53,6 +53,7 @@ class VerifyGroupApiTest(APITestCase):
         print("\n\ntoken_response")
         print(token_response.status_code)
         print(token_response)
+        print(token_response.data)
         print(str(token_response.body))
 
     def test_verify_group_success(self):
