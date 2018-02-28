@@ -54,12 +54,14 @@ class VerifyGroupApiTest(APITestCase):
         print("\n\ntoken")
         print(self.token)
 
+        self.client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token)
+
     def test_verify_group_success(self):
         data = {
             'usernames': ['testuser1', 'testuser2', 'testuser3']
         }
 
-        self.client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token)
+        # self.client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token)
         response = self.client.post(self.url, data=data, format='json')
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -69,7 +71,7 @@ class VerifyGroupApiTest(APITestCase):
             'usernames': []
         }
 
-        self.client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token)
+        # self.client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token)
         response = self.client.post(self.url, data=data, format='json')
 
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
@@ -80,7 +82,7 @@ class VerifyGroupApiTest(APITestCase):
             'usernames': ['testuser1', 'testuser2', 'NOTAUSER']
         }
 
-        self.client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token)
+        # self.client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token)
         response = self.client.post(self.url, data=data, format='json')
 
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
@@ -89,7 +91,7 @@ class VerifyGroupApiTest(APITestCase):
     def test_verify_group_none(self):
         data = None
 
-        self.client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token)
+        # self.client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token)
         response = self.client.post(self.url, data=data, format='json')
 
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
