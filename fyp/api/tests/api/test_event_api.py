@@ -360,6 +360,20 @@ class EventUpdateTestCase(APITestCase):
             attendees=['user2', 'user3', 'user4']
         )
 
+        login_data = {
+            'username': 'user1',
+            'password': 'orangemonkeyeagle1'
+        }
+
+        self.token_url = "/api/api-token-auth/"
+
+        token_response = self.client.post(self.token_url, data=login_data, format='json')
+        self.token = token_response.data.get('token')
+        print("\n\ntoken")
+        print(self.token)
+
+        self.client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token)
+
     def test_event_update(self):
         new_data = json.dumps({
             'organiser': 'user1',
@@ -545,6 +559,20 @@ class EventDeleteTestCase(APITestCase):
         )
 
         self.client = APIClient()
+
+        login_data = {
+            'username': 'user1',
+            'password': 'orangemonkeyeagle1'
+        }
+
+        self.token_url = "/api/api-token-auth/"
+
+        token_response = self.client.post(self.token_url, data=login_data, format='json')
+        self.token = token_response.data.get('token')
+        print("\n\ntoken")
+        print(self.token)
+
+        self.client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token)
 
     def test_event_delete(self):
 
