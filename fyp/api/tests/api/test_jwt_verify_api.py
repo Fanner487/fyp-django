@@ -54,6 +54,11 @@ class ApiTokenVerifyTest(TestCase):
         token_response = self.client.post(self.token_url, data=self.login_data, format='json')
         new_token = token_response.data.get('token')
 
+        print("old token")
+        print(self.token)
+        print("new token")
+        print(new_token)
+
         token_response = self.client.post(self.url, data=data, format='json')
 
         print(token_response.data)
