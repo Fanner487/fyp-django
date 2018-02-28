@@ -85,6 +85,7 @@ class ManualUserSignInTest(TestCase):
         self.assertNotEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertIsNotNone(response.data)
+        print(response.data)
         # self.assertIsNotNone(token_response.json().get('token'))
         # self.assertIsNone(token_response.json().get('non_field_errors'))
 
@@ -102,6 +103,7 @@ class ManualUserSignInTest(TestCase):
         self.assertNotEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertIsNotNone(response.data)
+        print(response.data)
         # self.assertIsNotNone(token_response.json().get('token'))
         # self.assertIsNone(token_response.json().get('non_field_errors'))
 
