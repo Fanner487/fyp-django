@@ -53,6 +53,7 @@ class ApiTokenVerifyTest(TestCase):
 
         token_response = self.client.post(self.url, data=data, format='json')
 
+        print(token_response.data)
         self.assertNotEqual(token_response.status_code, status.HTTP_200_OK)
         self.assertEqual(token_response.status_code, status.HTTP_400_BAD_REQUEST)
 
