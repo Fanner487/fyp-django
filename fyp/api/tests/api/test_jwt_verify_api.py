@@ -49,94 +49,10 @@ class ApiTokenVerifyTest(TestCase):
     def test_token_verify_fail(self):
 
         data = {
-            'token': self.token
+            'token': "sdfsdf"
         }
 
-        # old token verify
         token_response = self.client.post(self.url, data=data, format='json')
 
-        self.assertEqual(token_response.status_code, status.HTTP_200_OK)
-
-        old_token = self.token
-
-        new_token_response = self.client.post(self.token_url, data=self.login_data, format='json')
-
-        new_token = new_token_response.data.get('token')
-
-        print("old token")
-        print(old_token)
-        print("new token")
-        print(new_token)
-
-        data = {
-            'token': old_token
-        }
-
-        new_token_verify = self.client.post(self.url, data=data, format='json')
-
-        self.assertNotEqual(new_token_verify.status_code, status.HTTP_200_OK)
-
-        #
-        # data = {
-        #     'token': old_token
-        # }
-        #
-        # token_response = self.client.post(self.url, data=data, format='json')
-        #
-        # print(token_response.data)
-        # self.assertNotEqual(token_response.status_code, status.HTTP_200_OK)
-        # self.assertEqual(token_response.status_code, status.HTTP_400_BAD_REQUEST)
-
-    #
-    # def test_token_obtain_wrong_username(self):
-    #     self.login_data = {
-    #         'username': "NOT",
-    #         'password': self.password
-    #     }
-    #
-    #     token_response = self.client.post(self.url, data=self.login_data, format='json')
-    #
-    #     self.assertEqual(token_response.status_code, status.HTTP_400_BAD_REQUEST)
-    #     self.assertIsNotNone(token_response.data)
-    #     self.assertIsNone(token_response.json().get('token'))
-    #     self.assertIsNotNone(token_response.json().get('non_field_errors'))
-    #
-    # def test_token_obtain_wrong_password(self):
-    #
-    #     self.login_data = {
-    #         'username': self.username,
-    #         'password': "NOT"
-    #     }
-    #
-    #     token_response = self.client.post(self.url, data=self.login_data, format='json')
-    #
-    #     self.assertEqual(token_response.status_code, status.HTTP_400_BAD_REQUEST)
-    #     self.assertIsNotNone(token_response.data)
-    #     self.assertIsNone(token_response.json().get('token'))
-    #     self.assertIsNotNone(token_response.json().get('non_field_errors'))
-    #
-    # def test_token_obtain_blank_username(self):
-    #
-    #     self.login_data = {
-    #         'password': "NOT"
-    #     }
-    #
-    #     token_response = self.client.post(self.url, data=self.login_data, format='json')
-    #
-    #     self.assertEqual(token_response.status_code, status.HTTP_400_BAD_REQUEST)
-    #     self.assertIsNotNone(token_response.data)
-    #     self.assertIsNone(token_response.json().get('token'))
-    #     self.assertIsNotNone(token_response.json().get('username'))
-    #
-    # def test_token_obtain_blank_password(self):
-    #
-    #     self.login_data = {
-    #         'username': self.username
-    #     }
-    #
-    #     token_response = self.client.post(self.url, data=self.login_data, format='json')
-    #
-    #     self.assertEqual(token_response.status_code, status.HTTP_400_BAD_REQUEST)
-    #     self.assertIsNotNone(token_response.data)
-    #     self.assertIsNone(token_response.json().get('token'))
-    #     self.assertIsNotNone(token_response.json().get('password'))
+        self.assertNotEqual(token_response.status_code, status.HTTP_200_OK)
+        self.assertEqual(token_response.status_code, status.HTTP_400_BAD_REQUEST)
