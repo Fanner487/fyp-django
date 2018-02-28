@@ -83,7 +83,7 @@ class ManualUserSignInTest(TestCase):
         self.assertIsNotNone(response.data)
         print("wrong event")
         print(response.data)
-        self.assertIsNone(response.data.get('non_field_errors'))
+        self.assertIsNotNone(response.data.get('non_field_errors'))
 
     def test_manual_sign_in_wrong_user(self):
 
@@ -99,7 +99,7 @@ class ManualUserSignInTest(TestCase):
         self.assertIsNotNone(response.data)
         print("wrong user")
         print(response.data)
-        self.assertIsNone(response.data.get('non_field_errors'))
+        self.assertIsNotNone(response.data.get('non_field_errors'))
 
     def test_manual_sign_in_already_signed_in(self):
         data = {
@@ -119,5 +119,5 @@ class ManualUserSignInTest(TestCase):
         self.assertIsNotNone(response.data)
         print("already signed in")
         print(response.data)
-        self.assertIsNone(response.data.get('non_field_errors'))
+        self.assertIsNotNone(response.data.get('non_field_errors'))
 
