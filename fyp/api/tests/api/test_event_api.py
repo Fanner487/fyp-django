@@ -177,7 +177,7 @@ class EventCreateTestCase(TestCase):
         print("response")
         print(response.data)
 
-        self.assertEqual(response.json().get('non_field_errors'), ['Attendees cannot be null'])
+        self.assertEqual(response.json().get('attendees'), ['This field is required.'])
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
     def test_event_create_organiser_exists_fail(self):
