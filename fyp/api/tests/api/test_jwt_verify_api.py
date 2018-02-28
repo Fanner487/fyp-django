@@ -51,19 +51,35 @@ class ApiTokenVerifyTest(TestCase):
             'token': self.token
         }
 
-        token_response = self.client.post(self.token_url, data=self.login_data, format='json')
-        new_token = token_response.data.get('token')
-
-        print("old token")
-        print(self.token)
-        print("new token")
-        print(new_token)
-
+        # old token verify
         token_response = self.client.post(self.url, data=data, format='json')
 
-        print(token_response.data)
-        self.assertNotEqual(token_response.status_code, status.HTTP_200_OK)
-        self.assertEqual(token_response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertEqual(token_response.status_code, status.HTTP_200_OK)
+
+        old_token = token_response.json.get('token')
+
+        new_token_response = self.client.post(self.token_url, data=self.login_data, format='json')
+
+        new_token = new_token_response.json.get('token')
+
+        data = {
+            'token': old_token
+        }
+
+        new_token_verify = self.client.post(self.url, data=data, format='json')
+
+        self.assertNotEqual(new_token_verify.status_code, status.HTTP_200_OK)
+
+        #
+        # data = {
+        #     'token': old_token
+        # }
+        #
+        # token_response = self.client.post(self.url, data=data, format='json')
+        #
+        # print(token_response.data)
+        # self.assertNotEqual(token_response.status_code, status.HTTP_200_OK)
+        # self.assertEqual(token_response.status_code, status.HTTP_400_BAD_REQUEST)
 
     #
     # def test_token_obtain_wrong_username(self):
