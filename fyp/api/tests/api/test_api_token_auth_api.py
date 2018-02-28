@@ -15,7 +15,7 @@ All potential invalid and non-nullable fields are tested
 """
 
 
-class ApiTokenAuthApi(TestCase):
+class ApiTokenAuthApiTest(TestCase):
 
     def setUp(self):
         self.client = APIClient()
