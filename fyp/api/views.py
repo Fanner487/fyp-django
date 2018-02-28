@@ -131,6 +131,7 @@ def manually_sign_in_user(request):
 
     event = Event.objects.get(id=serializer.validated_data['event_id'])
     event.attending.append(serializer.validated_data['user'])
+    event.save()
 
     return Response(serializer.data, status=status.HTTP_200_OK)
 
