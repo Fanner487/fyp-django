@@ -158,10 +158,3 @@ class EventUpdateSerializerTestCase(TestCase):
         serializer = serializers.EventUpdateSerializer(data=new_serializer_data)
         self.assertFalse(serializer.is_valid())
         self.assertEquals(serializer.errors.keys(), set(['non_field_errors']))
-
-    def test_serializer_attending_populated(self):
-        new_serializer_data = self.serializer_data
-        new_serializer_data['attending'] = [self.user2.username, self.user4.username, self.user4.username]
-        serializer = serializers.EventUpdateSerializer(data=new_serializer_data)
-        self.assertFalse(serializer.is_valid())
-        self.assertEquals(serializer.errors.keys(), set(['non_field_errors']))
