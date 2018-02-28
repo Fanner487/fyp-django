@@ -68,12 +68,8 @@ class ManualUserSignInTest(TestCase):
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertIsNotNone(response.data)
-        # self.assertIsNotNone(token_response.json().get('token'))
-        # self.assertIsNone(token_response.json().get('non_field_errors'))
 
     def test_manual_sign_in_wrong_event_id(self):
-        # print(str(serializer.validated_data['event_id']))
-        # print(str(serializer.validated_data['user']))
 
         data = {
             'event_id': 999999,
@@ -85,13 +81,9 @@ class ManualUserSignInTest(TestCase):
         self.assertNotEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertIsNotNone(response.data)
-        print(response.data)
-        # self.assertIsNotNone(token_response.json().get('token'))
-        # self.assertIsNone(token_response.json().get('non_field_errors'))
+        self.assertIsNone(response.json().get('non_field_errors'))
 
     def test_manual_sign_in_wrong_user(self):
-        # print(str(serializer.validated_data['event_id']))
-        # print(str(serializer.validated_data['user']))
 
         data = {
             'event_id': self.event.id,
@@ -103,9 +95,25 @@ class ManualUserSignInTest(TestCase):
         self.assertNotEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertIsNotNone(response.data)
-        print(response.data)
-        # self.assertIsNotNone(token_response.json().get('token'))
-        # self.assertIsNone(token_response.json().get('non_field_errors'))
+        self.assertIsNone(response.json().get('non_field_errors'))
+
+    def test_manual_sign_in_already_signed_in(self):
+        data = {
+            'event_id': self.event.id,
+            'user': self.user2.username
+        }
+
+        response = self.client.post(self.url, data=data, format='json')
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertIsNotNone(response.data)
+
+        response = self.client.post(self.url, data=data, format='json')
+
+        self.assertNotEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertIsNotNone(response.data)
+        self.assertIsNone(response.json().get('non_field_errors'))
 
     # def test_token_obtain_wrong_username(self):
     #     self.login_data = {
