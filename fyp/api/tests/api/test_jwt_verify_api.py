@@ -56,11 +56,11 @@ class ApiTokenVerifyTest(TestCase):
 
         self.assertEqual(token_response.status_code, status.HTTP_200_OK)
 
-        old_token = token_response.json.get('token')
+        old_token = token_response.data.get('token')
 
         new_token_response = self.client.post(self.token_url, data=self.login_data, format='json')
 
-        new_token = new_token_response.json.get('token')
+        new_token = new_token_response.data.get('token')
 
         data = {
             'token': old_token
