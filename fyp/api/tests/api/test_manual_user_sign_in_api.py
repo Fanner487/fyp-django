@@ -65,8 +65,10 @@ class ManualUserSignInTest(TestCase):
         response = self.client.post(self.url, data=data, format='json')
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertIsNotNone(response.data)
+        print("\n\n\nresponsedata")
         print(response.data)
+        self.assertIsNotNone(response.data)
+
 
     def test_manual_sign_in_wrong_event_id(self):
 
