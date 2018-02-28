@@ -12,6 +12,7 @@ class VerifyGroupApiTest(APITestCase):
     def setUp(self):
         self.client = APIClient()
         self.url = "/api/verify_group"
+        self.token_url = "/api/api-token-auth"
 
         User.objects.create_user(
             username='testuser1',
@@ -43,11 +44,22 @@ class VerifyGroupApiTest(APITestCase):
             last_name='User'
         )
 
+        login_data = {
+            'username': 'testuser1',
+            'password': 'testpassword'
+        }
+
+        token_response = self.client.post(self.token_url, data=login_data)
+        print("\n\ntoken_response")
+        print(token_response.body)
+
     def test_verify_group_success(self):
         data = {
             'usernames': ['testuser1', 'testuser2', 'testuser3']
         }
 
+        auth = "JWT "
+        self.client.credentials()
         response = self.client.post(self.url, data=data, format='json')
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
