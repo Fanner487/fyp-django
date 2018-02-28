@@ -64,7 +64,7 @@ class ManualUserSignInTest(TestCase):
             'user': self.user2.username
         }
 
-        response = self.client.post(self.url, data=self.data, format='json')
+        response = self.client.post(self.url, data=data, format='json')
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         # self.assertIsNotNone(token_response.data)
