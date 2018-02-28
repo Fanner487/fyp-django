@@ -362,7 +362,7 @@ class EventUpdateTestCase(APITestCase):
 
         login_data = {
             'username': 'user1',
-            'password': 'orangemonkeyeagle1'
+            'password': 'mypassword'
         }
 
         self.token_url = "/api/api-token-auth/"
