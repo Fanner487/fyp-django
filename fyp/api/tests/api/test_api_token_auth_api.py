@@ -13,6 +13,8 @@ import json
 Tests all API calls for CRUD operations of the Event model.
 All potential invalid and non-nullable fields are tested
 """
+
+
 class ApiTokenAuthApi(TestCase):
 
     def setUp(self):
@@ -41,7 +43,7 @@ class ApiTokenAuthApi(TestCase):
         }
 
         token_response = self.client.post(self.url, data=self.login_data, format='json')
-        self.assertEqual(token_response.status_code, status.HTTP_401_UNAUTHORIZED)
+        self.assertEqual(token_response.status_code, status.HTTP_400_BAD_REQUEST)
 
     def test_token_obtain_wrong_password(self):
 
@@ -51,4 +53,4 @@ class ApiTokenAuthApi(TestCase):
         }
 
         token_response = self.client.post(self.url, data=self.login_data, format='json')
-        self.assertEqual(token_response.status_code, status.HTTP_401_UNAUTHORIZED)
+        self.assertEqual(token_response.status_code, status.HTTP_400_BAD_REQUEST)
