@@ -57,3 +57,23 @@ class ManualSignInSerializerTestCase(TestCase):
         serializer.is_valid()
         print(serializer.errors)
         self.assertTrue(serializer.is_valid())
+
+    def test_manual_sign_in_wrong_user(self):
+        self.serializer_data = {
+            'event_id': self.event.id,
+            'user': "sefsdf"
+        }
+        serializer = serializers.ManualSignInSerializer(data=self.serializer_data)
+        serializer.is_valid()
+        print(serializer.errors)
+        self.assertFalse(serializer.is_valid())
+
+    def test_manual_sign_in_wrong_event(self):
+        self.serializer_data = {
+            'event_id': 9999,
+            'user': self.user2.username
+        }
+        serializer = serializers.ManualSignInSerializer(data=self.serializer_data)
+        serializer.is_valid()
+        print(serializer.errors)
+        self.assertFalse(serializer.is_valid())
