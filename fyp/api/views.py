@@ -118,7 +118,7 @@ def login(request):
         user = User.objects.get(username=serializer.data.get('username'))
         print("USER")
         print(user)
-        user_serializer = UserSerializer(data=user)
+        user_serializer = UserSerializer(data=user, many=False)
         user_serializer.is_valid(raise_exception=True)
         return Response(user_serializer.data, status=status.HTTP_200_OK)
 
