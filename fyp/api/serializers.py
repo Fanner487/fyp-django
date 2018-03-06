@@ -411,8 +411,8 @@ class AttemptSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("Event does not exist")
 
         # Check if user exists in attendee list and not already in attending
-        if not attendee_is_user(username, event_id):
-            raise serializers.ValidationError("User is not in attendees or already in list")
+        # if not attendee_is_user(username, event_id):
+        #     raise serializers.ValidationError("User is not in attendees or already in list")
 
         print("Serializer valid. Verifying last scan now")
 
