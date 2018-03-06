@@ -273,6 +273,8 @@ class ManualRemoveUserFromAttendingSerializer(serializers.Serializer):
 
     def validate(self, data):
 
+        print("In ManualRemoveUserFromAttendingSerializer")
+
         user = data.get('user')
         event_id = data.get('event_id')
 
