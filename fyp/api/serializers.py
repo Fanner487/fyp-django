@@ -284,8 +284,8 @@ class ManualRemoveUserFromAttendingSerializer(serializers.Serializer):
         if not user_exists(user):
             raise serializers.ValidationError("User does not exist")
 
-        if not attendee_is_user(user.strip().lower(), event_id):
-            raise serializers.ValidationError("User is not attendee to event")
+        # if not attendee_is_user(user.strip().lower(), event_id):
+        #     raise serializers.ValidationError("User is not attendee to event")
 
         event = Event.objects.get(id=event_id)
 
@@ -411,8 +411,8 @@ class AttemptSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("Event does not exist")
 
         # Check if user exists in attendee list and not already in attending
-        # if not attendee_is_user(username, event_id):
-        #     raise serializers.ValidationError("User is not in attendees or already in list")
+        if not attendee_is_user(username, event_id):
+            raise serializers.ValidationError("User is not in attendees or already in list")
 
         print("Serializer valid. Verifying last scan now")
 
