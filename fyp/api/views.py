@@ -115,7 +115,7 @@ def login(request):
         return Response(status=status.HTTP_401_UNAUTHORIZED)
     else:
 
-        user = User.objects.get(username=request.data.get('user'))
+        user = User.objects.get(username=request.data.get('username'))
         user_serializer = UserSerializer(data=user)
         return Response(user_serializer.data, status=status.HTTP_200_OK)
 
