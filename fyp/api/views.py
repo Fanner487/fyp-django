@@ -121,7 +121,7 @@ def login(request):
         user_serializer = UserSerializer(user)
         # user_serializer.is_valid(raise_exception=True)
         print(user_serializer.data)
-        return Response(status=status.HTTP_200_OK)
+        return Response(user_serializer.data, status=status.HTTP_200_OK)
 
 
 @api_view(["POST"])
