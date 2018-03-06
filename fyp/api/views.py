@@ -5,7 +5,7 @@ from rest_framework import status
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework.viewsets import ModelViewSet, GenericViewSet
 from .serializers import EventSerializer, AttemptSerializer, UserSerializer, LoginSerializer, RegisterSerializer, \
-    VerifyGroupSerializer, EventUpdateSerializer, ManualSignInSerializer
+    VerifyGroupSerializer, EventUpdateSerializer, ManualSignInSerializer, ManualRemoveUserFromAttendingSerializer
 from .models import Event, Attempt
 from rest_framework import mixins
 from rest_framework.permissions import IsAuthenticated
@@ -135,6 +135,30 @@ def manually_sign_in_user(request):
         event.attending = []
 
     event.attending.append(serializer.validated_data['user'])
+    event.save()
+
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
+    # Return response
+
+
+@api_view(["POST"])
+@authentication_classes((JSONWebTokenAuthentication,))
+def remove_user_from_attending(request):
+
+    serializer = ManualRemoveUserFromAttendingSerializer(data=request.data)
+
+    serializer.is_valid(raise_exception=True)
+
+    print("\n\nManual remove in validated")
+    print(str(serializer.validated_data['event_id']))
+    print(str(serializer.validated_data['user']))
+
+    event = Event.objects.get(id=serializer.validated_data['event_id'])
+
+    if serializer.validated_data['user'] in event.attending:
+        event.attending.remove(serializer.validated_data['user'])
+
     event.save()
 
     return Response(serializer.data, status=status.HTTP_200_OK)

@@ -245,11 +245,53 @@ class ManualSignInSerializer(serializers.Serializer):
         user = data.get('user')
         event_id = data.get('event_id')
 
+        if not event_exists(event_id):
+            raise serializers.ValidationError("Event does not exist")
+
         if not user_exists(user):
             raise serializers.ValidationError("User does not exist")
 
         if not attendee_is_user(user.strip().lower(), event_id):
             raise serializers.ValidationError("User is not attendee to event")
+
+        return data
+
+    def create(self, validated_data):
+        pass
+
+    def update(self, instance, validated_data):
+        pass
+
+    def __reduce_ex__(self, protocol: int) -> tuple:
+        return super().__reduce_ex__(protocol)
+
+
+class ManualRemoveUserFromAttendingSerializer(serializers.Serializer):
+
+    event_id = serializers.IntegerField()
+    user = serializers.CharField()
+
+    def validate(self, data):
+
+        user = data.get('user')
+        event_id = data.get('event_id')
+
+        if not event_exists(event_id):
+            raise serializers.ValidationError("Event does not exist")
+
+        if not user_exists(user):
+            raise serializers.ValidationError("User does not exist")
+
+        if not attendee_is_user(user.strip().lower(), event_id):
+            raise serializers.ValidationError("User is not attendee to event")
+
+        event = Event.objects.get(id=event_id)
+
+        print("\nEvent")
+        print(event)
+
+        if user not in event.attending:
+            raise serializers.ValidationError("User is not in attending")
 
         return data
 
