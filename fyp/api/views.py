@@ -114,7 +114,10 @@ def login(request):
     if not serializer.is_valid():
         return Response(status=status.HTTP_401_UNAUTHORIZED)
     else:
-        return Response({"message": "Login successful"}, status=status.HTTP_200_OK)
+
+        user = User.objects.get(username=request.data.get('user'))
+        user_serializer = UserSerializer(data=user)
+        return Response(user_serializer.data, status=status.HTTP_200_OK)
 
 
 @api_view(["POST"])
