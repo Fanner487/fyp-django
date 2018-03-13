@@ -415,7 +415,7 @@ class AttemptSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError(username + " is not in attendee")
 
         if attendee_is_in_attending(username, event_id):
-            raise serializers.ValidationError(username + " already attending")
+            raise serializers.ValidationError(username + " signed in")
 
         print("Serializer valid. Verifying last scan now")
 
