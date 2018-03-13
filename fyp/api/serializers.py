@@ -412,7 +412,10 @@ class AttemptSerializer(serializers.ModelSerializer):
 
         # Check if user exists in attendee list and not already in attending
         if not attendee_is_user(username, event_id):
-            raise serializers.ValidationError("User is not in attendees or already in list")
+            raise serializers.ValidationError(username + " is not in attendee")
+
+        if attendee_is_in_attending(username, event_id):
+            raise serializers.ValidationError(username + " already attending")
 
         print("Serializer valid. Verifying last scan now")
 
@@ -567,8 +570,7 @@ def attendee_is_user(username, event_id):
 
         # Checks if user in attendee and not already in attending
         event = Event.objects.filter(id=event_id) \
-            .filter(attendees__icontains=username.strip().lower()) \
-            .exclude(attending__icontains=username.strip().lower())
+            .filter(attendees__icontains=username.strip().lower())
 
         # If there's only one entry of event and is exists
         if event.exists() and event.count() == 1:
@@ -576,6 +578,26 @@ def attendee_is_user(username, event_id):
             return True
         else:
             print(username + " does not exist in " + str(event_id) + " or is already in there")
+            return False
+
+    else:
+        return False
+
+
+def attendee_is_in_attending(username, event_id):
+
+    if user_exists(username) and event_exists(event_id):
+
+        # Checks if user in attendee and not already in attending
+        event = Event.objects.filter(id=event_id) \
+            .filter(attending__icontains=username.strip().lower())
+
+        # If there's only one entry of event and is exists
+        if event.exists() and event.count() == 1:
+            print(username + " is in attending")
+            return True
+        else:
+            print(username + " is not in attending")
             return False
 
     else:
