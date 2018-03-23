@@ -467,7 +467,7 @@ def verify_scan(data):
                 print("Previous attempt valid")
                 # Check if time within 10 seconds of last
                 seconds_difference = (current_created - last_attempt.created).total_seconds()
-                delta = 10
+                delta = 5
 
                 current_time_on_screen = time_on_screen
                 current_date_on_screen = date_on_screen
