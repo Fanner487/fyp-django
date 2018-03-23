@@ -466,7 +466,7 @@ def verify_scan(data):
 
                 print("Previous attempt valid")
 
-                
+
                 # Check if time within 5 seconds of last
                 time_stamp_seconds_difference = (current_created - last_attempt.created).total_seconds()
                 delta = 5
@@ -489,7 +489,7 @@ def verify_scan(data):
                 # Makes sure that the current time after alst attempt time and within delta
                 if 0 < time_stamp_seconds_difference < delta:
 
-                    if 1 < screen_seconds_difference < delta:
+                    if 1 <= screen_seconds_difference < delta:
 
                         print("Two attempts within delta")
                         add_to_attending(username, event_id)

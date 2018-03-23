@@ -46,8 +46,8 @@
       <file leaf-file-name="serializers.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/fyp/api/serializers.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-38">
-              <caret line="468" column="16" lean-forward="false" selection-start-line="468" selection-start-column="16" selection-end-line="468" selection-end-column="16" />
+            <state relative-caret-position="330">
+              <caret line="491" column="27" lean-forward="false" selection-start-line="491" selection-start-column="27" selection-end-line="491" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -714,8 +714,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/fyp/api/serializers.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-38">
-          <caret line="468" column="16" lean-forward="false" selection-start-line="468" selection-start-column="16" selection-end-line="468" selection-end-column="16" />
+        <state relative-caret-position="330">
+          <caret line="491" column="27" lean-forward="false" selection-start-line="491" selection-start-column="27" selection-end-line="491" selection-end-column="27" />
           <folding />
         </state>
       </provider>
