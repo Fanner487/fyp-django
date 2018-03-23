@@ -471,10 +471,17 @@ def verify_scan(data):
 
                 current_time_on_screen = time_on_screen
                 current_date_on_screen = date_on_screen
+                #
+                current_time_formatted = datetime.combine(current_date_on_screen, current_time_on_screen)
+                last_attempt_screen_time_formatted = datetime.combine(last_attempt.date_on_screen, last_attempt.time_on_screen)
 
-                screen_current_difference_in_time = current_time_on_screen - last_attempt.time_on_screen
+                screen_seconds_difference = current_time_formatted - last_attempt_screen_time_formatted
+
+
+
+                # screen_current_difference_in_time = current_time_on_screen - last_attempt.time_on_screen
                 print("\n\nSCREEN TIME")
-                print(screen_current_difference_in_time)
+                print(screen_seconds_difference)
                 print("\n\n")
 
                 # Makes sure that the current time after alst attempt time and within delta
