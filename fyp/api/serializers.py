@@ -480,7 +480,8 @@ def verify_scan(data):
                                              - last_attempt_screen_time_formatted).total_seconds()
 
                 print("\n\nSCREEN TIME")
-                print(screen_seconds_difference)
+                print("screen: " + str(screen_seconds_difference))
+                print("timestamp: " + seconds_difference)
                 print("\n\n")
 
                 # Makes sure that the current time after alst attempt time and within delta
