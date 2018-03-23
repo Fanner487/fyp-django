@@ -481,7 +481,7 @@ def verify_scan(data):
 
                 print("\n\nSCREEN TIME")
                 print("screen: " + str(screen_seconds_difference))
-                print("timestamp: " + seconds_difference)
+                print("timestamp: " + str(seconds_difference))
                 print("\n\n")
 
                 # Makes sure that the current time after alst attempt time and within delta
