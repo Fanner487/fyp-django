@@ -465,30 +465,34 @@ def verify_scan(data):
                                       last_attempt.date_on_screen, last_attempt.created):
 
                 print("Previous attempt valid")
-                # Check if time within 10 seconds of last
-                seconds_difference = (current_created - last_attempt.created).total_seconds()
+
+                
+                # Check if time within 5 seconds of last
+                time_stamp_seconds_difference = (current_created - last_attempt.created).total_seconds()
                 delta = 5
 
                 current_time_on_screen = time_on_screen
                 current_date_on_screen = date_on_screen
-                #
-                current_time_formatted = datetime.combine(current_date_on_screen, current_time_on_screen)
+
+                current_time_on_screen = datetime.combine(current_date_on_screen, current_time_on_screen)
                 last_attempt_screen_time_formatted = datetime.combine(last_attempt.date_on_screen,
                                                                       last_attempt.time_on_screen)
 
-                screen_seconds_difference = (current_time_formatted
+                screen_seconds_difference = (current_time_on_screen
                                              - last_attempt_screen_time_formatted).total_seconds()
 
                 print("\n\nSCREEN TIME")
                 print("screen: " + str(screen_seconds_difference))
-                print("timestamp: " + str(seconds_difference))
+                print("timestamp: " + str(time_stamp_seconds_difference))
                 print("\n\n")
 
                 # Makes sure that the current time after alst attempt time and within delta
-                if 0 < seconds_difference < delta:
+                if 0 < time_stamp_seconds_difference < delta:
 
-                    print("Two attempts within delta")
-                    add_to_attending(username, event_id)
+                    if 1 < screen_seconds_difference < delta:
+
+                        print("Two attempts within delta")
+                        add_to_attending(username, event_id)
                 else:
                     verified = False
                     print("Two attempts not within delta")
