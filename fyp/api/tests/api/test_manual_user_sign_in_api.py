@@ -69,7 +69,6 @@ class ManualUserSignInTest(TestCase):
         print(self.event.attending)
         self.assertIsNotNone(response.data)
 
-
     def test_manual_sign_in_wrong_event_id(self):
 
         data = {

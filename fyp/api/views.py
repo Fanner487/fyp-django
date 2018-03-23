@@ -146,8 +146,6 @@ def manually_sign_in_user(request):
 
     return Response(serializer.data, status=status.HTTP_200_OK)
 
-    # Return response
-
 
 @api_view(["POST"])
 @authentication_classes((JSONWebTokenAuthentication,))
@@ -157,10 +155,6 @@ def remove_user_from_attending(request):
 
     serializer.is_valid(raise_exception=True)
 
-    print("\n\nManual remove in validated")
-    print(str(serializer.validated_data['event_id']))
-    print(str(serializer.validated_data['user']))
-
     event = Event.objects.get(id=serializer.validated_data['event_id'])
 
     if serializer.validated_data['user'] in event.attending:
@@ -169,8 +163,6 @@ def remove_user_from_attending(request):
     event.save()
 
     return Response(serializer.data, status=status.HTTP_200_OK)
-
-    # Return response
 
 
 @api_view(["POST"])
@@ -206,6 +198,7 @@ def register(request):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+# todo: Delete this before submission
 @api_view(["GET"])
 @authentication_classes(())
 @permission_classes(())
@@ -213,7 +206,7 @@ def delete_table(request, table):
     """
     Delete table API view.
     Deletes specified tables.
-    This is scrictly for debugging purposes
+    This is strictly for debugging purposes
     """
 
     if table == "event":
@@ -260,16 +253,6 @@ def get_events_for_user(request, username):
         return Response(serialized.data)
     else:
         return Response(status=status.HTTP_404_NOT_FOUND)
-        # if events_combined:
-        #
-        #     serialized = EventSerializer(data=events_combined, many=True)
-        #
-        #     if serialized.is_valid():
-        #         return Response(serialized.data)
-        #     else:
-        #         return Response(serialized.errors, status=status.HTTP_400_BAD_REQUEST)
-        # else:
-        #     return Response(status=status.HTTP_404_NOT_FOUND)
 
 
 @api_view(["GET"])
