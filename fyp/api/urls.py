@@ -20,14 +20,13 @@ router.register("users", UserViewSet)
 
 urlpatterns = [
     url(r'^login', login, name="login"),
-    url(r'^jwt_login', jwt_login, name="jwt_login"),
+    # url(r'^jwt_login', jwt_login, name="jwt_login"),
     url(r'^register', register, name="register"),
-    url(r'^profile/(?P<username>[\w.@+-]+)/(?P<event_type>[-\w]+)/(?P<time>[-\w]+)/$', get_events, name="get_events"),
-    url(r'^deletetable/(?P<table>[\w.@+-]+)/$', delete_table, name="delete_table"),
+    # url(r'^profile/(?P<username>[\w.@+-]+)/(?P<event_type>[-\w]+)/(?P<time>[-\w]+)/$', get_events, name="get_events"),
+    # url(r'^deletetable/(?P<table>[\w.@+-]+)/$', delete_table, name="delete_table"),
     url(r'^verify_group', verify_group, name="verify_group"),
     url(r'^manual_sign_in', manually_sign_in_user, name="manually_sign_in_user"),
     url(r'^remove_user_from_attending', remove_user_from_attending, name="remove_user_from_attending"),
-    url(r'^(?P<username>[\w.@+-]+)/events', get_events_for_user, name="get_events_for_user"),
     url(r'^(?P<username>[\w.@+-]+)/events', get_events_for_user, name="get_events_for_user"),
     url(r'^api-token-auth/', obtain_jwt_token),
     url(r'^api-token-verify/', verify_jwt_token),
