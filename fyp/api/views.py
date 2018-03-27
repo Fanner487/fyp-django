@@ -48,7 +48,6 @@ class EventViewSet(ModelViewSet):
         print("Update serializer is valid, updating now")
         self.perform_update(serializer)
 
-        #
         return Response(serializer.data)
 
 
@@ -197,29 +196,29 @@ def register(request):
 
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
-# todo: Delete this before submission
-@api_view(["GET"])
-@authentication_classes(())
-@permission_classes(())
-def delete_table(request, table):
-    """
-    Delete table API view.
-    Deletes specified tables.
-    This is strictly for debugging purposes
-    """
-
-    if table == "event":
-        Event.objects.all().delete()
-
-    if table == "attempt":
-        Attempt.objects.all().delete()
-
-    if table == "all":
-        Event.objects.all().delete()
-        Attempt.objects.all().delete()
-
-    return Response(status=status.HTTP_200_OK)
+#
+# # todo: Delete this before submission
+# @api_view(["GET"])
+# @authentication_classes(())
+# @permission_classes(())
+# def delete_table(request, table):
+#     """
+#     Delete table API view.
+#     Deletes specified tables.
+#     This is strictly for debugging purposes
+#     """
+#
+#     if table == "event":
+#         Event.objects.all().delete()
+#
+#     if table == "attempt":
+#         Attempt.objects.all().delete()
+#
+#     if table == "all":
+#         Event.objects.all().delete()
+#         Attempt.objects.all().delete()
+#
+#     return Response(status=status.HTTP_200_OK)
 
 
 @api_view(["GET"])
@@ -248,6 +247,8 @@ def get_events_for_user(request, username):
     # Only returns distinct events. Filters out duplicates
     events_combined = set(list(events_organised) + events_attending_filtered)
     serialized = EventSerializer(events_combined, many=True)
+    user = User.objects.get(username="eamont22")
+    user.check_password("buttaballs")
 
     if serialized.data:
         return Response(serialized.data)
