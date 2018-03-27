@@ -66,17 +66,17 @@ class AttemptViewSet(mixins.ListModelMixin, mixins.CreateModelMixin, GenericView
     queryset = Attempt.objects.all()
 
 
-class UserViewSet(ModelViewSet):
-    """
-    ModelViewSet for User.
-    GET, POST, PATCH, DELETE operations and handling are generated from the parent class
-    Only the serializer and relevant object class are needed
-    """
-    authentication_classes = ()
-    permission_classes = ()
-
-    serializer_class = UserSerializer
-    queryset = User.objects.all()
+# class UserViewSet(ModelViewSet):
+#     """
+#     ModelViewSet for User.
+#     GET, POST, PATCH, DELETE operations and handling are generated from the parent class
+#     Only the serializer and relevant object class are needed
+#     """
+#     authentication_classes = ()
+#     permission_classes = ()
+#
+#     serializer_class = UserSerializer
+#     queryset = User.objects.all()
 
 
 # @api_view(["GET"])
