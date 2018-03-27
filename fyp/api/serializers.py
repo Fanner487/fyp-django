@@ -254,6 +254,9 @@ class ManualSignInSerializer(serializers.Serializer):
         if not attendee_is_user(user.strip().lower(), event_id):
             raise serializers.ValidationError("User is not attendee to event")
 
+        if attendee_is_in_attending(user):
+            raise serializers.ValidationError("User is already signed in")
+
         return data
 
     def create(self, validated_data):
@@ -465,7 +468,6 @@ def verify_scan(data):
                                       last_attempt.date_on_screen, last_attempt.created):
 
                 print("Previous attempt valid")
-
 
                 # Check if time within 5 seconds of last
                 time_stamp_seconds_difference = (current_created - last_attempt.created).total_seconds()
