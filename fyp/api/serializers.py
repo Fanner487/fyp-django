@@ -254,7 +254,7 @@ class ManualSignInSerializer(serializers.Serializer):
         if not attendee_is_user(user.strip().lower(), event_id):
             raise serializers.ValidationError("User is not attendee to event")
 
-        if attendee_is_in_attending(user):
+        if attendee_is_in_attending(user, event_id):
             raise serializers.ValidationError("User is already signed in")
 
         return data
