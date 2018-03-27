@@ -2,7 +2,7 @@ from django.conf.urls import url
 from rest_framework.routers import SimpleRouter
 
 # from .views import SubscriberView
-from .views import EventViewSet, AttemptViewSet, UserViewSet
+from .views import EventViewSet, AttemptViewSet
 from .views import login, register, verify_group, get_events_for_user,\
     manually_sign_in_user, remove_user_from_attending
 from rest_framework_jwt.views import obtain_jwt_token, verify_jwt_token
@@ -16,7 +16,6 @@ URLs and patterns specified for the REST API views
 router = SimpleRouter()
 router.register("events", EventViewSet)
 router.register("attempts", AttemptViewSet)
-router.register("users", UserViewSet)
 
 urlpatterns = [
     url(r'^login', login, name="login"),
