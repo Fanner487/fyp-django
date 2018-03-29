@@ -1,5 +1,4 @@
 from django.conf.urls import url
-from django.urls import path
 from rest_framework.routers import SimpleRouter
 from admin import admin_site
 
@@ -30,8 +29,7 @@ urlpatterns = [
     url(r'^remove_user_from_attending', remove_user_from_attending, name="remove_user_from_attending"),
     url(r'^(?P<username>[\w.@+-]+)/events', get_events_for_user, name="get_events_for_user"),
     url(r'^api-token-auth/', obtain_jwt_token),
-    url(r'^api-token-verify/', verify_jwt_token),
-    path('myadmin/', admin_site.urls)
+    url(r'^api-token-verify/', verify_jwt_token)
 ]
 
 urlpatterns += router.urls
