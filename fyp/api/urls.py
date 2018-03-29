@@ -1,5 +1,7 @@
 from django.conf.urls import url
+from django.urls import path
 from rest_framework.routers import SimpleRouter
+from admin import admin_site
 
 # from .views import SubscriberView
 from .views import EventViewSet, AttemptViewSet
@@ -29,6 +31,7 @@ urlpatterns = [
     url(r'^(?P<username>[\w.@+-]+)/events', get_events_for_user, name="get_events_for_user"),
     url(r'^api-token-auth/', obtain_jwt_token),
     url(r'^api-token-verify/', verify_jwt_token),
+    path('myadmin/', admin_site.urls)
 ]
 
 urlpatterns += router.urls
