@@ -1,6 +1,5 @@
 from django.conf.urls import url
 from rest_framework.routers import SimpleRouter
-from admin import admin_site
 
 # from .views import SubscriberView
 from .views import EventViewSet, AttemptViewSet
