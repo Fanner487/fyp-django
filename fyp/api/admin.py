@@ -23,6 +23,5 @@ class EventAdmin(admin.ModelAdmin):
 
 
 admin_site = MyAdminSite(name='attendR')
-admin.site.register(MyAdminSite)
 admin.site.register(Event, EventAdmin)
 admin.site.register(Attempt, AttemptAdmin)
