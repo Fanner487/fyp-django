@@ -81,12 +81,12 @@ class AttemptViewSet(mixins.ListModelMixin, mixins.CreateModelMixin, GenericView
 
             print("Serializer valid. Verifying last scan now")
 
-            return Response(status=status.HTTP_201_CREATED)
+            return Response({"Success": "Attempt created"}, status=status.HTTP_201_CREATED)
 
             # perform_create
             # check if it is valid here
         else:
-            return Response(status=status.HTTP_400_BAD_REQUEST)
+            return Response({"Error": "bad request"}, status=status.HTTP_400_BAD_REQUEST)
 
 
 
