@@ -420,11 +420,11 @@ class AttemptSerializer(serializers.ModelSerializer):
         if attendee_is_in_attending(username, event_id):
             raise serializers.ValidationError(username + " signed in")
 
-        print("Serializer valid. Verifying last scan now")
+        # print("Serializer valid. Verifying last scan now")
 
         # If user is attendee, add to list with verification
         # Doesn't need to raise Validation error, needs to check for duplicates
-        verify_scan(data)
+        # verify_scan(data)
 
         return data
 
