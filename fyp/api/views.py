@@ -76,10 +76,11 @@ class AttemptViewSet(mixins.ListModelMixin, mixins.CreateModelMixin, GenericView
 
         if serializer.is_valid(raise_exception=True):
 
+            verify_scan(serializer.validated_data)
             self.perform_create(serializer)
 
             print("Serializer valid. Verifying last scan now")
-            verify_scan(serializer.validated_data)
+
             return Response(status=status.HTTP_201_CREATED)
 
             # perform_create
