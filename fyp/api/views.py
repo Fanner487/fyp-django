@@ -482,6 +482,13 @@ def valid_attempt_in_event(username, event_id, time_on_screen, date_on_screen, t
     event = Event.objects.get(id=event_id)
 
     # parsing date and time on screen into new datetime variable for comparison
+
+
+    print("\nbefore combined date")
+    print("Date on screen: " + str(date_on_screen))
+    print("Date on screen: " + str(time_on_screen))
+
+
     utc = pytz.UTC
     combined_time = datetime(year=date_on_screen.year, month=date_on_screen.month, day=date_on_screen.day,
                              hour=time_on_screen.hour, minute=time_on_screen.minute, second=time_on_screen.second)\
