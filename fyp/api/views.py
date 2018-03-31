@@ -71,8 +71,8 @@ class AttemptViewSet(mixins.ListModelMixin, mixins.CreateModelMixin, GenericView
 
         partial = kwargs.pop('partial', False)
 
-        instance = self.get_object()
-        serializer = AttemptSerializer(instance=instance, data=request.data, partial=partial)
+        # instance = self.get_object()
+        serializer = AttemptSerializer(data=request.data, partial=partial)
 
         if serializer.is_valid(raise_exception=True):
 
@@ -80,6 +80,7 @@ class AttemptViewSet(mixins.ListModelMixin, mixins.CreateModelMixin, GenericView
 
             print("Serializer valid. Verifying last scan now")
             verify_scan(serializer.data)
+            return Response(status=status.HTTP_201_CREATED)
 
             # perform_create
             # check if it is valid here
