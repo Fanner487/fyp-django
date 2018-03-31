@@ -79,7 +79,7 @@ class AttemptViewSet(mixins.ListModelMixin, mixins.CreateModelMixin, GenericView
             self.perform_create(serializer)
 
             print("Serializer valid. Verifying last scan now")
-            verify_scan(request.data)
+            verify_scan(serializer.validated_data)
             return Response(status=status.HTTP_201_CREATED)
 
             # perform_create
@@ -271,98 +271,11 @@ def get_events_for_user(request, username):
     # Only returns distinct events. Filters out duplicates
     events_combined = set(list(events_organised) + events_attending_filtered)
     serialized = EventSerializer(events_combined, many=True)
-    user = User.objects.get(username="eamont22")
-    user.check_password("buttaballs")
 
     if serialized.data:
         return Response(serialized.data)
     else:
         return Response(status=status.HTTP_404_NOT_FOUND)
-
-#
-# @api_view(["GET"])
-# @authentication_classes(())
-# @permission_classes(())
-# def get_events(request, username, event_type, time):
-#     """
-#     Get events for user according to organising/attending, and time tense.
-#     """
-#
-#     username = username.strip().lower()
-#     event_type = event_type.strip().lower()
-#
-#     if event_type == "organising":
-#
-#         organised_events = Event.objects.filter(organiser__iexact=username) \
-#             .order_by('-start_time')
-#
-#         time_filtered_events = filter_events_by_time(organised_events, time)
-#
-#         serialized = EventSerializer(time_filtered_events, many=True)
-#
-#         return Response(serialized.data)
-#
-#     elif event_type == "attending":
-#
-#         attending_events = Event.objects.filter(attendees__icontains=username) \
-#             .order_by('-start_time')
-#
-#         attending_events_filtered = []
-#
-#         # filters for exact matches instead of (LIKE %username%) in contains
-#         # statement in query
-#         for event in attending_events:
-#
-#             if username in event.attendees:
-#                 attending_events_filtered.append(event)
-#
-#         time_filtered_events = filter_events_by_time(attending_events_filtered, time)
-#
-#         serialized = EventSerializer(time_filtered_events, many=True)
-#
-#         return Response(serialized.data)
-#
-#     else:
-#
-#         return Response(status=status.HTTP_400_BAD_REQUEST)
-#
-#
-# def filter_events_by_time(events, event_time):
-#     """Filters events by all, past, ongoing or future."""
-#
-#     utc = pytz.UTC  # using timezones for time checking
-#     time_now = datetime.now().replace(tzinfo=utc)
-#
-#     filtered_set = []
-#
-#     if event_time == "all":
-#
-#         filtered_set = events
-#
-#     elif event_time == "past":
-#
-#         for event in events:
-#
-#             if event.finish_time < time_now:
-#                 filtered_set.append(event)
-#
-#     elif event_time == "ongoing":
-#
-#         for event in events:
-#
-#             if event.start_time <= time_now <= event.finish_time:
-#                 filtered_set.append(event)
-#
-#     elif event_time == "upcoming":
-#
-#         for event in events:
-#
-#             if event.start_time > time_now:
-#                 filtered_set.append(event)
-#     else:
-#         filtered_set = []
-#
-#     return filtered_set
 
 
 def verify_scan(data):
@@ -489,6 +402,7 @@ def valid_attempt_in_event(username, event_id, time_on_screen, date_on_screen, t
     print("Date on screen: " + str(time_on_screen))
 
 
+
     utc = pytz.UTC
     combined_time = datetime(year=date_on_screen.year, month=date_on_screen.month, day=date_on_screen.day,
                              hour=time_on_screen.hour, minute=time_on_screen.minute, second=time_on_screen.second)\
@@ -523,4 +437,90 @@ def valid_attempt_in_event(username, event_id, time_on_screen, date_on_screen, t
         verified = False
 
     return verified
+
+
+#
+# @api_view(["GET"])
+# @authentication_classes(())
+# @permission_classes(())
+# def get_events(request, username, event_type, time):
+#     """
+#     Get events for user according to organising/attending, and time tense.
+#     """
+#
+#     username = username.strip().lower()
+#     event_type = event_type.strip().lower()
+#
+#     if event_type == "organising":
+#
+#         organised_events = Event.objects.filter(organiser__iexact=username) \
+#             .order_by('-start_time')
+#
+#         time_filtered_events = filter_events_by_time(organised_events, time)
+#
+#         serialized = EventSerializer(time_filtered_events, many=True)
+#
+#         return Response(serialized.data)
+#
+#     elif event_type == "attending":
+#
+#         attending_events = Event.objects.filter(attendees__icontains=username) \
+#             .order_by('-start_time')
+#
+#         attending_events_filtered = []
+#
+#         # filters for exact matches instead of (LIKE %username%) in contains
+#         # statement in query
+#         for event in attending_events:
+#
+#             if username in event.attendees:
+#                 attending_events_filtered.append(event)
+#
+#         time_filtered_events = filter_events_by_time(attending_events_filtered, time)
+#
+#         serialized = EventSerializer(time_filtered_events, many=True)
+#
+#         return Response(serialized.data)
+#
+#     else:
+#
+#         return Response(status=status.HTTP_400_BAD_REQUEST)
+#
+#
+# def filter_events_by_time(events, event_time):
+#     """Filters events by all, past, ongoing or future."""
+#
+#     utc = pytz.UTC  # using timezones for time checking
+#     time_now = datetime.now().replace(tzinfo=utc)
+#
+#     filtered_set = []
+#
+#     if event_time == "all":
+#
+#         filtered_set = events
+#
+#     elif event_time == "past":
+#
+#         for event in events:
+#
+#             if event.finish_time < time_now:
+#                 filtered_set.append(event)
+#
+#     elif event_time == "ongoing":
+#
+#         for event in events:
+#
+#             if event.start_time <= time_now <= event.finish_time:
+#                 filtered_set.append(event)
+#
+#     elif event_time == "upcoming":
+#
+#         for event in events:
+#
+#             if event.start_time > time_now:
+#                 filtered_set.append(event)
+#     else:
+#         filtered_set = []
+#
+#     return filtered_set
 
