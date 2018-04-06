@@ -272,6 +272,9 @@ def verify_scan(data):
 
     verified = True
 
+    utc = pytz.UTC
+    current_created.replace(tzinfo=utc)
+
     # Verifies current attempt
     if valid_attempt_in_event(username, event_id, time_on_screen, date_on_screen, current_created):
 
