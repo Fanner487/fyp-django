@@ -392,13 +392,15 @@ class AttemptSerializer(serializers.ModelSerializer):
 
     def validate(self, data):
 
+        utc = pytz.UTC
         now = timezone.now()
+        new_now = now.replace(tzinfo=utc)
 
         username = data.get('username').strip()
         event_id = data.get('event_id')
 
         # Setting created_time to now
-        data['created'] = now
+        data['created'] = new_now
 
         created = data.get('created')
         print("\n\n\n----------NEW ATTEMPT---------\n" )

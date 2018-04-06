@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b2c529be-bfca-4366-bb99-ac5ec9275170" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fyp/api/serializers.py" afterPath="$PROJECT_DIR$/fyp/api/serializers.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fyp/api/views.py" afterPath="$PROJECT_DIR$/fyp/api/views.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -13,11 +14,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/fyp/api/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="278" column="86" lean-forward="false" selection-start-line="278" selection-start-column="86" selection-end-line="278" selection-end-column="86" />
+            <state relative-caret-position="235">
+              <caret line="273" column="0" lean-forward="false" selection-start-line="273" selection-start-column="0" selection-end-line="273" selection-end-column="0" />
               <folding>
                 <element signature="e#24#63#0" expanded="true" />
               </folding>
@@ -87,11 +88,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="serializers.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="serializers.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/fyp/api/serializers.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="384" column="33" lean-forward="false" selection-start-line="384" selection-start-column="25" selection-end-line="384" selection-end-column="33" />
+            <state relative-caret-position="254">
+              <caret line="402" column="33" lean-forward="false" selection-start-line="402" selection-start-column="33" selection-end-line="402" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -147,6 +148,8 @@
       <find>attempt</find>
       <find>combined</find>
       <find>screen time</find>
+      <find>created</find>
+      <find>current</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -190,10 +193,10 @@
         <option value="$PROJECT_DIR$/fyp/api/admin.py" />
         <option value="$PROJECT_DIR$/fyp/api/urls.py" />
         <option value="$PROJECT_DIR$/fyp/fyp/urls.py" />
-        <option value="$PROJECT_DIR$/fyp/api/serializers.py" />
         <option value="$PROJECT_DIR$/fyp/api/tests/serializers/test_attempt_serializer.py" />
         <option value="$PROJECT_DIR$/fyp/fyp/settings.py" />
         <option value="$PROJECT_DIR$/fyp/api/views.py" />
+        <option value="$PROJECT_DIR$/fyp/api/serializers.py" />
       </list>
     </option>
   </component>
@@ -708,21 +711,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fyp/api/serializers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="384" column="33" lean-forward="false" selection-start-line="384" selection-start-column="25" selection-end-line="384" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/fyp/api/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="278" column="86" lean-forward="false" selection-start-line="278" selection-start-column="86" selection-end-line="278" selection-end-column="86" />
+        <state relative-caret-position="235">
+          <caret line="273" column="0" lean-forward="false" selection-start-line="273" selection-start-column="0" selection-end-line="273" selection-end-column="0" />
           <folding>
             <element signature="e#24#63#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fyp/api/serializers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="254">
+          <caret line="402" column="33" lean-forward="false" selection-start-line="402" selection-start-column="33" selection-end-line="402" selection-end-column="33" />
+          <folding />
         </state>
       </provider>
     </entry>
