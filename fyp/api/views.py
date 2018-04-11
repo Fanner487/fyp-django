@@ -97,6 +97,7 @@ class AttemptViewSet(mixins.ListModelMixin, mixins.CreateModelMixin, GenericView
 #     serializer_class = UserSerializer
 #     queryset = User.objects.all()
 
+
 @api_view(["POST"])
 @authentication_classes(())
 @permission_classes(())
@@ -195,30 +196,6 @@ def register(request):
 
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-#
-# # todo: Delete this before submission
-# @api_view(["GET"])
-# @authentication_classes(())
-# @permission_classes(())
-# def delete_table(request, table):
-#     """
-#     Delete table API view.
-#     Deletes specified tables.
-#     This is strictly for debugging purposes
-#     """
-#
-#     if table == "event":
-#         Event.objects.all().delete()
-#
-#     if table == "attempt":
-#         Attempt.objects.all().delete()
-#
-#     if table == "all":
-#         Event.objects.all().delete()
-#         Attempt.objects.all().delete()
-#
-#     return Response(status=status.HTTP_200_OK)
-
 
 @api_view(["GET"])
 def get_events_for_user(request, username):
@@ -261,7 +238,7 @@ def verify_scan(data):
         - data scanned from camera is valid within timestamp and the information scanned on the screen of the phone
     2. Retrieve and verify the last attempt with the same username and event_id
         - validate attempt as per step 1
-    3. If the two attempts or scans are within the time delta(10 seconds), the user is added to the event attending list
+    3. If the two attempts or scans are within the time delta(5 seconds), the user is added to the event attending list
     """
 
     username = data.get('username')
@@ -307,16 +284,14 @@ def verify_scan(data):
                 print("timestamp: " + str(time_stamp_seconds_difference))
                 print("\n\n")
 
-                # Makes sure that the current time after alst attempt time and within delta
+                # Makes sure that the current time after last attempt time and within delta
                 if 0 < time_stamp_seconds_difference < delta:
 
                     if 1 <= screen_seconds_difference < delta:
 
-                        print("Two attempts within delta")
                         add_to_attending(username, event_id)
                 else:
                     verified = False
-                    print("Two attempts not within delta")
             else:
 
                 print("Previous attempt not valid")

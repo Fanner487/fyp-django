@@ -7,6 +7,5 @@ from django.apps import AppConfig
 Name of the app 
 """
 
-
 class ApiConfig(AppConfig):
     name = 'api'

@@ -9,9 +9,8 @@ import pytz
 
 
 """
-Serializers declared
 Serializers are the middleware between models and the API views.
-Data can be validated here before the object gets created in the DB
+Data can be validated here before the object gets before DB operations
 Data can be de/serialized to/from JSON into a format the ORM understands
 """
 
@@ -90,12 +89,6 @@ class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('id', 'username', 'email', 'password', 'password_confirm', 'first_name', 'last_name')
-
-
-# class ChangePasswordSerializer(serializers.ModelSerializer):
-#     username
-#     current_password
-#     new_password
 
 
 class VerifyGroupSerializer(serializers.Serializer):
@@ -380,14 +373,6 @@ class AttemptSerializer(serializers.ModelSerializer):
     Verifies username, event existing and if user is specified attendee in the event or
     is already in the attending list
 
-    This is the main validation for event sign-in
-    The method verify_scan() is as follows
-    1. Verify if current attempt is valid
-        - valid in event
-        - data scanned from camera is valid within timestamp and the information scanned on the screen of the phone
-    2. Retrieve and verify the last attempt with the same username and event_id
-        - validate attempt as per step 1
-    3. If the two attempts or scans are within the time delta(10 seconds), the user is added to the event attending list
     """
 
     def validate(self, data):
@@ -490,5 +475,3 @@ def attendee_is_in_attending(username, event_id):
 
     else:
         return False
-
-
